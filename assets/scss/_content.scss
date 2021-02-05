@@ -58,7 +58,7 @@
         font-weight: $font-weight-bold;
     }
 
-    > pre, > .highlight, > .lead, > h1, > h2, > ul, > ol, > p, > blockquote, > dl dd, .footnotes, > .alert, > .notice {
+    > pre, > .highlight, > .lead, > h1, > h2, > ul, > ol, > p, > blockquote, > dl dd, .footnotes, > .alert, > .notices {
         @extend .td-max-width-on-larger-screens;
     }
 

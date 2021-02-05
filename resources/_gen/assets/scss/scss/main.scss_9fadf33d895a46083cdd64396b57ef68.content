@@ -10761,7 +10761,7 @@ readers do not read off random characters that represent icons */
     z-index: 1; }
 
 @media (min-width: 992px) {
-  .td-max-width-on-larger-screens, .td-content > pre, .td-content > .highlight, .td-content > .lead, .td-content > h1, .td-content > h2, .td-content > ul, .td-content > ol, .td-content > p, .td-content > blockquote, .td-content > dl dd, .td-content .footnotes, .td-content > .alert, .td-content > .notice {
+  .td-max-width-on-larger-screens, .td-content > pre, .td-content > .highlight, .td-content > .lead, .td-content > h1, .td-content > h2, .td-content > ul, .td-content > ol, .td-content > p, .td-content > blockquote, .td-content > dl dd, .td-content .footnotes, .td-content > .alert, .td-content > .notices {
     max-width: 80%; } }
 
 .-bg-blue {
@@ -12133,7 +12133,7 @@ readers do not read off random characters that represent icons */
     margin: 0;
     padding: 0; }
 
-.td-content p code, .td-content li > code, .td-content table code {
+.td-content p code, .td-content li > code, .td-content table code, .td-content .notices code {
   color: inherit;
   padding: 0.2em 0.4em;
   margin: 0;
@@ -12141,14 +12141,14 @@ readers do not read off random characters that represent icons */
   word-break: normal;
   background-color: rgba(0, 0, 0, 0.05);
   border-radius: 0.25rem; }
-  .td-content p code br, .td-content li > code br, .td-content table code br {
+  .td-content p code br, .td-content li > code br, .td-content table code br, .td-content .notices code br {
     display: none; }
 
-.td-content pre {
+.td-content pre, .td-content .notices pre {
   word-wrap: normal;
   background-color: #f8f9fa;
   padding: 1rem; }
-  .td-content pre > code {
+  .td-content pre > code, .td-content .notices pre > code {
     padding: 0;
     margin: 0;
     font-size: 100%;
