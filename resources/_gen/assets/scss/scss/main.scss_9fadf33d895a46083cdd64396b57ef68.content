@@ -12535,6 +12535,42 @@ readers do not read off random characters that represent icons */
     border-style: solid;
     border-color: #403F4C; }
 
+.notices {
+  margin: 20px 0;
+  position: relative; }
+  .notices > p {
+    padding: 0 10px;
+    margin: 0 !important;
+    height: 30px;
+    line-height: 30px;
+    color: #ffffff; }
+  .notices > div {
+    padding: 10px; }
+
+.notices.note > p {
+  background: #6ab0de; }
+
+.notices.note > div {
+  background: #e7f2fa; }
+
+.notices.tip > p {
+  background: #78C578; }
+
+.notices.tip > div {
+  background: #E6F9E6; }
+
+.notices.info > p {
+  background: #F0B37E; }
+
+.notices.info > div {
+  background: #FFF2DB; }
+
+.notices.warning > p {
+  background: #E06F6C; }
+
+.notices.warning > div {
+  background: #FAE2E2; }
+
 footer {
   min-height: 150px; }
   @media (max-width: 991.98px) {

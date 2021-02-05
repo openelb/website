@@ -1,0 +1,52 @@
+.notices {
+  margin: 20px 0;
+  position: relative;
+
+  & > p {
+    padding: 0 10px;
+    margin: 0!important;
+    height: 30px;
+    line-height: 30px;
+    color: #ffffff;
+  }
+
+  & > div {
+    padding: 10px;
+  }
+}
+
+.notices.note {
+  & > p {
+    background: #6ab0de
+  }
+  & > div {
+    background: #e7f2fa;
+  }
+}
+
+.notices.tip {
+  & > p {
+    background: #78C578
+  }
+  & > div {
+    background: #E6F9E6;
+  }
+}
+
+.notices.info {
+  & > p {
+    background: #F0B37E
+  }
+  & > div {
+    background: #FFF2DB;
+  }
+}
+
+.notices.warning {
+  & > p {
+    background: #E06F6C
+  }
+  & > div {
+    background: #FAE2E2;
+  }
+}
