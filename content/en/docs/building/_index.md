@@ -17,7 +17,7 @@ This document describes how to build the Porter project.
 
 1. Log in to your environment, and run the following commands to clone the Porter project and go to the `porter` directory:
 
-   ```
+   ```bash
    git clone https://github.com/kubesphere/porter.git
    ```
 
@@ -51,7 +51,7 @@ This document describes how to build the Porter project.
 
 5. Run the following command to generate CRDs and webhooks:
 
-   ```
+   ```bash
    make generate
    ```
 
