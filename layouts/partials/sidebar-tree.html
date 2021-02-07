@@ -47,7 +47,6 @@
       {{ $pages := $pages | first 50 }}
       {{ range $pages }}
         {{ if .IsPage }}
-        aaa
           {{ $mid := printf "m-%s" (.RelPermalink | anchorize) }}
           {{ $active := eq . $p }}
           {{ $isForeignLanguage := (ne (string .Lang) (string $.currentLang)) }}
