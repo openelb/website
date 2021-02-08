@@ -225,12 +225,12 @@ The `community` landing page template has boilerplate content that's automatical
 	name = "Slack"
 	url = "https://example.org/slack"
 	icon = "fab fa-slack"
-        desc = "Chat with other project developers"
+        desc = "Chat with other project developers."
 [[params.links.developer]]
 	name = "Developer mailing list"
 	url = "https://example.org/mail"
 	icon = "fa fa-envelope"
-        desc = "Discuss development issues around the project"
+        desc = "Discuss development issues around the project."
 ``` 
 
 If you're creating your own site and want to add a page using this template, add a `/community/_index.md` file in your content root directory. If you've copied the example site and *don't* want a community page, just delete the `/content/en/community/` directory in your project repo.
