@@ -1,0 +1,76 @@
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Porter – Concepts</title>
+    <link>/docs/concepts/</link>
+    <description>Recent content in Concepts on Porter</description>
+    <generator>Hugo -- gohugo.io</generator>
+    
+	  <atom:link href="/docs/concepts/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+      
+        
+      
+    
+    
+    <item>
+      <title>Docs: BGP Mode</title>
+      <link>/docs/concepts/bgp-mode/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/docs/concepts/bgp-mode/</guid>
+      <description>
+        
+        
+        &lt;p&gt;This document describes the network topology of Porter in BGP mode and how Porter functions in BGP mode.&lt;/p&gt;
+&lt;h2 id=&#34;network-topology&#34;&gt;Network Topology&lt;/h2&gt;
+&lt;p&gt;The following figure shows the topology of the network between a Kubernetes cluster where Porter is installed and a peer BGP router.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;/images/docs/concepts/bgp-mode/porter-bgp-topology.jpg&#34; alt=&#34;porter-bgp-topology&#34;&gt;&lt;/p&gt;
+&lt;p&gt;IP addresses and Autonomous System Numbers (ASNs) in the preceding figure are examples only. The topology is described as follows:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;A service backed by two pods is deployed in the Kubernetes cluster, and is assigned an IP address 172.22.0.2 for external access.&lt;/li&gt;
+&lt;li&gt;Porter installed in the Kubernetes cluster establishes a BGP connection with the BGP router, and publishes routes destined for the service to the BGP router.&lt;/li&gt;
+&lt;li&gt;When an external client machine attempts to access the service, the BGP router load balances the traffic among the master, worker 1, and worker 2 nodes based on the routes obtained from Porter. After the service traffic reaches a node, kube-proxy can further forward the traffic to other nodes for load balancing (both pod 1 and pod 2 can be reached over kube-proxy).&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Porter uses &lt;a href=&#34;https://github.com/osrg/gobgp&#34;&gt;GoBGP&lt;/a&gt; (integrated in Porter) to establish a BGP connection for route publishing. Two &lt;a href=&#34;https://kubernetes.io/docs/tasks/extend-kubernetes/custom-resources/custom-resource-definitions/&#34;&gt;CustomResourceDefinitions (CRDs)&lt;/a&gt;, BgpConf and BgpPeer, are provided for users to configure the local and peer BGP properties on Porter. BgpConf and BgpPeer are designed according to the &lt;a href=&#34;https://github.com/osrg/gobgp/blob/master/api/gobgp.pb.go&#34;&gt;GoBGP API&lt;/a&gt;. For details about how to use BgpConf and BgpPeer to configure Porter in BGP mode, see &lt;a href=&#34;/docs/getting-started/configuration/configure-porter-in-bgp-mode/&#34;&gt;Configure Porter in BGP Mode&lt;/a&gt;.&lt;/p&gt;
+
+      </description>
+    </item>
+    
+    <item>
+      <title>Docs: Layer 2 Mode</title>
+      <link>/docs/concepts/layer-2-mode/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/docs/concepts/layer-2-mode/</guid>
+      <description>
+        
+        
+        &lt;p&gt;This document describes the network topology of Porter in Layer 2 mode and how Porter functions in Layer 2 mode.&lt;/p&gt;
+&lt;p&gt;Generally, you are advised to use the BGP mode because it allows you to create a high availability system free of failover interruptions and bandwidth bottlenecks. However, BGP may be unavailable in certain systems because of security requirements or because the router does not support BGP. In this case, you can use Porter in Layer 2 mode to achieve similar functionality.&lt;/p&gt;
+&lt;h2 id=&#34;network-topology&#34;&gt;Network Topology&lt;/h2&gt;
+&lt;p&gt;The following figure shows the topology of the network between a Kubernetes cluster with Porter and a router.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;/images/docs/concepts/layer-2-mode/porter-layer-2-topology.jpg&#34; alt=&#34;porter-layer-2-topology&#34;&gt;&lt;/p&gt;
+&lt;p&gt;IP addresses and MAC addresses in the preceding figure are examples only. The topology is described as follows:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;A service backed by two pods is deployed in the Kubernetes cluster, and is assigned an IP address 192.168.0.91 for external access. The service IP address is on the same network segment as the cluster node IP addresses.&lt;/li&gt;
+&lt;li&gt;Porter installed in the Kubernetes cluster randomly selects a node (worker 1 in this example) to handle service requests. After that, Porter sends an ARP/NDP packet to the router, which maps the service IP address to the MAC address of worker 1.&lt;/li&gt;
+&lt;li&gt;If multiple porter-manager replicas have been deployed in the cluster, Porter uses the the leader election feature of Kubernetes to ensure that only one replica responds to ARP/NDP requests.&lt;/li&gt;
+&lt;li&gt;When an external client machine attempts to access the service, the router forwards the service traffic to worker 1 based on the mapping between the service IP address and the MAC address of worker 1. After the service traffic reaches worker 1, kube-proxy can further forward the traffic to other nodes for load balancing (both pod 1 and pod 2 can be reached over kube-proxy).&lt;/li&gt;
+&lt;li&gt;If worker 1 fails, Porter re-sends an APR/NDP packet to the router to map the service IP address to the MAC address of worker 2, and the service traffic switches to worker 2.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class=&#34;notices note&#34;&gt;
+  
+  &lt;p&gt;NOTE&lt;/p&gt;
+  &lt;div&gt;The Layer 2 mode has two limitations:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Worker 1 and worker 2 work in active-standby mode in terms of traffic forwarding. When a failover occurs, services in the Kubernetes cluster will be interrupted for a short while.&lt;/li&gt;
+&lt;li&gt;All service traffic is always sent to one node first and then forwarded to other nodes over kube-proxy in a second hop. Therefore, the service bandwidth is limited to the bandwidth of a single node, which causes a bandwidth bottleneck.&lt;/li&gt;
+&lt;/ul&gt;&lt;/div&gt;
+&lt;/div&gt;
+
+      </description>
+    </item>
+    
+  </channel>
+</rss>
