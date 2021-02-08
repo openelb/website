@@ -1,0 +1,50 @@
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Porter – News About Docsy</title>
+    <link>/blog/news/</link>
+    <description>Recent content in News About Docsy on Porter</description>
+    <generator>Hugo -- gohugo.io</generator>
+    
+	  <atom:link href="/blog/news/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+      
+        
+      
+    
+    
+    <item>
+      <title>Blog: An Open Source Load Balancer for Bare Metal Kubernetes</title>
+      <link>/blog/2019/06/24/an-open-source-load-balancer-for-bare-metal-kubernetes/</link>
+      <pubDate>Mon, 24 Jun 2019 00:00:00 +0000</pubDate>
+      
+      <guid>/blog/2019/06/24/an-open-source-load-balancer-for-bare-metal-kubernetes/</guid>
+      <description>
+        
+        
+        &lt;p&gt;As we know, the backend workload can be exposed externally using service of type &amp;ldquo;LoadBalancer&amp;rdquo; in Kubernetes cluster. Cloud vendors often provide cloud LB plugins for Kubernetes which requires the cluster to be deployed on a specific IaaS platform. However, many enterprise users usually deploy Kubernetes clusters on bare meta especially for production use. For the on-premise bare meta clusters, Kubernetes does not provide Load-Balancer implementation. Porter, an open-source project, is the right solution for such issue.&lt;/p&gt;
+&lt;p&gt;This video will focus on the network technologies to help expose service and EIP management for bare meta Kubernetes cluster.&lt;/p&gt;
+&lt;iframe width=&#34;560&#34; height=&#34;315&#34; src=&#34;https://www.youtube.com/embed/EjU1yAVxXYQ&#34; frameborder=&#34;0&#34; allow=&#34;accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture&#34; allowfullscreen&gt;&lt;/iframe&gt;
+
+      </description>
+    </item>
+    
+    <item>
+      <title>Blog: The Interview to Porter from The New Stack</title>
+      <link>/blog/2019/06/24/the-interview-to-porter-from-the-new-stack/</link>
+      <pubDate>Mon, 24 Jun 2019 00:00:00 +0000</pubDate>
+      
+      <guid>/blog/2019/06/24/the-interview-to-porter-from-the-new-stack/</guid>
+      <description>
+        
+        
+        &lt;p&gt;On this livestream from KubeCon + CloudNativeCon China, Alex Williams was sitting down with Xuetao Song, Senior Software Engineer at Beijing Yunify Technology Co., Ltd. and Fang (Flora) Du, QingCloud Solution Architect at Beijing Yunify Technology Co., Ltd. to discuss open source load balancing on bare metal. Porter exists as an OSS solution to the issue of load balancing on bare metal in production on Kubernetes, which Song and Du are giving a presentation on at KCCNC + OSS Summit China 2019.&lt;/p&gt;
+&lt;iframe width=&#34;560&#34; height=&#34;315&#34; src=&#34;https://www.youtube.com/embed/zSWypFKaYcY&#34; frameborder=&#34;0&#34; allow=&#34;accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture&#34; allowfullscreen&gt;&lt;/iframe&gt;
+&lt;h2 id=&#34;related-post&#34;&gt;Related Post&lt;/h2&gt;
+&lt;p&gt;Please reference &lt;a href=&#34;https://thenewstack.io/how-a-china-based-bare-metal-service-provider-tackled-kubernetes-load-balancing/&#34;&gt;How a China-Based Bare Metal Service Provider Tackled Kubernetes Load Balancing&lt;/a&gt; for details.&lt;/p&gt;
+
+      </description>
+    </item>
+    
+  </channel>
+</rss>
