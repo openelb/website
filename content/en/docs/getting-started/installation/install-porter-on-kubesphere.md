@@ -60,7 +60,7 @@ Porter is designed to be used in bare-metal Kubernetes environments. However, yo
 
 ## Delete Porter on the KubeSphere Web Console
 
-To delete Porter on the KubeSphere web console, go to your project, choose **Application Workloads** > **Applications** on the left navigation bar, click ![porter-operation](./img/install-porter-on-kubesphere/porter-operation.jpg) on the right of the Porter application, and choose **Delete** from the drop-down list.
+To delete Porter on the KubeSphere web console, go to your project, choose **Application Workloads** > **Applications** on the left navigation bar, click ![porter-operation](/images/docs/getting-started/installation/install-porter-on-kubesphere/porter-operation.jpg) on the right of the Porter application, and choose **Delete** from the drop-down list.
 
 ![delete-porter](/images/docs/getting-started/installation/install-porter-on-kubesphere/delete-porter.jpg)
 
