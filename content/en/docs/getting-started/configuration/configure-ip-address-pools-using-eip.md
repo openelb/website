@@ -75,7 +75,7 @@ The fields are described as follows:
 * `disable`: Specifies whether the Eip object is disabled. The value can be:
   
   * `false`: Porter can assign IP addresses in the Eip object to new LoadBalancer services.
-  * `true`: Porter stops assigning IP addresses in the Eip object to new LoadBalancer services. Existing services are not be affected.
+  * `true`: Porter stops assigning IP addresses in the Eip object to new LoadBalancer services. Existing services are not affected.
 
 `status`: Fields under `status` specify the status of the Eip object and are automatically configured. When creating an Eip object, you do not need to configure these fields.
 
