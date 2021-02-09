@@ -54,7 +54,7 @@ This document describes how to use kubectl and [Helm](https://helm.sh/) to insta
 
    {{</ notice >}}
 
-2. Run the following command to check the result. If the porter-system name space does not exist, Porter has been deleted successfully.
+2. Run the following command to check the result. If the porter-system namespace does not exist, Porter has been deleted successfully.
 
    ```bash
    kubectl get ns
