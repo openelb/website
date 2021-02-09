@@ -22,10 +22,10 @@ In cloud-based Kubernetes clusters, services are usually exposed by using load b
 
 ## Support, Discussion and Contributing
 
-Porter is a sub-project of [KubeSphere](https://github.com/kubesphere/kubesphere).
+Porter is a sub-project of [KubeSphere](https://github.com/kubesphere).
 
 * Join us at the [KubeSphere Slack Channel](https://kubesphere.slack.com/join/shared_invite/enQtNTE3MDIxNzUxNzQ0LTZkNTdkYWNiYTVkMTM5ZThhODY1MjAyZmVlYWEwZmQ3ODQ1NmM1MGVkNWEzZTRhNzk0MzM5MmY4NDc3ZWVhMjE#/) to get support or simply tell us that you are using Porter.
-* You have code or documents for Porter? We ❤️ all sorts of contributions! You can [build the Porter project](/docs/building/) and send pull requests to the [GitHub Porter Repository](https://github.com/kubesphere/porter).
+* You have code or documents for Porter? Contributions are always welcome! See [Building and Contributing](/docs/building-and-contributing/) to obtain guidance.
 
 ## Landscapes
 

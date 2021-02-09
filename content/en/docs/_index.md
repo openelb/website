@@ -24,6 +24,6 @@ Describes the basic concepts of Porter.
 
 Describes how to install, configure, and use Porter.
 
-##### **[Building](/docs/building/)**
+##### **[Building and Contributing](/docs/building-and-contributing/)**
 
-Describes how to build the Porter project.
+Describes how to build the Porter project for testing and contribute to the Porter project.
