@@ -1,10 +1,10 @@
 ---
-title: "Install Porter on Kubernetes (kubectl and Helm)"
-linkTitle: "Install Porter on Kubernetes (kubectl and Helm)"
+title: "Install Porter on Kubernetes"
+linkTitle: "Install Porter on Kubernetes"
 weight: 1
 ---
 
-This document describes how to use kubectl and [Helm](https://helm.sh/) to install and delete Porter in a Kubernetes cluster. For details about how to install and delete Porter on the [KubeSphere](https://kubesphere.io/docs/installing-on-linux/introduction/multioverview/#step-3-create-a-cluster) web console, see [Install Porter on KubeSphere (Web Console)](/docs/getting-started/installation/install-porter-on-kubesphere/).
+This document describes how to use kubectl and [Helm](https://helm.sh/) to install and delete Porter in a Kubernetes cluster. 
 
 {{< notice note >}}
 

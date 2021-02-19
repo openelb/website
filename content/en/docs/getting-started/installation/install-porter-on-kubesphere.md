@@ -6,6 +6,13 @@ weight: 2
 
 This document describes how to install and delete Porter on the [KubeSphere](https://kubesphere.io/) web console.
 
+{{< notice note >}}
+
+- In a Kubernetes cluster, you only need to install Porter once. After the installation is complete, a porter-manager deployment that contains a porter-manager pod is installed in the cluster. The porter-manager pod implements the functionality of Porter for the entire Kubernetes cluster.
+- After the installation is complete, you can scale the porter-manager deployment and assign multiple Porter replicas (porter-manager pods) to multiple cluster nodes to ensure high availability. For details, see [Configure Multiple Porter Replicas](/docs/getting-started/configuration/configure-multiple-porter-replicas/).
+
+{{</ notice >}}
+
 ## Prerequisites
 
 You need to prepare a Kubernetes cluster with KubeSphere, and ensure that the Kubernetes version is 1.15 or later. Porter requires CustomResourceDefinition (CRD) v1, which is only supported by Kubernetes 1.15 or later. You can use the following methods to install KubeSphere:
@@ -53,7 +60,7 @@ Porter is designed to be used in bare-metal Kubernetes environments. However, yo
 
 ## Delete Porter on the KubeSphere Web Console
 
-To delete Porter on the KubeSphere web console, go to your project, choose **Application Workloads** > **Applications** on the left navigation bar, click ![porter-operation](./img/install-porter-on-kubesphere/porter-operation.jpg) on the right of the Porter application, and choose **Delete** from the drop-down list.
+To delete Porter on the KubeSphere web console, go to your project, choose **Application Workloads** > **Applications** on the left navigation bar, click ![porter-operation](/images/docs/getting-started/installation/install-porter-on-kubesphere/porter-operation.jpg) on the right of the Porter application, and choose **Delete** from the drop-down list.
 
 ![delete-porter](/images/docs/getting-started/installation/install-porter-on-kubesphere/delete-porter.jpg)
 
