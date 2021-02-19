@@ -1,10 +1,10 @@
 ---
-title: "Building"
-linkTitle: "Building"
-weight: 4
+title: "Build the Porter Project"
+linkTitle: "Build the Porter Project"
+weight: 1
 ---
 
-This document describes how to build the Porter project.
+This document describes how to build the Porter project for testing.
 
 ## Prerequisites
 
@@ -15,29 +15,31 @@ This document describes how to build the Porter project.
 
 ## Procedure
 
-1. Log in to your environment, and run the following commands to clone the Porter project and go to the `porter` directory:
+1. Visit https://github.com/kubesphere/porter and click **Fork** to fork the Porter repository to your own GitHub account.
+
+2. Log in to your environment, and run the following commands to clone the Porter repository and go to the `porter` directory:
 
    ```bash
-   git clone https://github.com/kubesphere/porter.git
+   git clone <Address of your own Porter repository>
    ```
 
    ```bash
    cd porter
    ```
 
-2. Run the following command to install Kustomize and Kubebuilder:
+3. Run the following command to install Kustomize and Kubebuilder:
 
    ```bash
    ./hack/install_tools.sh
    ```
 
-3. Run the following command to install controller-gen:
+4. Run the following command to install controller-gen:
 
    ```bash
    go get sigs.k8s.io/controller-tools/cmd/controller-gen@v0.4.0
    ```
 
-4. Run the following command to configure the environment variable for controller-gen:
+5. Run the following command to configure the environment variable for controller-gen:
 
    ```bash
    export PATH=/root/go/bin/:$PATH
@@ -49,13 +51,13 @@ This document describes how to build the Porter project.
 
    {{</ notice >}}
 
-5. Run the following command to generate CRDs and webhooks:
+6. Run the following command to generate CRDs and webhooks:
 
    ```bash
    make generate
    ```
 
-6. Customize the values of `IMG_MANAGER` and `IMG_AGENT` in `Makefile` and run the following command to generate a YAML release file in the `deploy` directory:
+7. Customize the values of `IMG_MANAGER` and `IMG_AGENT` in `Makefile` and run the following command to generate a YAML release file in the `deploy` directory:
 
    ```bash
    make release
@@ -70,7 +72,7 @@ This document describes how to build the Porter project.
 
    {{</ notice >}}
 
-7. Run the following command to deploy Porter as a plugin:
+8. Run the following command to deploy Porter as a plugin:
 
    ```bash
    kubectl apply -f deploy/release.yaml
