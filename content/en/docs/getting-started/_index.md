@@ -11,7 +11,7 @@ This section describes how to install, configure, and use Porter.
 
 ##### **[Installation](/docs/getting-started/installation/)**
 
-Describes how to install Porter on Kubernetes and KubeSphere.
+Describes how to install Porter on Kubernetes, KubeSphere, and K3s.
 
 ##### **[Configuration](/docs/getting-started/configuration/)**
 

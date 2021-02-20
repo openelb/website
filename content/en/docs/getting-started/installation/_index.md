@@ -17,7 +17,7 @@ Describes how to install and delete Porter on Kubernetes using kubectl and Helm.
 
 Describes how to install and delete Porter on the KubeSphere web console.
 
-**[Install Porter on K3s](/docs/getting-started/installation/install-porter-on-k3s/)**
+##### **[Install Porter on K3s](/docs/getting-started/installation/install-porter-on-k3s/)**
 
 Describes how to install and delete Porter on K3s using kubectl and Helm.
 
