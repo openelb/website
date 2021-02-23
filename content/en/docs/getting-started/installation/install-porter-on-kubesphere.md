@@ -1,28 +1,28 @@
 ---
-title: "Install Porter on KubeSphere"
-linkTitle: "Install Porter on KubeSphere"
+title: "Install PorterLB on KubeSphere"
+linkTitle: "Install PorterLB on KubeSphere"
 weight: 2
 ---
 
-This document describes how to install and delete Porter on the [KubeSphere](https://kubesphere.io/) web console.
+This document describes how to install and delete PorterLB on the [KubeSphere](https://kubesphere.io/) web console.
 
 {{< notice note >}}
 
-- In a Kubernetes cluster, you only need to install Porter once. After the installation is complete, a porter-manager deployment that contains a porter-manager pod is installed in the cluster. The porter-manager pod implements the functionality of Porter for the entire Kubernetes cluster.
-- After the installation is complete, you can scale the porter-manager deployment and assign multiple Porter replicas (porter-manager pods) to multiple cluster nodes to ensure high availability. For details, see [Configure Multiple Porter Replicas](/docs/getting-started/configuration/configure-multiple-porter-replicas/).
+- In a Kubernetes cluster, you only need to install PorterLB once. After the installation is complete, a porter-manager Deployment that contains a porter-manager Pod is installed in the cluster. The porter-manager Pod implements the functionality of PorterLB for the entire Kubernetes cluster.
+- After the installation is complete, you can scale the porter-manager Deployment and assign multiple PorterLB replicas (porter-manager pods) to multiple cluster nodes to ensure high availability. For details, see [Configure Multiple PorterLB Replicas](/docs/getting-started/configuration/configure-multiple-porter-replicas/).
 
 {{</ notice >}}
 
 ## Prerequisites
 
-You need to prepare a Kubernetes cluster with KubeSphere, and ensure that the Kubernetes version is 1.15 or later. Porter requires CustomResourceDefinition (CRD) v1, which is only supported by Kubernetes 1.15 or later. You can use the following methods to install KubeSphere:
+You need to prepare a Kubernetes cluster with KubeSphere, and ensure that the Kubernetes version is 1.15 or later. PorterLB requires CustomResourceDefinition (CRD) v1, which is only supported by Kubernetes 1.15 or later. You can use the following methods to install KubeSphere:
 
 * [Deploy a new Kubernetes cluster with KubeSphere](https://kubesphere.io/docs/installing-on-linux/).
 * [Install KubeSphere in an existing Kubernetes cluster](https://kubesphere.io/docs/installing-on-kubernetes/).
 
-Porter is designed to be used in bare-metal Kubernetes environments. However, you can also use a cloud-based Kubernetes cluster for learning and testing.
+PorterLB is designed to be used in bare-metal Kubernetes environments. However, you can also use a cloud-based Kubernetes cluster for learning and testing.
 
-## Install Porter on the KubeSphere Web Console
+## Install PorterLB on the KubeSphere Web Console
 
 1. Log in to the KubeSphere console and go to your workspace.
 
@@ -58,14 +58,14 @@ Porter is designed to be used in bare-metal Kubernetes environments. However, yo
 
    ![verify-porter](/images/docs/getting-started/installation/install-porter-on-kubesphere/verify-porter.jpg)
 
-## Delete Porter on the KubeSphere Web Console
+## Delete PorterLB on the KubeSphere Web Console
 
-To delete Porter on the KubeSphere web console, go to your project, choose **Application Workloads** > **Applications** on the left navigation bar, click ![porter-operation](/images/docs/getting-started/installation/install-porter-on-kubesphere/porter-operation.jpg) on the right of the Porter application, and choose **Delete** from the drop-down list.
+To delete PorterLB on the KubeSphere web console, go to your project, choose **Application Workloads** > **Applications** on the left navigation bar, click ![porter-operation](/images/docs/getting-started/installation/install-porter-on-kubesphere/porter-operation.jpg) on the right of the PorterLB application, and choose **Delete** from the drop-down list.
 
 ![delete-porter](/images/docs/getting-started/installation/install-porter-on-kubesphere/delete-porter.jpg)
 
 {{< notice note >}}
 
-Before deleting Porter, you must first delete all services that use Porter.
+Before deleting PorterLB, you must first delete all services that use PorterLB.
 
 {{</ notice >}}

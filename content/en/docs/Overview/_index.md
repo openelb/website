@@ -6,11 +6,11 @@ weight: 1
 
 ![porter-logo](/images/docs/overview/porter-logo.png)
 
-Porter is an open-source load balancer implementation designed for bare-metal Kubernetes clusters.
+PorterLB is an open-source load balancer implementation designed for bare-metal Kubernetes clusters.
 
-## Why Porter
+## Why PorterLB
 
-In cloud-based Kubernetes clusters, services are usually exposed by using load balancers provided by cloud vendors. However, cloud-based load balancers are unavailable in bare-metal environments. Porter allows users to create LoadBalancer services in bare-metal environments for external access, and provides the same user experience as cloud-based load balancers.
+In cloud-based Kubernetes clusters, services are usually exposed by using load balancers provided by cloud vendors. However, cloud-based load balancers are unavailable in bare-metal environments. PorterLB allows users to create LoadBalancer services in bare-metal environments for external access, and provides the same user experience as cloud-based load balancers.
 
 ## Core Features
 
@@ -22,10 +22,10 @@ In cloud-based Kubernetes clusters, services are usually exposed by using load b
 
 ## Support, Discussion and Contributing
 
-Porter is a sub-project of [KubeSphere](https://github.com/kubesphere).
+PorterLB is a sub-project of [KubeSphere](https://github.com/kubesphere).
 
-* Join us at the [KubeSphere Slack Channel](https://kubesphere.slack.com/join/shared_invite/enQtNTE3MDIxNzUxNzQ0LTZkNTdkYWNiYTVkMTM5ZThhODY1MjAyZmVlYWEwZmQ3ODQ1NmM1MGVkNWEzZTRhNzk0MzM5MmY4NDc3ZWVhMjE#/) to get support or simply tell us that you are using Porter.
-* You have code or documents for Porter? Contributions are always welcome! See [Building and Contributing](/docs/building-and-contributing/) to obtain guidance.
+* Join us at the [KubeSphere Slack Channel](https://kubesphere.slack.com/join/shared_invite/enQtNTE3MDIxNzUxNzQ0LTZkNTdkYWNiYTVkMTM5ZThhODY1MjAyZmVlYWEwZmQ3ODQ1NmM1MGVkNWEzZTRhNzk0MzM5MmY4NDc3ZWVhMjE#/) to get support or simply tell us that you are using PorterLB.
+* You have code or documents for PorterLB? Contributions are always welcome! See [Building and Contributing](/docs/building-and-contributing/) to obtain guidance.
 
 ## Landscapes
 
@@ -33,10 +33,10 @@ Porter is a sub-project of [KubeSphere](https://github.com/kubesphere).
 <br/><br/>
 <img src="https://landscape.cncf.io/images/left-logo.svg" width="150"/>&nbsp;&nbsp;<img src="https://landscape.cncf.io/images/right-logo.svg" width="200"/>&nbsp;&nbsp;
 <br/><br/>
-Porter is a promising newcomer in service proxy, which enriches the <a href="https://landscape.cncf.io/landscape=observability-and-analysis&license=apache-license-2-0">CNCF CLOUD NATIVE Landscape.
+PorterLB is a promising newcomer in Service proxy, which enriches the <a href="https://landscape.cncf.io/landscape=observability-and-analysis&license=apache-license-2-0">CNCF CLOUD NATIVE Landscape.
 </a>
 </p>
 
 ## License
 
-**Porter** is licensed under the Apache License, Version 2.0. See [LICENSE](https://github.com/kubesphere/porter/blob/master/LICENSE) for the full license text.
+**PorterLB** is licensed under the Apache License, Version 2.0. See [LICENSE](https://github.com/kubesphere/porter/blob/master/LICENSE) for the full license text.

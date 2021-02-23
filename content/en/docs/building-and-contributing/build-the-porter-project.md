@@ -1,10 +1,10 @@
 ---
-title: "Build the Porter Project"
-linkTitle: "Build the Porter Project"
+title: "Build the PorterLB Project"
+linkTitle: "Build the PorterLB Project"
 weight: 1
 ---
 
-This document describes how to build the Porter project for testing.
+This document describes how to build the PorterLB project for testing.
 
 ## Prerequisites
 
@@ -15,12 +15,12 @@ This document describes how to build the Porter project for testing.
 
 ## Procedure
 
-1. Visit https://github.com/kubesphere/porter and click **Fork** to fork the Porter repository to your own GitHub account.
+1. Visit https://github.com/kubesphere/porter and click **Fork** to fork the PorterLB repository to your own GitHub account.
 
-2. Log in to your environment, and run the following commands to clone the Porter repository and go to the `porter` directory:
+2. Log in to your environment, and run the following commands to clone the PorterLB repository and go to the `porter` directory:
 
    ```bash
-   git clone <Address of your own Porter repository>
+   git clone <Address of your own PorterLB repository>
    ```
 
    ```bash
@@ -68,11 +68,11 @@ This document describes how to build the Porter project for testing.
    * `IMG_MANAGER` specifies the repository and tag of the porter-manager image.
 
    * `IMG_AGENT` specifies the repository and tag of the porter-agent image.
-   * Currently, Porter uses only the porter-manager image. The porter-agent image will be used in future versions.
+   * Currently, PorterLB uses only the porter-manager image. The porter-agent image will be used in future versions.
 
    {{</ notice >}}
 
-8. Run the following command to deploy Porter as a plugin:
+8. Run the following command to deploy PorterLB as a plugin:
 
    ```bash
    kubectl apply -f deploy/release.yaml
