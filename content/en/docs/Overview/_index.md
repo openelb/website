@@ -39,4 +39,4 @@ PorterLB is a promising newcomer in Service proxy, which enriches the <a href="h
 
 ## License
 
-**PorterLB** is licensed under the Apache License, Version 2.0. See [LICENSE](https://github.com/kubesphere/porter/blob/master/LICENSE) for the full license text.
+PorterLB is licensed under the Apache License, Version 2.0. See [LICENSE](https://github.com/kubesphere/porter/blob/master/LICENSE) for the full license text.
