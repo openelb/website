@@ -7,6 +7,8 @@ no_list: true
 
 This section describes how to build the Porter project for testing and contribute to the Porter project.
 
+---
+
 ##### **[Build the Porter Porject](/docs/building-and-contributing/build-the-porter-project/)**
 
 Describes how to build the Porter project for testing.
