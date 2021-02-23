@@ -46,7 +46,7 @@ IP addresses in the preceding figure are examples only. The topology is describe
 
 ### Prerequisites
 
-You need to prepare a Kubernetes cluster where Porter has been installed. For details, see [Install Porter on Kubernetes (kubectl and Helm)](/docs/getting-started/installation/install-porter-on-kubernetes/) and [Install Porter on KubeSphere (Web Console)](/docs/getting-started/installation/install-porter-on-kubesphere/).
+You need to [prepare a Kubernetes cluster where Porter has been installed](/docs/getting-started/installation/).
 
 ### Procedure
 

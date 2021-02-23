@@ -8,7 +8,7 @@ This document demonstrates how to use Porter in Layer 2 mode to expose a service
 
 ## Prerequisites
 
-* You need to prepare a Kubernetes cluster where Porter has been installed. For details, see [Install Porter on Kubernetes (kubectl and Helm)](/docs/getting-started/installation/install-porter-on-kubernetes/) and [Install Porter on KubeSphere (Web Console)](/docs/getting-started/installation/install-porter-on-kubesphere/). All Kubernetes cluster nodes must be on the same Layer 2 network (under the same router).
+* You need to [prepare a Kubernetes cluster where Porter has been installed](/docs/getting-started/installation/). All Kubernetes cluster nodes must be on the same Layer 2 network (under the same router).
 * You need to prepare a client machine, which is used to verify whether Porter functions properly in Layer 2 mode. The client machine needs to be on the same network as the Kubernetes cluster nodes.
 
 This document uses the following devices as an example:
