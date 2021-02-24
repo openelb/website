@@ -1,5 +1,5 @@
 baseURL = "/"
-title = "Porter - Bare Metal Load-balancer for Kubernetes"
+title = "PorterLB - Bare Metal Load-balancer for Kubernetes"
 
 enableRobotsTXT = true
 
@@ -53,13 +53,13 @@ id = "UA-00000000-0"
 
 [languages]
 [languages.en]
-title = "Porter"
-description = "Bare Metal Load-balancer for Kubernetes"
+title = "PorterLB"
+description = "Bare-Metal Load-balancer for Kubernetes"
 languageName ="English"
 # Weight used for sorting.
 weight = 1
 # [languages.no]
-# title = "Porter"
+# title = "PorterLB"
 # description = "Docsy er operativsystem for skyen"
 # languageName ="Norsk"
 # contentDir = "content/no"
