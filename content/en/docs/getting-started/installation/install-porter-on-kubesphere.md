@@ -54,7 +54,7 @@ PorterLB is designed to be used in bare-metal Kubernetes environments. However, 
 
    ![porter-yaml](/images/docs/getting-started/installation/install-porter-on-kubesphere/porter-yaml.jpg)
 
-8. Choose **Application Workloads** > **Pods** on the left navigation bar to check whether the status of porter-manager is **running**. If yes, porter has been installed successfully.
+8. Choose **Application Workloads** > **Pods** on the left navigation bar to check whether the status of porter-manager is **running**. If yes, PorterLB has been installed successfully.
 
    ![verify-porter](/images/docs/getting-started/installation/install-porter-on-kubesphere/verify-porter.jpg)
 
