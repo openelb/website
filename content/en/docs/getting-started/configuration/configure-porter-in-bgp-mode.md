@@ -1,14 +1,14 @@
 ---
-title: "Configure Porter in BGP Mode"
-linkTitle: "Configure Porter in BGP Mode"
+title: "Configure PorterLB in BGP Mode"
+linkTitle: "Configure PorterLB in BGP Mode"
 weight: 2
 ---
 
-This document describes how to configure Porter in BGP mode. If Porter is used in Layer 2 mode, you do not need to configure Porter.
+This document describes how to configure PorterLB in BGP mode. If PorterLB is used in Layer 2 mode, you do not need to configure PorterLB.
 
 ## Configure Local BGP Properties Using BgpConf
 
-You can create a BgpConf object in the Kubernetes cluster to configure the local BGP properties on Porter. The following is an example of the BgpConf YAML configuration:
+You can create a BgpConf object in the Kubernetes cluster to configure the local BGP properties on PorterLB. The following is an example of the BgpConf YAML configuration:
 
 ```yaml
 apiVersion: network.kubesphere.io/v1alpha2
@@ -25,17 +25,17 @@ The fields are described as follows:
 
 `metadata`:
 
-* `name`: BgpConf object name. Porter recognizes only the name `default`. BgpConf objects with other names will be ignored.
+* `name`: BgpConf object name. PorterLB recognizes only the name `default`. BgpConf objects with other names will be ignored.
 
 `spec`:
 
 * `as`: Local ASN, which must be different from the value of `spec.conf.peerAS` in the BgpPeer configuration.
-* `listenPort`: Port on which Porter listens. The default value is `179` (default BGP port number). If other components (such as Calico) in the Kubernetes cluster also use BGP and port 179, you must set a different value to avoid the conflict.
+* `listenPort`: Port on which PorterLB listens. The default value is `179` (default BGP port number). If other components (such as Calico) in the Kubernetes cluster also use BGP and port 179, you must set a different value to avoid the conflict.
 * `routerID`: Local router ID, which is usually set to the IP address of the master NIC of the Kubernetes master node. If this field is not specified, the first IP address of the node where porter-manager is located will be used.
 
 ## Configure Peer BGP Properties Using BgpPeer
 
-You can create a BgpPeer object in the Kubernetes cluster to configure the peer BGP properties on Porter. The following is an example of the BgpPeer YAML configuration:
+You can create a BgpPeer object in the Kubernetes cluster to configure the peer BGP properties on PorterLB. The following is an example of the BgpPeer YAML configuration:
 
 ```yaml
 apiVersion: network.kubesphere.io/v1alpha2
@@ -73,10 +73,10 @@ The fields are described as follows:
 
 `spec.afiSafis.addPaths.config`:
 
-* `sendMax`: Maximum number of equivalent routes that Porter can send to the peer BGP router for Equal-Cost Multi-Path (ECMP) routing. The default value is `10`.
+* `sendMax`: Maximum number of equivalent routes that PorterLB can send to the peer BGP router for Equal-Cost Multi-Path (ECMP) routing. The default value is `10`.
 
 `spec.nodeSelector.matchLabels`:
 
-* `porter.kubesphere.io/rack`: If the Kubernetes cluster nodes are deployed under different routers and each node has one Porter replica, you need to configure this field so that the Porter replica on the correct node establishes a BGP connection with the peer BGP router. By default, all porter-manager replicas will respond to the BgpPeer configuration and attempt to establish a BGP connection with the peer BGP router.
+* `porter.kubesphere.io/rack`: If the Kubernetes cluster nodes are deployed under different routers and each node has one PorterLB replica, you need to configure this field so that the PorterLB replica on the correct node establishes a BGP connection with the peer BGP router. By default, all porter-manager replicas will respond to the BgpPeer configuration and attempt to establish a BGP connection with the peer BGP router.
 
-Other fields under `spec.afiSafis` specify the address family. Currently, Porter supports only IPv4 and you can directly use the values in the example configuration.
+Other fields under `spec.afiSafis` specify the address family. Currently, PorterLB supports only IPv4 and you can directly use the values in the example configuration.

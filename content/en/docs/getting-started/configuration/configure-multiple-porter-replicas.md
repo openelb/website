@@ -1,17 +1,17 @@
 ---
-title: "Configure Multiple Porter Replicas"
-linkTitle: "Configure Multiple Porter Replicas"
+title: "Configure Multiple PorterLB Replicas"
+linkTitle: "Configure Multiple PorterLB Replicas"
 weight: 4
 ---
 
-This document describes how to configure multiple Porter replicas to ensure high availability in a production environment. You can skip this document if Porter is used in a test environment. By default, only one Porter replica is installed in a Kubernetes cluster.
+This document describes how to configure multiple PorterLB replicas to ensure high availability in a production environment. You can skip this document if PorterLB is used in a test environment. By default, only one PorterLB replica is installed in a Kubernetes cluster.
 
-* If all Kubernetes cluster nodes are deployed under the same router (BGP mode or Layer 2 mode), you are advised to configure at least two Porter replicas, which are installed on two Kubernetes cluster nodes respectively.
-* If the Kubernetes cluster nodes are deployed under different leaf routers (BGP mode only), you are advised to configure at least two Porter replicas (one replica for one node) under each leaf router. For details, see [Configure Porter for Multi-router Clusters](/docs/getting-started/configuration/configure-porter-for-multi-router-clusters/).
+* If all Kubernetes cluster nodes are deployed under the same router (BGP mode or Layer 2 mode), you are advised to configure at least two PorterLB replicas, which are installed on two Kubernetes cluster nodes respectively.
+* If the Kubernetes cluster nodes are deployed under different leaf routers (BGP mode only), you are advised to configure at least two PorterLB replicas (one replica for one node) under each leaf router. For details, see [Configure PorterLB for Multi-router Clusters](/docs/getting-started/configuration/configure-porter-for-multi-router-clusters/).
 
 ## Prerequisites
 
-You need to [prepare a Kubernetes cluster where Porter has been installed](/docs/getting-started/installation/).
+You need to [prepare a Kubernetes cluster where PorterLB has been installed](/docs/getting-started/installation/).
 
 ## Procedure
 
@@ -21,7 +21,7 @@ The node names and namespace in the following steps are examples only. You need 
 
 {{</ notice >}}
 
-1. Log in to the Kubernetes cluster and run the following command to label the Kubernetes cluster nodes where Porter is to be installed:
+1. Log in to the Kubernetes cluster and run the following command to label the Kubernetes cluster nodes where PorterLB is to be installed:
 
    ```bash
    kubectl label --overwrite nodes master1 worker-p002 lb.kubesphere.io/v1alpha1=porter
@@ -29,7 +29,7 @@ The node names and namespace in the following steps are examples only. You need 
 
    {{< notice note >}}
 
-   In this example, Porter will be installed on master1 and worker-p002.
+   In this example, PorterLB will be installed on master1 and worker-p002.
 
    {{</ notice >}}
 
@@ -39,13 +39,13 @@ The node names and namespace in the following steps are examples only. You need 
    kubectl scale deployment porter-manager --replicas=0 -n porter-system
    ```
 
-3. Run the following command to edit the porter-manager deployment:
+3. Run the following command to edit the porter-manager Deployment:
 
    ```bash
    kubectl edit deployment porter-manager -n porter-system
    ```
 
-4. In the porter-manager deployment YAML configuration, add the following fields under `spec.template.spec`:
+4. In the porter-manager Deployment YAML configuration, add the following fields under `spec.template.spec`:
 
    ```yaml
    nodeSelector:
@@ -59,7 +59,7 @@ The node names and namespace in the following steps are examples only. You need 
    kubectl scale deployment porter-manager --replicas=2 -n porter-system
    ```
 
-6. Run the following command to check whether Porter has been installed on the required nodes.
+6. Run the following command to check whether PorterLB has been installed on the required nodes.
 
    ```bash
    kubectl get po -n porter-system -o wide
@@ -69,7 +69,7 @@ The node names and namespace in the following steps are examples only. You need 
 
 {{< notice note >}}
 
-* In Layer 2 mode, Porter uses the leader election feature of Kubernetes to ensure that only one replica responds to ARP/NDP requests. 
-* In BGP mode, all Porter replicas will respond to the BgpPeer configuration and attempt to establish a BGP connection with the peer BGP router by default. If the Kubernetes cluster nodes are deployed under different routers, you need to perform further configuration so that the Porter replicas establish BGP connections with the correct BGP routers. For details, see [Configure Porter for Multi-router Clusters](/docs/getting-started/configuration/configure-porter-for-multi-router-clusters/).
+* In Layer 2 mode, PorterLB uses the leader election feature of Kubernetes to ensure that only one replica responds to ARP/NDP requests. 
+* In BGP mode, all PorterLB replicas will respond to the BgpPeer configuration and attempt to establish a BGP connection with the peer BGP router by default. If the Kubernetes cluster nodes are deployed under different routers, you need to perform further configuration so that the PorterLB replicas establish BGP connections with the correct BGP routers. For details, see [Configure PorterLB for Multi-router Clusters](/docs/getting-started/configuration/configure-porter-for-multi-router-clusters/).
 
 {{</ notice >}}

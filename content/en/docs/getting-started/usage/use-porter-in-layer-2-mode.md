@@ -1,15 +1,15 @@
 ---
-title: "Use Porter in Layer 2 Mode"
-linkTitle: "Use Porter in Layer 2 Mode"
+title: "Use PorterLB in Layer 2 Mode"
+linkTitle: "Use PorterLB in Layer 2 Mode"
 weight: 2
 ---
 
-This document demonstrates how to use Porter in Layer 2 mode to expose a service backed by two pods. The Eip, deployment and service described in this document are examples only and you need to customize the commands and YAML configurations based on your requirements.
+This document demonstrates how to use PorterLB in Layer 2 mode to expose a Service backed by two pods. The Eip, Deployment and Service described in this document are examples only and you need to customize the commands and YAML configurations based on your requirements.
 
 ## Prerequisites
 
-* You need to [prepare a Kubernetes cluster where Porter has been installed](/docs/getting-started/installation/). All Kubernetes cluster nodes must be on the same Layer 2 network (under the same router).
-* You need to prepare a client machine, which is used to verify whether Porter functions properly in Layer 2 mode. The client machine needs to be on the same network as the Kubernetes cluster nodes.
+* You need to [prepare a Kubernetes cluster where PorterLB has been installed](/docs/getting-started/installation/). All Kubernetes cluster nodes must be on the same Layer 2 network (under the same router).
+* You need to prepare a client machine, which is used to verify whether PorterLB functions properly in Layer 2 mode. The client machine needs to be on the same network as the Kubernetes cluster nodes.
 
 This document uses the following devices as an example:
 
@@ -22,7 +22,7 @@ This document uses the following devices as an example:
 
 ## Step 1: Enable strictARP for kube-proxy
 
-In Layer 2 mode, you need to enable strictARP for kube-proxy so that all NICs in the Kubernetes cluster stop answering ARP requests from other NICs and Porter handles ARP requests instead.
+In Layer 2 mode, you need to enable strictARP for kube-proxy so that all NICs in the Kubernetes cluster stop answering ARP requests from other NICs and PorterLB handles ARP requests instead.
 
 1. Log in to the Kubernetes cluster and run the following command to edit the kube-proxy ConfigMap:
 
@@ -43,11 +43,11 @@ In Layer 2 mode, you need to enable strictARP for kube-proxy so that all NICs in
    kubectl rollout restart daemonset kube-proxy -n kube-system
    ```
 
-## Step 2: Specify the NIC Used for Porter
+## Step 2: Specify the NIC Used for PorterLB
 
-If the node where Porter is installed has multiple NICs, you need to specify the NIC used for Porter in Layer 2 mode. You can skip this step if the node has only one NIC.
+If the node where PorterLB is installed has multiple NICs, you need to specify the NIC used for PorterLB in Layer 2 mode. You can skip this step if the node has only one NIC.
 
-In this example, the master1 node where Porter is installed has two NICs (eth0 192.168.0.2 and eth1 192.168.1.2), and eth0 192.168.0.2 will be used for Porter.
+In this example, the master1 node where PorterLB is installed has two NICs (eth0 192.168.0.2 and eth1 192.168.1.2), and eth0 192.168.0.2 will be used for PorterLB.
 
 Run the following command to annotate master1 to specify the NIC:
 
@@ -57,7 +57,7 @@ kubectl annotate nodes master1 layer2.porter.kubesphere.io/v1alpha1="192.168.0.2
 
 ## Step 3: Create an Eip Object
 
-The Eip object functions as an IP address pool for Porter.
+The Eip object functions as an IP address pool for PorterLB.
 
 1. Run the following command to create a YAML file for the Eip object:
 
@@ -94,9 +94,9 @@ The Eip object functions as an IP address pool for Porter.
 
 ## Step 4: Create a Deployment
 
-The following creates a deployment of two pods using the luksa/kubia image. Each pod returns its own pod name to external requests. 
+The following creates a Deployment of two pods using the luksa/kubia image. Each Pod returns its own Pod name to external requests. 
 
-1. Run the following command to create a YAML file for the deployment:
+1. Run the following command to create a YAML file for the Deployment:
 
    ```bash
    vi porter-layer2.yaml
@@ -126,7 +126,7 @@ The following creates a deployment of two pods using the luksa/kubia image. Each
                - containerPort: 8080
    ```
 
-3. Run the following command to create the deployment:
+3. Run the following command to create the Deployment:
 
    ```bash
    kubectl apply -f porter-layer2.yaml
@@ -134,7 +134,7 @@ The following creates a deployment of two pods using the luksa/kubia image. Each
 
 ## Step 5: Create a Service
 
-1. Run the following command to create a YAML file for the service:
+1. Run the following command to create a YAML file for the Service:
 
    ```bash
    vi porter-layer2-svc.yaml
@@ -165,25 +165,25 @@ The following creates a deployment of two pods using the luksa/kubia image. Each
    {{< notice note >}}
 
    * You must set `spec.type` to `LoadBalancer`.
-   * The `lb.kubesphere.io/v1alpha1: porter` annotation specifies that the service uses Porter.
-   * The `protocol.porter.kubesphere.io/v1alpha1: layer2` annotation specifies that Porter is used in Layer 2 mode.
-   * The `eip.porter.kubesphere.io/v1alpha2: porter-layer2-eip` annotation specifies the Eip object used by Porter. If this annotation is not configured, Porter automatically uses the first available Eip object that matches the protocol. You can also delete this annotation and add the `spec.loadBalancerIP` field (for example, `spec.loadBalancerIP: 192.168.0.91`) to assign a specific IP address to the service.
-   * If `spec.externalTrafficPolicy` is set to `Cluster` (default value), Porter randomly selects a node from all Kubernetes cluster nodes to handle service requests. Pods on other nodes can also be reached over kube-proxy.
-   * If `spec.externalTrafficPolicy` is set to `Local`, Porter randomly selects a node that contains a pod in the Kubernetes cluster to handle service requests. Only pods on the selected node can be reached.
+   * The `lb.kubesphere.io/v1alpha1: porter` annotation specifies that the Service uses PorterLB.
+   * The `protocol.porter.kubesphere.io/v1alpha1: layer2` annotation specifies that PorterLB is used in Layer 2 mode.
+   * The `eip.porter.kubesphere.io/v1alpha2: porter-layer2-eip` annotation specifies the Eip object used by PorterLB. If this annotation is not configured, PorterLB automatically uses the first available Eip object that matches the protocol. You can also delete this annotation and add the `spec.loadBalancerIP` field (for example, `spec.loadBalancerIP: 192.168.0.91`) to assign a specific IP address to the Service.
+   * If `spec.externalTrafficPolicy` is set to `Cluster` (default value), PorterLB randomly selects a node from all Kubernetes cluster nodes to handle Service requests. Pods on other nodes can also be reached over kube-proxy.
+   * If `spec.externalTrafficPolicy` is set to `Local`, PorterLB randomly selects a node that contains a Pod in the Kubernetes cluster to handle Service requests. Only pods on the selected node can be reached.
 
    {{</ notice >}}
 
-3. Run the following command to create the service:
+3. Run the following command to create the Service:
 
       ```bash
       kubectl apply -f porter-layer2-svc.yaml
       ```
 
-## Step 6: Verify Porter in Layer 2 Mode
+## Step 6: Verify PorterLB in Layer 2 Mode
 
-The following verifies whether Porter functions properly.
+The following verifies whether PorterLB functions properly.
 
-1. In the Kubernetes cluster, run the following command to obtain the external IP address of the service:
+1. In the Kubernetes cluster, run the following command to obtain the external IP address of the Service:
 
    ```bash
    kubectl get svc porter-layer2-svc
@@ -213,7 +213,7 @@ The following verifies whether Porter functions properly.
 
    {{</ notice >}}
 
-4. On the client machine, run the following commands to ping the service IP address and check the IP neighbors:
+4. On the client machine, run the following commands to ping the Service IP address and check the IP neighbors:
 
    ```bash
    ping 192.168.0.91
@@ -225,18 +225,18 @@ The following verifies whether Porter functions properly.
 
    ![ip-neigh](/images/docs/getting-started/usage/use-porter-in-layer-2-mode/ip-neigh.jpg)
 
-   In the output of the `ip neigh` command, the MAC address of the service IP address 192.168.0.91 is the same as that of worker-p001 192.168.0.3. Therefore, Porter has mapped the service IP address to the MAC address of worker-p001.
+   In the output of the `ip neigh` command, the MAC address of the Service IP address 192.168.0.91 is the same as that of worker-p001 192.168.0.3. Therefore, PorterLB has mapped the Service IP address to the MAC address of worker-p001.
 
-5. On the client machine, run the following command to access the service:
+5. On the client machine, run the following command to access the Service:
 
    ```bash
    curl 192.168.0.91
    ```
 
-   If `spec.externalTrafficPolicy` in the [service YAML configuration](#step-5-create-a-service) is set to `Cluster`, both pods can be reached.
+   If `spec.externalTrafficPolicy` in the [Service YAML configuration](#step-5-create-a-service) is set to `Cluster`, both pods can be reached.
 
    ![service-cluster](/images/docs/getting-started/usage/use-porter-in-layer-2-mode/service-cluster.jpg)
 
-   If `spec.externalTrafficPolicy` in the [service YAML configuration](#step-5-create-a-service) is set to `Local`, only the pod on the node selected by Porter can be reached.
+   If `spec.externalTrafficPolicy` in the [Service YAML configuration](#step-5-create-a-service) is set to `Local`, only the Pod on the node selected by PorterLB can be reached.
 
    ![service-local](/images/docs/getting-started/usage/use-porter-in-layer-2-mode/service-local.jpg)

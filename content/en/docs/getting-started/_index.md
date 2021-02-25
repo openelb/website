@@ -5,18 +5,18 @@ weight: 3
 no_list: true
 ---
 
-This section describes how to install, configure, and use Porter.
+This section describes how to install, configure, and use PorterLB.
 
 ---
 
 ##### **[Installation](/docs/getting-started/installation/)**
 
-Describes how to install Porter on Kubernetes, KubeSphere, and K3s.
+Describes how to install PorterLB on Kubernetes, KubeSphere, and K3s.
 
 ##### **[Configuration](/docs/getting-started/configuration/)**
 
-Describes how to perform configuration before using Porter.
+Describes how to perform configuration before using PorterLB.
 
 ##### **[Usage](/docs/getting-started/usage/)**
 
-Describes how to use Porter.
+Describes how to use PorterLB.

@@ -8,25 +8,25 @@ menu:
 no_list: true
 ---
 
-Follow the documentation to learn how to use Porter.
+Follow the documentation to learn how to use PorterLB.
 
 ---
 
 ##### **[Overview](/docs/overview/)**
 
-Introduces Porter.
+Introduces PorterLB.
 
 ##### **[Concepts](/docs/concepts/)**
 
-Describes the basic concepts of Porter.
+Describes the basic concepts of PorterLB.
 
 ##### **[Getting Started](/docs/getting-started/)**
 
-Describes how to install, configure, and use Porter.
+Describes how to install, configure, and use PorterLB.
 
 ##### **[Building and Contributing](/docs/building-and-contributing/)**
 
-Describes how to build the Porter project for testing and contribute to the Porter project.
+Describes how to build the PorterLB project for testing and contribute to the PorterLB project.
 
 ##### **[FAQs](/docs/faqs/)**
 

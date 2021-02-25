@@ -1,25 +1,25 @@
 ---
-title: "Install Porter on K3s"
-linkTitle: "Install Porter on K3s"
+title: "Install PorterLB on K3s"
+linkTitle: "Install PorterLB on K3s"
 weight: 3
 ---
 
-This document describes how to use kubectl and [Helm](https://helm.sh/) to install and delete Porter in a [K3s](https://k3s.io/) Kubernetes cluster.
+This document describes how to use kubectl and [Helm](https://helm.sh/) to install and delete PorterLB in a [K3s](https://k3s.io/) Kubernetes cluster.
 
 {{< notice note >}}
 
-- In a Kubernetes cluster, you only need to install Porter once. After the installation is complete, a porter-manager deployment that contains a porter-manager pod is installed in the cluster. The porter-manager pod implements the functionality of Porter for the entire Kubernetes cluster.
-- After the installation is complete, you can scale the porter-manager deployment and assign multiple Porter replicas (porter-manager pods) to multiple cluster nodes to ensure high availability. For details, see [Configure Multiple Porter Replicas](/docs/getting-started/configuration/configure-multiple-porter-replicas).
+- In a Kubernetes cluster, you only need to install PorterLB once. After the installation is complete, a porter-manager Deployment that contains a porter-manager Pod is installed in the cluster. The porter-manager Pod implements the functionality of PorterLB for the entire Kubernetes cluster.
+- After the installation is complete, you can scale the porter-manager Deployment and assign multiple PorterLB replicas (porter-manager pods) to multiple cluster nodes to ensure high availability. For details, see [Configure Multiple PorterLB Replicas](/docs/getting-started/configuration/configure-multiple-porter-replicas).
 
 {{</ notice >}}
 
 ## Prerequisites
 
-* You need to [prepare a K3s Kubernetes cluster](https://rancher.com/docs/k3s/latest/en/installation/), and ensure that the Kubernetes version is 1.15 or later. Porter requires CustomResourceDefinition (CRD) v1, which is only supported by Kubernetes 1.15 or later. Porter is designed to be used in bare-metal Kubernetes environments. However, you can also use a cloud-based K3s Kubernetes cluster for learning and testing.
+* You need to [prepare a K3s Kubernetes cluster](https://rancher.com/docs/k3s/latest/en/installation/), and ensure that the Kubernetes version is 1.15 or later. PorterLB requires CustomResourceDefinition (CRD) v1, which is only supported by Kubernetes 1.15 or later. PorterLB is designed to be used in bare-metal Kubernetes environments. However, you can also use a cloud-based K3s Kubernetes cluster for learning and testing.
 
 * If you use Helm to install porter, ensure that the Helm version is Helm 3.
 
-## Install Porter Using kubectl
+## Install PorterLB Using kubectl
 
 1. Log in to the master node of the K3s Kubernetes cluster over SSH and run the following command:
 
@@ -27,7 +27,7 @@ This document describes how to use kubectl and [Helm](https://helm.sh/) to insta
    kubectl apply -f https://raw.githubusercontent.com/kubesphere/porter/master/deploy/porter.yaml
    ```
    
-2. Run the following command to edit the porter-manager deployment:
+2. Run the following command to edit the porter-manager Deployment:
 
    ```bash
    kubectl edit deployment porter-manager -n porter-system
@@ -49,11 +49,11 @@ This document describes how to use kubectl and [Helm](https://helm.sh/) to insta
 
    {{< notice note >}}
 
-   By default, both Porter and K3s use port 443. Therefore, you need to change port 443 of Porter to avoid the port conflict. For details, see the [official K3s document](https://rancher.com/docs/k3s/latest/en/networking/#traefik-ingress-controller).
+   By default, both PorterLB and K3s use port 443. Therefore, you need to change port 443 of PorterLB to avoid the port conflict. For details, see the [official K3s document](https://rancher.com/docs/k3s/latest/en/networking/#traefik-ingress-controller).
 
    {{</ notice >}}
 
-4. Run the following command to check whether the status of porter-manager is **READY**: **1/1** and **STATUS**: **Running**. If yes, Porter has been installed successfully.
+4. Run the following command to check whether the status of porter-manager is **READY**: **1/1** and **STATUS**: **Running**. If yes, PorterLB has been installed successfully.
 
    ```bash
    kubectl get po -n porter-system
@@ -61,9 +61,9 @@ This document describes how to use kubectl and [Helm](https://helm.sh/) to insta
 
    ![verify-porter-kubectl](/images/docs/getting-started/installation/install-porter-on-k3s/verify-porter-kubectl.jpg)
 
-## Delete Porter Using kubectl
+## Delete PorterLB Using kubectl
 
-1. To delete Porter, log in to the master node of the K3s Kubernetes cluster and run the following command:
+1. To delete PorterLB, log in to the master node of the K3s Kubernetes cluster and run the following command:
 
    ```bash
    kubectl delete -f https://raw.githubusercontent.com/kubesphere/porter/master/deploy/porter.yaml
@@ -71,11 +71,11 @@ This document describes how to use kubectl and [Helm](https://helm.sh/) to insta
 
    {{< notice note >}}
 
-   Before deleting Porter, you must first delete all services that use Porter.
+   Before deleting PorterLB, you must first delete all services that use PorterLB.
 
    {{</ notice >}}
 
-2. Run the following command to check the result. If the porter-system namespace does not exist, Porter has been deleted successfully.
+2. Run the following command to check the result. If the porter-system namespace does not exist, PorterLB has been deleted successfully.
 
    ```bash
    kubectl get ns
@@ -83,7 +83,7 @@ This document describes how to use kubectl and [Helm](https://helm.sh/) to insta
    
    ![verify-porter-deletion-kubectl](/images/docs/getting-started/installation/install-porter-on-k3s/verify-porter-deletion-kubectl.jpg)
 
-## Install Porter Using Helm
+## Install PorterLB Using Helm
 
 1. Log in to the master node of the K3s Kubernetes cluster over SSH and run the following command to configure the environment variable:
 
@@ -97,7 +97,7 @@ This document describes how to use kubectl and [Helm](https://helm.sh/) to insta
 
    {{</ notice >}}
 
-2. Run the following commands to install Porter:
+2. Run the following commands to install PorterLB:
 
    ```bash 
    helm repo add test https://charts.kubesphere.io/test
@@ -105,7 +105,7 @@ This document describes how to use kubectl and [Helm](https://helm.sh/) to insta
    helm install porter test/porter
    ```
 
-3. Run the following command to edit the porter-manager deployment:
+3. Run the following command to edit the porter-manager Deployment:
 
    ```bash
    kubectl edit deployment porter-manager
@@ -127,11 +127,11 @@ This document describes how to use kubectl and [Helm](https://helm.sh/) to insta
 
    {{< notice note >}}
 
-   By default, both Porter and K3s use port 443. Therefore, you need to change port 443 of Porter to avoid the port conflict. For details, see the [official K3s document](https://rancher.com/docs/k3s/latest/en/networking/#traefik-ingress-controller).
+   By default, both PorterLB and K3s use port 443. Therefore, you need to change port 443 of PorterLB to avoid the port conflict. For details, see the [official K3s document](https://rancher.com/docs/k3s/latest/en/networking/#traefik-ingress-controller).
 
    {{</ notice >}}
 
-5. Run the following command to check whether the status of porter-manager is **READY**: **1/1** and **STATUS**: **Running**. If yes, Porter has been installed successfully.
+5. Run the following command to check whether the status of porter-manager is **READY**: **1/1** and **STATUS**: **Running**. If yes, PorterLB has been installed successfully.
 
    ```bash
    kubectl get po -A
@@ -139,9 +139,9 @@ This document describes how to use kubectl and [Helm](https://helm.sh/) to insta
 
    ![verify-porter-helm](/images/docs/getting-started/installation/install-porter-on-k3s/verify-porter-helm.jpg)
 
-## Delete Porter Using Helm
+## Delete PorterLB Using Helm
 
-1. To delete Porter, run the following command:
+1. To delete PorterLB, run the following command:
 
    ```bash
    helm delete porter
@@ -149,11 +149,11 @@ This document describes how to use kubectl and [Helm](https://helm.sh/) to insta
 
    {{< notice note >}}
 
-   Before deleting Porter, you must first delete all services that use Porter.
+   Before deleting PorterLB, you must first delete all services that use PorterLB.
 
    {{</ notice >}}
 
-2. Run the following command to check the result. If the Porter application does not exist, Porter has been deleted successfully.
+2. Run the following command to check the result. If the PorterLB application does not exist, PorterLB has been deleted successfully.
 
    ```bash
    helm ls

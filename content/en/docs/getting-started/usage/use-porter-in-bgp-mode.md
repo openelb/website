@@ -1,16 +1,16 @@
 ---
-title: "Use Porter in BGP Mode"
-linkTitle: "Use Porter in BGP Mode"
+title: "Use PorterLB in BGP Mode"
+linkTitle: "Use PorterLB in BGP Mode"
 weight: 1
 ---
 
-This document demonstrates how to use Porter in BGP mode to expose a service backed by two pods. The BgpConf, BgpPeer, Eip, deployment and service described in this document are examples only and you need to customize the commands and YAML configurations based on your requirements.
+This document demonstrates how to use PorterLB in BGP mode to expose a Service backed by two pods. The BgpConf, BgpPeer, Eip, Deployment and Service described in this document are examples only and you need to customize the commands and YAML configurations based on your requirements.
 
-Instead of using a real router, this document uses a Linux server with [BIRD](https://bird.network.cz/) to simulate a router so that users without a real router can also use Porter in BGP mode for tests.
+Instead of using a real router, this document uses a Linux server with [BIRD](https://bird.network.cz/) to simulate a router so that users without a real router can also use PorterLB in BGP mode for tests.
 
 ## Prerequisites
 
-* You need to [prepare a Kubernetes cluster where Porter has been installed](/docs/getting-started/installation/).
+* You need to [prepare a Kubernetes cluster where PorterLB has been installed](/docs/getting-started/installation/).
 * You need to prepare a Linux server that communicates with the Kubernetes cluster properly. BIRD will be installed on the server to simulate a BGP router. 
 * If you use a real router instead of BIRD, the router must support BGP and Equal-Cost Multi-Path (ECMP) routing. In addition, the router must also support receiving multiple equivalent routes from the same neighbor.
 
@@ -18,7 +18,7 @@ This document uses the following devices as an example:
 
 | Device Name | IP Address  | Description                                                  |
 | ----------- | ----------- | ------------------------------------------------------------ |
-| master1     | 192.168.0.2 | Kubernetes cluster master, where Porter is installed.        |
+| master1     | 192.168.0.2 | Kubernetes cluster master, where PorterLB is installed.        |
 | worker-p001 | 192.168.0.3 | Kubernetes cluster worker 1                                  |
 | worker-p002 | 192.168.0.4 | Kubernetes cluster worker 2                                  |
 | i-f3fozos0  | 192.168.0.5 | BIRD machine, where BIRD will be installed to simulate a BGP router. |
@@ -38,7 +38,7 @@ If you use a real router, you can skip this step and perform configuration on th
 
    {{< notice note >}}
 
-   * BIRD 1.5 does not support ECMP. To use all features of Porter, you are advised to install BIRD 1.6 or later.
+   * BIRD 1.5 does not support ECMP. To use all features of PorterLB, you are advised to install BIRD 1.6 or later.
    * The preceding commands apply only to Debian-based OSs such as Debian and Ubuntu. On Red Hat-based OSs such as RHEL and CentOS, use [yum](https://access.redhat.com/solutions/9934) instead.
    * You can also install BIRD according to the [official BIRD documentation](https://bird.network.cz/).
 
@@ -117,7 +117,7 @@ If you use a real router, you can skip this step and perform configuration on th
 
 ## Step 2: Create a BgpConf Object
 
-The BgpConf object is used to configure the local (Kubernetes cluster) BGP properties on Porter.
+The BgpConf object is used to configure the local (Kubernetes cluster) BGP properties on PorterLB.
 
 1. Run the following command to create a YAML file for the BgpConf object:
 
@@ -152,7 +152,7 @@ The BgpConf object is used to configure the local (Kubernetes cluster) BGP prope
 
 ## Step 3: Create a BgpPeer Object
 
-The BgpPeer object is used to configure the peer (BIRD machine) BGP properties on Porter.
+The BgpPeer object is used to configure the peer (BIRD machine) BGP properties on PorterLB.
 
 1. Run the following command to create a YAML file for the BgpPeer object:
 
@@ -187,7 +187,7 @@ The BgpPeer object is used to configure the peer (BIRD machine) BGP properties o
 
 ## Step 4: Create an Eip Object
 
-The Eip object functions as an IP address pool for Porter.
+The Eip object functions as an IP address pool for PorterLB.
 
 1. Run the following command to create a YAML file for the Eip object:
 
@@ -220,9 +220,9 @@ The Eip object functions as an IP address pool for Porter.
 
 ## Step 5: Create a Deployment
 
-The following creates a deployment of two pods using the luksa/kubia image. Each pod returns its own pod name to external requests.
+The following creates a Deployment of two pods using the luksa/kubia image. Each Pod returns its own Pod name to external requests.
 
-1. Run the following command to create a YAML file for the deployment:
+1. Run the following command to create a YAML file for the Deployment:
 
    ```bash
    vi porter-bgp.yaml
@@ -252,7 +252,7 @@ The following creates a deployment of two pods using the luksa/kubia image. Each
                - containerPort: 8080
    ```
 
-3. Run the following command to create the deployment:
+3. Run the following command to create the Deployment:
 
    ```bash
    kubectl apply -f porter-bgp.yaml
@@ -260,7 +260,7 @@ The following creates a deployment of two pods using the luksa/kubia image. Each
 
 ## Step 6: Create a Service
 
-1. Run the following command to create a YAML file for the service:
+1. Run the following command to create a YAML file for the Service:
 
    ```bash
    vi porter-bgp-svc.yaml
@@ -291,26 +291,26 @@ The following creates a deployment of two pods using the luksa/kubia image. Each
    {{< notice note >}}
 
    - You must set `spec.type` to `LoadBalancer`.
-   - The `lb.kubesphere.io/v1alpha1: porter` annotation specifies that the service uses Porter.
-   - The `protocol.porter.kubesphere.io/v1alpha1: bgp` annotation specifies that Porter is used in BGP mode.
-   - The `eip.porter.kubesphere.io/v1alpha2: porter-bgp-eip` annotation specifies the Eip object used by Porter. If this annotation is not configured, Porter automatically uses the first available Eip object that matches the protocol. You can also delete this annotation and add the `spec.loadBalancerIP` field (for example, `spec.loadBalancerIP: 172.22.0.2`) to assign a specific IP address to the service.
-   - In the BGP mode, you can set `spec.loadBalancerIP` of multiple services to the same value for IP address sharing (the services are distinguished by different service ports). In this case, you must set `spec.ports.port` to different values and `spec.externalTrafficPolicy` to `Cluster` for the services. 
-   - If `spec.externalTrafficPolicy` is set to `Cluster` (default value), Porter uses all Kubernetes cluster nodes as the next hops destined for the service.
-   - If `spec.externalTrafficPolicy` is set to `Local`, Porter uses only Kubernetes cluster nodes that contain pods as the next hops destined for the service.
+   - The `lb.kubesphere.io/v1alpha1: porter` annotation specifies that the Service uses PorterLB.
+   - The `protocol.porter.kubesphere.io/v1alpha1: bgp` annotation specifies that PorterLB is used in BGP mode.
+   - The `eip.porter.kubesphere.io/v1alpha2: porter-bgp-eip` annotation specifies the Eip object used by PorterLB. If this annotation is not configured, PorterLB automatically uses the first available Eip object that matches the protocol. You can also delete this annotation and add the `spec.loadBalancerIP` field (for example, `spec.loadBalancerIP: 172.22.0.2`) to assign a specific IP address to the Service.
+   - In the BGP mode, you can set `spec.loadBalancerIP` of multiple services to the same value for IP address sharing (the services are distinguished by different Service ports). In this case, you must set `spec.ports.port` to different values and `spec.externalTrafficPolicy` to `Cluster` for the services. 
+   - If `spec.externalTrafficPolicy` is set to `Cluster` (default value), PorterLB uses all Kubernetes cluster nodes as the next hops destined for the Service.
+   - If `spec.externalTrafficPolicy` is set to `Local`, PorterLB uses only Kubernetes cluster nodes that contain pods as the next hops destined for the Service.
 
    {{</ notice >}}
 
-3. Run the following command to create the service:
+3. Run the following command to create the Service:
 
    ```bash
    kubectl apply -f porter-bgp-svc.yaml
    ```
 
-## Step 7: Verify Porter in BGP Mode
+## Step 7: Verify PorterLB in BGP Mode
 
-The following verifies whether Porter functions properly.
+The following verifies whether PorterLB functions properly.
 
-1. In the Kubernetes cluster, run the following command to obtain the external IP address of the service:
+1. In the Kubernetes cluster, run the following command to obtain the external IP address of the Service:
 
    ```bash
    kubectl get svc
@@ -322,23 +322,23 @@ The following verifies whether Porter functions properly.
 
    ![node-ips](/images/docs/getting-started/usage/use-porter-in-bgp-mode/node-ips.jpg)
 
-3. On the BIRD machine, run the following command to check the routing table. If equivalent routes using the Kubernetes cluster nodes as next hops destined for the service are displayed, Porter functions properly.
+3. On the BIRD machine, run the following command to check the routing table. If equivalent routes using the Kubernetes cluster nodes as next hops destined for the Service are displayed, PorterLB functions properly.
 
    ```bash
    ip route
    ```
 
-   If `spec.externalTrafficPolicy` in the [service YAML configuration](#step-6-create-a-service) is set to `Cluster`, all Kubernetes cluster nodes are used as the next hops.
+   If `spec.externalTrafficPolicy` in the [Service YAML configuration](#step-6-create-a-service) is set to `Cluster`, all Kubernetes cluster nodes are used as the next hops.
 
    ![bgp-routes-cluster](/images/docs/getting-started/usage/use-porter-in-bgp-mode/bgp-routes-cluster.jpg)
 
-   If `spec.externalTrafficPolicy` in the [service YAML configuration](#step-6-create-a-service) is set to `Local`, only Kubernetes cluster nodes that contain pods are used as the next hops.
+   If `spec.externalTrafficPolicy` in the [Service YAML configuration](#step-6-create-a-service) is set to `Local`, only Kubernetes cluster nodes that contain pods are used as the next hops.
 
    ![bgp-routes-local](/images/docs/getting-started/usage/use-porter-in-bgp-mode/bgp-routes-local.jpg)
 
    
 
-4. On the BIRD machine, run the following command to access the service:
+4. On the BIRD machine, run the following command to access the Service:
 
    ```bash
    curl 172.22.0.2
