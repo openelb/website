@@ -33,7 +33,7 @@ The node names and namespace in the following steps are examples only. You need 
 
    {{</ notice >}}
 
-2. Run the following command to scale the number of porter-manager pods to 0:
+2. Run the following command to scale the number of porter-manager Pods to 0:
 
    ```bash
    kubectl scale deployment porter-manager --replicas=0 -n porter-system
@@ -53,7 +53,7 @@ The node names and namespace in the following steps are examples only. You need 
      lb.kubesphere.io/v1alpha1: porter
    ```
 
-5. Run the following command to scale the number of porter-manager pods to the required number (change the number `2` to the actual value):
+5. Run the following command to scale the number of porter-manager Pods to the required number (change the number `2` to the actual value):
 
    ```bash
    kubectl scale deployment porter-manager --replicas=2 -n porter-system

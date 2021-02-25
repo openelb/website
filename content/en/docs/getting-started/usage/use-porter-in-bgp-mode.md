@@ -4,7 +4,7 @@ linkTitle: "Use PorterLB in BGP Mode"
 weight: 1
 ---
 
-This document demonstrates how to use PorterLB in BGP mode to expose a Service backed by two pods. The BgpConf, BgpPeer, Eip, Deployment and Service described in this document are examples only and you need to customize the commands and YAML configurations based on your requirements.
+This document demonstrates how to use PorterLB in BGP mode to expose a Service backed by two Pods. The BgpConf, BgpPeer, Eip, Deployment and Service described in this document are examples only and you need to customize the commands and YAML configurations based on your requirements.
 
 Instead of using a real router, this document uses a Linux server with [BIRD](https://bird.network.cz/) to simulate a router so that users without a real router can also use PorterLB in BGP mode for tests.
 
@@ -220,7 +220,7 @@ The Eip object functions as an IP address pool for PorterLB.
 
 ## Step 5: Create a Deployment
 
-The following creates a Deployment of two pods using the luksa/kubia image. Each Pod returns its own Pod name to external requests.
+The following creates a Deployment of two Pods using the luksa/kubia image. Each Pod returns its own Pod name to external requests.
 
 1. Run the following command to create a YAML file for the Deployment:
 
@@ -294,9 +294,9 @@ The following creates a Deployment of two pods using the luksa/kubia image. Each
    - The `lb.kubesphere.io/v1alpha1: porter` annotation specifies that the Service uses PorterLB.
    - The `protocol.porter.kubesphere.io/v1alpha1: bgp` annotation specifies that PorterLB is used in BGP mode.
    - The `eip.porter.kubesphere.io/v1alpha2: porter-bgp-eip` annotation specifies the Eip object used by PorterLB. If this annotation is not configured, PorterLB automatically uses the first available Eip object that matches the protocol. You can also delete this annotation and add the `spec.loadBalancerIP` field (for example, `spec.loadBalancerIP: 172.22.0.2`) to assign a specific IP address to the Service.
-   - In the BGP mode, you can set `spec.loadBalancerIP` of multiple services to the same value for IP address sharing (the services are distinguished by different Service ports). In this case, you must set `spec.ports.port` to different values and `spec.externalTrafficPolicy` to `Cluster` for the services. 
+   - In the BGP mode, you can set `spec.loadBalancerIP` of multiple Services to the same value for IP address sharing (the Services are distinguished by different Service ports). In this case, you must set `spec.ports.port` to different values and `spec.externalTrafficPolicy` to `Cluster` for the Services. 
    - If `spec.externalTrafficPolicy` is set to `Cluster` (default value), PorterLB uses all Kubernetes cluster nodes as the next hops destined for the Service.
-   - If `spec.externalTrafficPolicy` is set to `Local`, PorterLB uses only Kubernetes cluster nodes that contain pods as the next hops destined for the Service.
+   - If `spec.externalTrafficPolicy` is set to `Local`, PorterLB uses only Kubernetes cluster nodes that contain Pods as the next hops destined for the Service.
 
    {{</ notice >}}
 
@@ -332,7 +332,7 @@ The following verifies whether PorterLB functions properly.
 
    ![bgp-routes-cluster](/images/docs/getting-started/usage/use-porter-in-bgp-mode/bgp-routes-cluster.jpg)
 
-   If `spec.externalTrafficPolicy` in the [Service YAML configuration](#step-6-create-a-service) is set to `Local`, only Kubernetes cluster nodes that contain pods are used as the next hops.
+   If `spec.externalTrafficPolicy` in the [Service YAML configuration](#step-6-create-a-service) is set to `Local`, only Kubernetes cluster nodes that contain Pods are used as the next hops.
 
    ![bgp-routes-local](/images/docs/getting-started/usage/use-porter-in-bgp-mode/bgp-routes-local.jpg)
 

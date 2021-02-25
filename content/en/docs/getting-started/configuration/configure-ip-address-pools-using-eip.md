@@ -6,7 +6,7 @@ weight: 1
 
 This document describes how to configure an Eip object, which functions as an IP address pool for PorterLB both in BGP mode and in Layer 2 mode.
 
-PorterLB assigns IP addresses in Eip objects to LoadBalancer services in the Kubernetes cluster. After that, PorterLB publishes routes destined for the Service IP addresses over BGP (in BGP mode), ARP (in Layer 2 mode for IPv4), or NDP (in Layer 2 mode for IPv6). 
+PorterLB assigns IP addresses in Eip objects to LoadBalancer Services in the Kubernetes cluster. After that, PorterLB publishes routes destined for the Service IP addresses over BGP (in BGP mode), ARP (in Layer 2 mode for IPv4), or NDP (in Layer 2 mode for IPv6). 
 
 {{< notice note >}}
 
@@ -74,15 +74,15 @@ The fields are described as follows:
 
 * `disable`: Specifies whether the Eip object is disabled. The value can be:
   
-  * `false`: PorterLB can assign IP addresses in the Eip object to new LoadBalancer services.
-  * `true`: PorterLB stops assigning IP addresses in the Eip object to new LoadBalancer services. Existing services are not affected.
+  * `false`: PorterLB can assign IP addresses in the Eip object to new LoadBalancer Services.
+  * `true`: PorterLB stops assigning IP addresses in the Eip object to new LoadBalancer Services. Existing Services are not affected.
 
 `status`: Fields under `status` specify the status of the Eip object and are automatically configured. When creating an Eip object, you do not need to configure these fields.
 
 * `occupied`: Specifies whether IP addresses in the Eip object have been used up.
 
-* `usage`: Specifies how many IP addresses in the Eip object have been assigned to services.
-* `used`: Specifies the used IP addresses and the services that use the IP addresses. The services are displayed in the `Namespace/Service name` format (for example, `default/test-svc`).
+* `usage`: Specifies how many IP addresses in the Eip object have been assigned to Services.
+* `used`: Specifies the used IP addresses and the Services that use the IP addresses. The Services are displayed in the `Namespace/Service name` format (for example, `default/test-svc`).
 
 * `poolSize`: Total number of IP addresses in the Eip object.
 
