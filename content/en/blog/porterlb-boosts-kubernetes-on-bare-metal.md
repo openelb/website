@@ -1,11 +1,13 @@
 ---
-title: "PorterLB: Boosts Kubernetes on Bare Metal"
-linkTitle: "PorterLB: Boosts Kubernetes on Bare Metal"
+title: "PorterLB for Bare-Metal Kubernetes: Cloud Native, Elegant, and Flexible"
+linkTitle: "PorterLB for Bare-Metal Kubernetes: Cloud Native, Elegant, and Flexible"
+description: Use PorterLB to expose applications in bare-metal Kubernetes clusters.
+keywords: PorterLB, Bare Metal, Kubernetes, KubeSphere, Load Balancer, Cloud Native
 date: 2021-02-25
 weight: 100000
 ---
 
-Applications deployed on Kubernetes are usually exposed by using LoadBalancer Services, which rely heavily on load balancer implementations provided by cloud vendors. For applications deployed on bare-metal Kubernetes clusters, where cloud-based load balancer implementations are unavailable, Kubernetes has yet to provide a viable LoadBalancer solution.
+Applications deployed on Kubernetes are usually exposed by using LoadBalancer Services, which rely heavily on load balancer implementations provided by cloud vendors. For applications deployed in bare-metal Kubernetes clusters, where cloud-based load balancer implementations are unavailable, Kubernetes has yet to provide a viable LoadBalancer solution.
 
 PorterLB well addresses this problem. As a sub-project of [KubeSphere](https://kubesphere.io/), PorterLB boosts application containerization in bare-metal Kubernetes environments, and complements the KubeSphere ecosystem in the bare-metal field.
 
@@ -50,12 +52,12 @@ There are other load balancer implementations such as MetalLB designed for bare-
 
 ### Cloud native
 
-To manage IP address pools and BGP properties for PorterLB, you only need to use the `kubectl apply` command provided by Kubernetes to create CRD objects. To obtain the status information about IP address pools and BGP peers, you can simply run `kubectl get` to view the status of the CRD objects. No other configuration files are required. In addition, a GUI of PorterLB is in progress and will be available soon, which further simplifies the usage of PorterLB.
+To manage IP address pools and BGP properties for PorterLB, you only need to use the `kubectl apply` command provided by Kubernetes to create CRD objects. To obtain the status information about IP address pools and BGP peers, you can simply run `kubectl get` to view the status of the CRD objects. No other configuration files are required. In addition, a PorterLB GUI will be available soon, which will further simplify the usage of PorterLB.
 
-### Simple architecture
+### Elegant
 
 After PorterLB is installed in a Kubernetes cluster, a porter-manager Deployment that contains a porter-manager Pod is created. The porter-manager Pod implements the functionality of PorterLB for the entire Kubernetes cluster. For high availability, you can scale the porter-manager Deployment and assign multiple PorterLB replicas (porter-manager pods) to multiple cluster nodes. This simple architecture ensures that PorterLB can be easily managed and integrated with other systems.
 
-### Seamless integration with KubeSphere
+### Flexible
 
-KubeSphere is a successful open-source container platform and provides enterprise-grade features to simplify development and operations, such as observability and troubleshooting, unified monitoring and logging, centralized storage and networking management, and easy-to-use CI/CD pipelines. KubeSphere adopts a plug-and-play architecture to integrate third-party applications. As a sub-project of KubeSphere, PorterLB fits well into the KubeSphere ecosystem and can be seamless integrated as a plugin with KubeSphere.
+PorterLB can be used in conventional Kubernetes clusters. As a sub-project of KubeSphere, PorterLB also fits well into the KubeSphere ecosystem. You can seamlessly integrate PorterLB as a plugin with KubeSphere to utilize the abundant features of the KubeSphere ecosystem, such as observability and troubleshooting, unified monitoring and logging, centralized storage and networking management, and easy-to-use CI/CD pipelines.
