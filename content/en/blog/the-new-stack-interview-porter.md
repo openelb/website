@@ -1,10 +1,10 @@
-
 ---
 title: "The Interview to PorterLB from The New Stack"
 linkTitle: "Media Interview"
 date: 2019-06-24
 description: >
   The Interview to PorterLB from Alex Williams The New Stack, Founder & EiC.
+weight: 100002
 ---
 
 On this livestream from KubeCon + CloudNativeCon China, Alex Williams was sitting down with Xuetao Song, Senior Software Engineer at Beijing Yunify Technology Co., Ltd. and Fang (Flora) Du, QingCloud Solution Architect at Beijing Yunify Technology Co., Ltd. to discuss open source load balancing on bare metal. PorterLB exists as an OSS solution to the issue of load balancing on bare metal in production on Kubernetes, which Song and Du are giving a presentation on at KCCNC + OSS Summit China 2019.
