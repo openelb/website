@@ -14,7 +14,7 @@ The following figure shows the topology of the network between a Kubernetes clus
 
 IP addresses and Autonomous System Numbers (ASNs) in the preceding figure are examples only. The topology is described as follows:
 
-* A Service backed by two pods is deployed in the Kubernetes cluster, and is assigned an IP address 172.22.0.2 for external access.
+* A Service backed by two Pods is deployed in the Kubernetes cluster, and is assigned an IP address 172.22.0.2 for external access.
 * PorterLB installed in the Kubernetes cluster establishes a BGP connection with the BGP router, and publishes routes destined for the Service to the BGP router.
 * When an external client machine attempts to access the Service, the BGP router load balances the traffic among the master, worker 1, and worker 2 nodes based on the routes obtained from PorterLB. After the Service traffic reaches a node, kube-proxy can further forward the traffic to other nodes for load balancing (both Pod 1 and Pod 2 can be reached over kube-proxy).
 

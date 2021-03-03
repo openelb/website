@@ -4,7 +4,7 @@ linkTitle: "Use PorterLB in Layer 2 Mode"
 weight: 2
 ---
 
-This document demonstrates how to use PorterLB in Layer 2 mode to expose a Service backed by two pods. The Eip, Deployment and Service described in this document are examples only and you need to customize the commands and YAML configurations based on your requirements.
+This document demonstrates how to use PorterLB in Layer 2 mode to expose a Service backed by two Pods. The Eip, Deployment and Service described in this document are examples only and you need to customize the commands and YAML configurations based on your requirements.
 
 ## Prerequisites
 
@@ -94,7 +94,7 @@ The Eip object functions as an IP address pool for PorterLB.
 
 ## Step 4: Create a Deployment
 
-The following creates a Deployment of two pods using the luksa/kubia image. Each Pod returns its own Pod name to external requests. 
+The following creates a Deployment of two Pods using the luksa/kubia image. Each Pod returns its own Pod name to external requests. 
 
 1. Run the following command to create a YAML file for the Deployment:
 
@@ -169,7 +169,7 @@ The following creates a Deployment of two pods using the luksa/kubia image. Each
    * The `protocol.porter.kubesphere.io/v1alpha1: layer2` annotation specifies that PorterLB is used in Layer 2 mode.
    * The `eip.porter.kubesphere.io/v1alpha2: porter-layer2-eip` annotation specifies the Eip object used by PorterLB. If this annotation is not configured, PorterLB automatically uses the first available Eip object that matches the protocol. You can also delete this annotation and add the `spec.loadBalancerIP` field (for example, `spec.loadBalancerIP: 192.168.0.91`) to assign a specific IP address to the Service.
    * If `spec.externalTrafficPolicy` is set to `Cluster` (default value), PorterLB randomly selects a node from all Kubernetes cluster nodes to handle Service requests. Pods on other nodes can also be reached over kube-proxy.
-   * If `spec.externalTrafficPolicy` is set to `Local`, PorterLB randomly selects a node that contains a Pod in the Kubernetes cluster to handle Service requests. Only pods on the selected node can be reached.
+   * If `spec.externalTrafficPolicy` is set to `Local`, PorterLB randomly selects a node that contains a Pod in the Kubernetes cluster to handle Service requests. Only Pods on the selected node can be reached.
 
    {{</ notice >}}
 
@@ -199,7 +199,7 @@ The following verifies whether PorterLB functions properly.
 
    ![node-ips](/images/docs/getting-started/usage/use-porter-in-layer-2-mode/node-ips.jpg)
 
-3. In the Kubernetes cluster, run the following command to check the nodes of the pods:
+3. In the Kubernetes cluster, run the following command to check the nodes of the Pods:
 
    ```bash
    kubectl get po
@@ -209,7 +209,7 @@ The following verifies whether PorterLB functions properly.
 
    {{< notice note >}}
 
-   In this example, the pods are automatically assigned to different nodes. You can manually [assign pods to different nodes](https://kubernetes.io/docs/concepts/scheduling-eviction/assign-pod-node/).
+   In this example, the Pods are automatically assigned to different nodes. You can manually [assign Pods to different nodes](https://kubernetes.io/docs/concepts/scheduling-eviction/assign-pod-node/).
 
    {{</ notice >}}
 
@@ -233,7 +233,7 @@ The following verifies whether PorterLB functions properly.
    curl 192.168.0.91
    ```
 
-   If `spec.externalTrafficPolicy` in the [Service YAML configuration](#step-5-create-a-service) is set to `Cluster`, both pods can be reached.
+   If `spec.externalTrafficPolicy` in the [Service YAML configuration](#step-5-create-a-service) is set to `Cluster`, both Pods can be reached.
 
    ![service-cluster](/images/docs/getting-started/usage/use-porter-in-layer-2-mode/service-cluster.jpg)
 

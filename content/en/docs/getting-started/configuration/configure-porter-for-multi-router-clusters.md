@@ -21,7 +21,7 @@ This section explains why you need to perform the configuration. The following f
 IP addresses in the preceding figure are examples only. The topology is described as follows:
 
 * In the Kubernetes cluster, the master and worker 1 nodes are deployed under the leaf 1 BGP router, and the worker 2 node is deployed under the leaf 2 BGP router. PorterLB is only installed under leaf 1 (by default, only one PorterLB replica is installed).
-* A Service backed by two pods is deployed in the Kubernetes cluster, and is assigned an IP address 172.22.0.2 for external access. Pod 1 and Pod 2 are deployed on worker 1 and worker 2 respectively.
+* A Service backed by two Pods is deployed in the Kubernetes cluster, and is assigned an IP address 172.22.0.2 for external access. Pod 1 and Pod 2 are deployed on worker 1 and worker 2 respectively.
 * PorterLB establishes a BGP connection with leaf 1 and publishes the IP addresses of the master node and worker 1 (192.168.0.3 and 192.168.0.4) to leaf 1 as the next hop destined for the Service IP address 172.22.0.2.
 *  Leaf 1 establishes a BGP connection with the spine BGP router and publishes its own IP address 192.168.0.2 to the spine router as the next hop destined for the Service IP address 172.22.0.2.
 * When an external client machine attempts to access the Service, the spine router forwards the Service traffic to leaf 1, and leaf 1 load balances the traffic among the master node and worker 1.
@@ -68,7 +68,7 @@ The node names, leaf router names, and namespace in the following steps are exam
 
    {{</ notice >}}
 
-2. Run the following command to scale the number of porter-manager pods to 0:
+2. Run the following command to scale the number of porter-manager Pods to 0:
 
    ```bash
    kubectl scale deployment porter-manager --replicas=0 -n porter-system
@@ -88,7 +88,7 @@ The node names, leaf router names, and namespace in the following steps are exam
      lb.kubesphere.io/v1alpha1: porter
    ```
    
-5. Run the following command to scale the number of porter-manager pods to the required number (change the number `2` to the actual value):
+5. Run the following command to scale the number of porter-manager Pods to the required number (change the number `2` to the actual value):
 
    ```bash
    kubectl scale deployment porter-manager --replicas=2 -n porter-system

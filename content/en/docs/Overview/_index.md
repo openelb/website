@@ -10,7 +10,7 @@ PorterLB is an open-source load balancer implementation designed for bare-metal 
 
 ## Why PorterLB
 
-In cloud-based Kubernetes clusters, services are usually exposed by using load balancers provided by cloud vendors. However, cloud-based load balancers are unavailable in bare-metal environments. PorterLB allows users to create LoadBalancer services in bare-metal environments for external access, and provides the same user experience as cloud-based load balancers.
+In cloud-based Kubernetes clusters, Services are usually exposed by using load balancers provided by cloud vendors. However, cloud-based load balancers are unavailable in bare-metal environments. PorterLB allows users to create LoadBalancer Services in bare-metal environments for external access, and provides the same user experience as cloud-based load balancers.
 
 ## Core Features
 

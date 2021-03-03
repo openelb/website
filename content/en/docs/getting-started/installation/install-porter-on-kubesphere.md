@@ -9,7 +9,7 @@ This document describes how to install and delete PorterLB on the [KubeSphere](h
 {{< notice note >}}
 
 - In a Kubernetes cluster, you only need to install PorterLB once. After the installation is complete, a porter-manager Deployment that contains a porter-manager Pod is installed in the cluster. The porter-manager Pod implements the functionality of PorterLB for the entire Kubernetes cluster.
-- After the installation is complete, you can scale the porter-manager Deployment and assign multiple PorterLB replicas (porter-manager pods) to multiple cluster nodes to ensure high availability. For details, see [Configure Multiple PorterLB Replicas](/docs/getting-started/configuration/configure-multiple-porter-replicas/).
+- After the installation is complete, you can scale the porter-manager Deployment and assign multiple PorterLB replicas (porter-manager Pods) to multiple cluster nodes to ensure high availability. For details, see [Configure Multiple PorterLB Replicas](/docs/getting-started/configuration/configure-multiple-porter-replicas/).
 
 {{</ notice >}}
 
@@ -66,6 +66,6 @@ To delete PorterLB on the KubeSphere web console, go to your project, choose **A
 
 {{< notice note >}}
 
-Before deleting PorterLB, you must first delete all services that use PorterLB.
+Before deleting PorterLB, you must first delete all Services that use PorterLB.
 
 {{</ notice >}}
