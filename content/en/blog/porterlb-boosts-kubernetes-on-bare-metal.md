@@ -57,7 +57,7 @@ To manage IP address pools and BGP properties for PorterLB, you only need to use
 
 ### Elegant
 
-After PorterLB is installed in a Kubernetes cluster, a porter-manager Deployment that contains a porter-manager Pod is created. The porter-manager Pod implements the functionality of PorterLB for the entire Kubernetes cluster. For high availability, you can scale the porter-manager Deployment and assign multiple PorterLB replicas (porter-manager pods) to multiple cluster nodes. This simple architecture ensures that PorterLB can be easily managed and integrated with other systems.
+After PorterLB is installed in a Kubernetes cluster, a porter-manager Deployment that contains a porter-manager Pod is created. The porter-manager Pod implements the functionality of PorterLB for the entire Kubernetes cluster. For high availability, you can scale the porter-manager Deployment and assign multiple PorterLB replicas (porter-manager Pods) to multiple cluster nodes. This simple architecture ensures that PorterLB can be easily managed and integrated with other systems.
 
 ### Flexible
 
