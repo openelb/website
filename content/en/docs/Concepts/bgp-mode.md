@@ -6,6 +6,8 @@ weight: 1
 
 This document describes the network topology of PorterLB in BGP mode and how PorterLB functions in BGP mode.
 
+The BGP mode is recommended because it allows you to create a high availability system free of failover interruptions and bandwidth bottlenecks. To use the BGP mode, your router must support BGP and Equal-Cost Multi-Path (ECMP) routing. If your router does not support BGP or ECMP, you can use the Layer 2 mode to achieve similar functionality.
+
 ## Network Topology
 
 The following figure shows the topology of the network between a Kubernetes cluster where PorterLB is installed and a peer BGP router.

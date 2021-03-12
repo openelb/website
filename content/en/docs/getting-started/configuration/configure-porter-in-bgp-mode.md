@@ -29,7 +29,7 @@ The fields are described as follows:
 
 `spec`:
 
-* `as`: Local ASN, which must be different from the value of `spec.conf.peerAS` in the BgpPeer configuration.
+* `as`: Local ASN, which must be different from the value of `spec:conf:peerAS` in the BgpPeer configuration.
 * `listenPort`: Port on which PorterLB listens. The default value is `179` (default BGP port number). If other components (such as Calico) in the Kubernetes cluster also use BGP and port 179, you must set a different value to avoid the conflict.
 * `routerID`: Local router ID, which is usually set to the IP address of the master NIC of the Kubernetes master node. If this field is not specified, the first IP address of the node where porter-manager is located will be used.
 
@@ -66,17 +66,17 @@ The fields are described as follows:
 
 * `name`: Name of the BgpPeer object. If there are multiple peer BGP routers, you can create multiple BgpPeer objects with different names.
 
-`spec.conf`:
+`spec:conf`:
 
-* `peerAS`: ASN of the peer BGP router, which must be different from the value of `spec.as` in the BgpConf configuration.
+* `peerAS`: ASN of the peer BGP router, which must be different from the value of `spec:as` in the BgpConf configuration.
 * `neighborAddress`: IP address of the peer BGP router.
 
-`spec.afiSafis.addPaths.config`:
+`spec:afiSafis:addPaths:config`:
 
 * `sendMax`: Maximum number of equivalent routes that PorterLB can send to the peer BGP router for Equal-Cost Multi-Path (ECMP) routing. The default value is `10`.
 
-`spec.nodeSelector.matchLabels`:
+`spec:nodeSelector:matchLabels`:
 
 * `porter.kubesphere.io/rack`: If the Kubernetes cluster nodes are deployed under different routers and each node has one PorterLB replica, you need to configure this field so that the PorterLB replica on the correct node establishes a BGP connection with the peer BGP router. By default, all porter-manager replicas will respond to the BgpPeer configuration and attempt to establish a BGP connection with the peer BGP router.
 
-Other fields under `spec.afiSafis` specify the address family. Currently, PorterLB supports only IPv4 and you can directly use the values in the example configuration.
+Other fields under `spec:afiSafis` specify the address family. Currently, PorterLB supports only IPv4 and you can directly use the values in the example configuration.

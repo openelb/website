@@ -27,7 +27,7 @@ IP addresses in the preceding figure are examples only. The topology is describe
 * When an external client machine attempts to access the Service, the spine router forwards the Service traffic to leaf 1, and leaf 1 load balances the traffic among the master node and worker 1.
 * Although Pod 2 on worker 2 can also be reached over kube-proxy, router-level load balancing is implemented only among the master node and worker 1 and the Service bandwidth is limited to the bandwidth of the master node and worker 1.
 
-To resolve the problem, you need to label the Kubernetes cluster nodes and change the PorterLB Deployment configuration so that PorterLB is installed on nodes under all leaf routers. In addition, you need to specify the [spec.nodeSelector.matchLabels](/docs/getting-started/configuration/configure-porter-in-bgp-mode/#configure-peer-bgp-properties-using-bgppeer) field in the BgpPeer configuration so that the PorterLB replicas establish BGP connections with the correct BGP routers.
+To resolve the problem, you need to label the Kubernetes cluster nodes and change the PorterLB Deployment configuration so that PorterLB is installed on nodes under all leaf routers. In addition, you need to specify the [spec:nodeSelector:matchLabels](/docs/getting-started/configuration/configure-porter-in-bgp-mode/#configure-peer-bgp-properties-using-bgppeer) field in the BgpPeer configuration so that the PorterLB replicas establish BGP connections with the correct BGP routers.
 
 ## Network Topology After Configuration
 
@@ -80,7 +80,7 @@ The node names, leaf router names, and namespace in the following steps are exam
    kubectl edit deployment porter-manager -n porter-system
    ```
 
-4. In the porter-manager Deployment YAML configuration, add the following fields under `spec.template.spec`:
+4. In the porter-manager Deployment YAML configuration, add the following fields under `spec:template:spec`:
 
    ```yaml
    nodeSelector:
@@ -112,7 +112,7 @@ The node names, leaf router names, and namespace in the following steps are exam
    kubectl label --overwrite nodes worker-p002 porter.kubesphere.io/rack=leaf2
    ```
 
-8. When creating BgpPeer objects, configure the [spec.nodeSelector.matchLabels](/docs/getting-started/configuration/configure-porter-in-bgp-mode/#configure-peer-bgp-properties-using-bgppeer) field in the BgpPeer YAML configuration for each leaf router. The following YAML configurations specify that the PorterLB replica on master1 communicates with leaf1, and the PorterLB replica on worker-p002 communicates with leaf2. 
+8. When creating BgpPeer objects, configure the [spec:nodeSelector:matchLabels](/docs/getting-started/configuration/configure-porter-in-bgp-mode/#configure-peer-bgp-properties-using-bgppeer) field in the BgpPeer YAML configuration for each leaf router. The following YAML configurations specify that the PorterLB replica on master1 communicates with leaf1, and the PorterLB replica on worker-p002 communicates with leaf2. 
 
    ```yaml
    # BgpPeer YAML for master1 and leaf1
