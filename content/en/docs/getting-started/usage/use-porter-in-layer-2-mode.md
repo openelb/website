@@ -80,7 +80,7 @@ The Eip object functions as an IP address pool for PorterLB.
 
    {{< notice note >}}
 
-   * The IP addresses specified in `spec.address` must be on the same network segment as the Kubernetes cluster nodes.
+   * The IP addresses specified in `spec:address` must be on the same network segment as the Kubernetes cluster nodes.
 
    * For details about the fields in the Eip YAML configuration, see [Configure IP Address Pools Using Eip](/docs/getting-started/configuration/configure-ip-address-pools-using-eip/).
 
@@ -164,12 +164,12 @@ The following creates a Deployment of two Pods using the luksa/kubia image. Each
 
    {{< notice note >}}
 
-   * You must set `spec.type` to `LoadBalancer`.
+   * You must set `spec:type` to `LoadBalancer`.
    * The `lb.kubesphere.io/v1alpha1: porter` annotation specifies that the Service uses PorterLB.
    * The `protocol.porter.kubesphere.io/v1alpha1: layer2` annotation specifies that PorterLB is used in Layer 2 mode.
-   * The `eip.porter.kubesphere.io/v1alpha2: porter-layer2-eip` annotation specifies the Eip object used by PorterLB. If this annotation is not configured, PorterLB automatically uses the first available Eip object that matches the protocol. You can also delete this annotation and add the `spec.loadBalancerIP` field (for example, `spec.loadBalancerIP: 192.168.0.91`) to assign a specific IP address to the Service.
-   * If `spec.externalTrafficPolicy` is set to `Cluster` (default value), PorterLB randomly selects a node from all Kubernetes cluster nodes to handle Service requests. Pods on other nodes can also be reached over kube-proxy.
-   * If `spec.externalTrafficPolicy` is set to `Local`, PorterLB randomly selects a node that contains a Pod in the Kubernetes cluster to handle Service requests. Only Pods on the selected node can be reached.
+   * The `eip.porter.kubesphere.io/v1alpha2: porter-layer2-eip` annotation specifies the Eip object used by PorterLB. If this annotation is not configured, PorterLB automatically uses the first available Eip object that matches the protocol. You can also delete this annotation and add the `spec:loadBalancerIP` field (for example, `spec:loadBalancerIP: 192.168.0.91`) to assign a specific IP address to the Service.
+   * If `spec:externalTrafficPolicy` is set to `Cluster` (default value), PorterLB randomly selects a node from all Kubernetes cluster nodes to handle Service requests. Pods on other nodes can also be reached over kube-proxy.
+   * If `spec:externalTrafficPolicy` is set to `Local`, PorterLB randomly selects a node that contains a Pod in the Kubernetes cluster to handle Service requests. Only Pods on the selected node can be reached.
 
    {{</ notice >}}
 
@@ -233,10 +233,10 @@ The following verifies whether PorterLB functions properly.
    curl 192.168.0.91
    ```
 
-   If `spec.externalTrafficPolicy` in the [Service YAML configuration](#step-5-create-a-service) is set to `Cluster`, both Pods can be reached.
+   If `spec:externalTrafficPolicy` in the [Service YAML configuration](#step-5-create-a-service) is set to `Cluster`, both Pods can be reached.
 
    ![service-cluster](/images/docs/getting-started/usage/use-porter-in-layer-2-mode/service-cluster.jpg)
 
-   If `spec.externalTrafficPolicy` in the [Service YAML configuration](#step-5-create-a-service) is set to `Local`, only the Pod on the node selected by PorterLB can be reached.
+   If `spec:externalTrafficPolicy` in the [Service YAML configuration](#step-5-create-a-service) is set to `Local`, only the Pod on the node selected by PorterLB can be reached.
 
    ![service-local](/images/docs/getting-started/usage/use-porter-in-layer-2-mode/service-local.jpg)

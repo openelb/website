@@ -45,7 +45,7 @@ The node names and namespace in the following steps are examples only. You need 
    kubectl edit deployment porter-manager -n porter-system
    ```
 
-4. In the porter-manager Deployment YAML configuration, add the following fields under `spec.template.spec`:
+4. In the porter-manager Deployment YAML configuration, add the following fields under `spec:template:spec`:
 
    ```yaml
    nodeSelector:
