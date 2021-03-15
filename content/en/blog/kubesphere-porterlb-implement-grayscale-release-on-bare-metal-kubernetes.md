@@ -85,7 +85,7 @@ Step 3: Configure grayscale release.
 4. Set **Grayscale Release Version Number** to `v2` and click **Next**.
 5. Click **Create** on the **Policy Config** tab.
 
-Step 4: Test the grayscale release.
+Step 4: Test grayscale release.
 
 1. Choose **Grayscale Release** on the left navigation bar, click the **Job Status** tab, and click **demo-canary** on the right. 
 
