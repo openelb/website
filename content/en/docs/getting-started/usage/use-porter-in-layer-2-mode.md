@@ -10,7 +10,7 @@ This document demonstrates how to use PorterLB in Layer 2 mode to expose a Servi
 
 * You need to [prepare a Kubernetes cluster where PorterLB has been installed](/docs/getting-started/installation/). All Kubernetes cluster nodes must be on the same Layer 2 network (under the same router).
 * You need to prepare a client machine, which is used to verify whether PorterLB functions properly in Layer 2 mode. The client machine needs to be on the same network as the Kubernetes cluster nodes.
-* The Layer 2 mode requires your infrastructure environment to allow anonymous ARP packets. If PorterLB is installed in a cloud-based Kubernetes cluster for testing, you need to confirm with your cloud vendor whether anonymous ARP packets are allowed. If not, the Layer 2 mode cannot be used.
+* The Layer 2 mode requires your infrastructure environment to allow anonymous ARP/NDP packets. If PorterLB is installed in a cloud-based Kubernetes cluster for testing, you need to confirm with your cloud vendor whether anonymous ARP/NDP packets are allowed. If not, the Layer 2 mode cannot be used.
 
 This document uses the following devices as an example:
 
