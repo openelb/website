@@ -20,7 +20,7 @@
     }
 
     // Inline code
-    p code, li > code, table code, .notices code {
+    p code, li > code, table code {
         color: inherit;
         padding: 0.2em 0.4em;
         margin: 0;
@@ -36,7 +36,7 @@
 
 
     // Code blocks
-    pre, .notices pre {
+    pre {
         word-wrap: normal;
         background-color: $gray-100;
         padding: $spacer;
