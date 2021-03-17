@@ -18,7 +18,7 @@ In this article, I am going to introduce how PorterLB functions in Layer 2 mode 
 
 In BGP mode, PorterLB publishes routes to a BGP router deployed outside the Kubernetes cluster, and the BGP router forwards Service traffic from external clients to the Kubernetes cluster nodes based on the routes obtained from PorterLB. In this process, PorterLB uses Equal-Cost Multi-Path (ECMP) routing to ensure that all Kubernetes nodes or nodes that contain Pods, depending on the user configuration, are used as next hops by the BGP router.
 
-![porter-bgp-topology](/images/blog/porterlb-boosts-kubernetes-on-bare-metal/porter-bgp-topology.jpg)
+![porter-bgp-topology](/images/blog/porterlb-for-bare-metal-kubernetes-cloud-native-elegant-and-flexible/porter-bgp-topology.jpg)
 
 The process of using PorterLB in BGP mode in a Kubernetes cluster is simple:
 
@@ -29,7 +29,7 @@ The process of using PorterLB in BGP mode in a Kubernetes cluster is simple:
 
 PorterLB can be configured by using the Eip, BgpConf, and BgpPeer CRDs, no other configuration files are required. In addition, as BGP is decentralized, you can use the BGP mode to easily establish a high availability network free of failover interruptions and bandwidth bottlenecks.
 
-![high-availability-network](/images/blog/porterlb-boosts-kubernetes-on-bare-metal/high-availability-network.jpg)
+![high-availability-network](/images/blog/porterlb-for-bare-metal-kubernetes-cloud-native-elegant-and-flexible/high-availability-network.jpg)
 
 ## Layer 2 Mode
 
@@ -37,7 +37,7 @@ Generally, you are advised to use the BGP mode to expose your Services in a high
 
 In Layer 2 mode, PorterLB uses ARP packets (for IPv4) or NDP packets (for IPv6) to map the Service IP address to the MAC address of a Kubernetes node. The mechanism of the Layer 2 mode is similar to that of the BGP mode, except that BGP is replaced with ARP/NDP and the router obtains only one route destined for the Service. 
 
-![porter-layer-2-topology](/images/blog/porterlb-boosts-kubernetes-on-bare-metal/porter-layer-2-topology.jpg)
+![porter-layer-2-topology](/images/blog/porterlb-for-bare-metal-kubernetes-cloud-native-elegant-and-flexible/porter-layer-2-topology.jpg)
 
 Though the Layer 2 mode does not provide the same high availability as the BGP mode does, it is easier to use (you don't even need to configure BGP properties):
 
