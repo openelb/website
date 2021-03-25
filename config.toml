@@ -58,6 +58,14 @@ description = "Bare-Metal Load-balancer for Kubernetes"
 languageName ="English"
 # Weight used for sorting.
 weight = 1
+[languages.zh]
+title = "PorterLB"
+description = "Bare-Metal Load-balancer for Kubernetes"
+languageName ="简体中文"
+contentDir = "content/zh"
+# Weight used for sorting.
+weight = 2
+
 # [languages.no]
 # title = "PorterLB"
 # description = "Docsy er operativsystem for skyen"
