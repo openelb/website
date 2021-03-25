@@ -131,7 +131,7 @@
   | MB       |      | Mbyte、MByte、M |
   | GB       |      | Gbyte、GByte、G |
   | Kbit     |      | Kb              |
-  | Mbit     |      | Kb              |
+  | Mbit     |      | Mb              |
   | Gbit     |      | Gb              |
   | Kbit/s   |      | Kbps            |
   | Mbit/s   |      | Mbps            |
