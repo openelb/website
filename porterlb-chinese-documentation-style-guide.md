@@ -73,7 +73,7 @@
 
 * 在中文文档中，请正确使用中文标点符号。
 
-  | 建议使用                                                     | 请勿使用                                                     |
+  | 建议使用                                                     | 避免使用                                                     |
   | ------------------------------------------------------------ | ------------------------------------------------------------ |
   | 本文介绍如何在 KubeSphere 上安装 PorterLB。                  | 本文介绍如何在 KubeSphere 上安装 PorterLB.                   |
   | 本节介绍如何在 Kubernetes、KubeSphere 和 K3s 上安装 PorterLB。 | 本节介绍如何在 Kubernetes, KubeSphere 和 K3s 上安装 PorterLB。 |
@@ -81,7 +81,7 @@
 
 * 链接外部文档不需要添加书名号。
 
-  | 建议使用                                                     | 请勿使用                                                     |
+  | 建议使用                                                     | 避免使用                                                     |
   | ------------------------------------------------------------ | ------------------------------------------------------------ |
   | 请参阅[将 Pod 分配给节点](https://kubernetes.io/zh/docs/concepts/scheduling-eviction/assign-pod-node/)。 | 请参阅[《将 Pod 分配给节点》](https://kubernetes.io/zh/docs/concepts/scheduling-eviction/assign-pod-node/)。 |
 
