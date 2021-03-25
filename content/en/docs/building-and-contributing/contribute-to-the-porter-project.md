@@ -8,14 +8,15 @@ PorterLB is an open-source project and a sub-project of [KubeSphere](https://git
 
 ## New Feature Proposals
 
-If you have any ideas or suggestions, please send [design proposals](https://github.com/kubesphere/community/blob/master/contribution/design-proposal-template.md) to the [GitHub PorterLB Repository Issues](https://github.com/kubesphere/kubesphere/issues).
+If you have any ideas or suggestions, please send [design proposals](https://github.com/kubesphere/community/blob/master/contribution/design-proposal-template.md) to the [GitHub PorterLB Repository Issues](https://github.com/kubesphere/porterlb/issues).
 
 ## Code Contributions
 
-Obtain the [developer guides](https://github.com/kubesphere/community/tree/master/developer-guide) at the KubeSphere Community, [build the PorterLB project](/docs/building-and-contributing/build-the-porter-project) locally for testing, and send pull requests to the [GitHub PorterLB Repository](https://github.com/kubesphere/porter).
+Obtain the [developer guides](https://github.com/kubesphere/community/tree/master/developer-guide) at the KubeSphere Community, [build the PorterLB project](/docs/building-and-contributing/build-the-porter-project) locally for testing, and send pull requests to the [GitHub PorterLB Repository](https://github.com/kubesphere/porterlb).
 
 ## Document Contributions
 
 Both original documents and localization works are welcome!
 
-Obtain the [KubeSphere Documentation Style Guide](https://github.com/kubesphere/website/blob/master/KubeSphere%20Documentation%20Style%20Guide.md) and [KubeSphere Localization Style Guide](https://github.com/kubesphere/website/blob/master/localization_style_guides/KubeSphere%20Localization%20Style%20Guide%20(for%20Simplified%20Chinese).md) and send pull requests to the [GitHub PorterLB Website Repository](https://github.com/kubesphere/porter-website). All documents of PorterLB are located in the [content](https://github.com/kubesphere/porter-website/tree/master/content) directory.
+Obtain the [PorterLB Style Guides](https://github.com/kubesphere/porter-website) in the root directory of the GitHub PorterLB Website Repository. All documents of PorterLB are located in the [content](https://github.com/kubesphere/porter-website/tree/master/content) directory.
+
