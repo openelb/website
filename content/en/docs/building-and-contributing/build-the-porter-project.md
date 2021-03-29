@@ -15,7 +15,7 @@ This document describes how to build the PorterLB project for testing.
 
 ## Procedure
 
-1. Visit https://github.com/kubesphere/porter and click **Fork** to fork the PorterLB repository to your own GitHub account.
+1. Visit https://github.com/kubesphere/porterlb and click **Fork** to fork the PorterLB repository to your own GitHub account.
 
 2. Log in to your environment, and run the following commands to clone the PorterLB repository and go to the `porter` directory:
 
