@@ -17,7 +17,7 @@ This document describes the network topology of PorterLB in Layer 2 mode and how
 
 The following figure shows the topology of the network between a Kubernetes cluster with PorterLB and a router.
 
-![porter-layer-2-topology](/images/docs/concepts/layer-2-mode/porter-layer-2-topology.jpg)
+![porter-layer-2-topology](/images/en/docs/concepts/layer-2-mode/porter-layer-2-topology.jpg)
 
 IP addresses and MAC addresses in the preceding figure are examples only. The topology is described as follows:
 

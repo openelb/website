@@ -8,7 +8,7 @@ weight: 1
 
 During the installation of PorterLB, the porter-manager Pod is stuck in pending state.
 
-![porter-manager-pending](/images/docs/getting-started/faqs/what-do-i-do-if-the-porter-manager-pod-is-stuck-in-pending-state/porter-manager-pending.jpg)
+![porter-manager-pending](/images/en/docs/getting-started/faqs/what-do-i-do-if-the-porter-manager-pod-is-stuck-in-pending-state/porter-manager-pending.jpg)
 
 ## Possible Cause
 
@@ -44,4 +44,4 @@ Perform the following steps to change port 443 of PorterLB. The namespace in the
    kubectl get po -n porter-system
    ```
 
-   ![verify-porter](/images/docs/getting-started/faqs/what-do-i-do-if-the-porter-manager-pod-is-stuck-in-pending-state/verify-porter.jpg)
+   ![verify-porter](/images/en/docs/getting-started/faqs/what-do-i-do-if-the-porter-manager-pod-is-stuck-in-pending-state/verify-porter.jpg)

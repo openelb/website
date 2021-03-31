@@ -65,7 +65,7 @@ The node names and namespace in the following steps are examples only. You need 
    kubectl get po -n porter-system -o wide
    ```
 
-   ![verify-configuration-result](/images/docs/getting-started/configuration/configure-multiple-porter-replicas/verify-configuration-result.jpg)
+   ![verify-configuration-result](/images/en/docs/getting-started/configuration/configure-multiple-porter-replicas/verify-configuration-result.jpg)
 
 {{< notice note >}}
 

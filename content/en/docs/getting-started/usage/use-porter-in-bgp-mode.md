@@ -103,7 +103,7 @@ If you use a real router, you can skip this step and perform configuration on th
    sudo systemctl status bird
    ```
 
-   ![bird-status](/images/docs/getting-started/usage/use-porter-in-bgp-mode/bird-status.jpg)
+   ![bird-status](/images/en/docs/getting-started/usage/use-porter-in-bgp-mode/bird-status.jpg)
 
    {{< notice note >}}
 
@@ -316,11 +316,11 @@ The following verifies whether PorterLB functions properly.
    kubectl get svc
    ```
 
-   ![service-ip](/images/docs/getting-started/usage/use-porter-in-bgp-mode/service-ip.jpg)
+   ![service-ip](/images/en/docs/getting-started/usage/use-porter-in-bgp-mode/service-ip.jpg)
 
 2. In the Kubernetes cluster, run the following command to obtain the IP addresses of the cluster nodes:
 
-   ![node-ips](/images/docs/getting-started/usage/use-porter-in-bgp-mode/node-ips.jpg)
+   ![node-ips](/images/en/docs/getting-started/usage/use-porter-in-bgp-mode/node-ips.jpg)
 
 3. On the BIRD machine, run the following command to check the routing table. If equivalent routes using the Kubernetes cluster nodes as next hops destined for the Service are displayed, PorterLB functions properly.
 
@@ -330,11 +330,11 @@ The following verifies whether PorterLB functions properly.
 
    If `spec:externalTrafficPolicy` in the [Service YAML configuration](#step-6-create-a-service) is set to `Cluster`, all Kubernetes cluster nodes are used as the next hops.
 
-   ![bgp-routes-cluster](/images/docs/getting-started/usage/use-porter-in-bgp-mode/bgp-routes-cluster.jpg)
+   ![bgp-routes-cluster](/images/en/docs/getting-started/usage/use-porter-in-bgp-mode/bgp-routes-cluster.jpg)
 
    If `spec:externalTrafficPolicy` in the [Service YAML configuration](#step-6-create-a-service) is set to `Local`, only Kubernetes cluster nodes that contain Pods are used as the next hops.
 
-   ![bgp-routes-local](/images/docs/getting-started/usage/use-porter-in-bgp-mode/bgp-routes-local.jpg)
+   ![bgp-routes-local](/images/en/docs/getting-started/usage/use-porter-in-bgp-mode/bgp-routes-local.jpg)
 
    
 
@@ -344,4 +344,4 @@ The following verifies whether PorterLB functions properly.
    curl 172.22.0.2
    ```
 
-   ![access-service](/images/docs/getting-started/usage/use-porter-in-bgp-mode/access-service.jpg)
+   ![access-service](/images/en/docs/getting-started/usage/use-porter-in-bgp-mode/access-service.jpg)

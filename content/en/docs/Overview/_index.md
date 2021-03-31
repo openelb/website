@@ -4,7 +4,7 @@ linkTitle: "Overview"
 weight: 1
 ---
 
-![porter-logo](/images/docs/overview/porter-logo.png)
+![porter-logo](/images/en/docs/overview/porter-logo.png)
 
 PorterLB is an open-source load balancer implementation designed for bare-metal Kubernetes clusters.
 
@@ -31,7 +31,7 @@ PorterLB is a sub-project of [KubeSphere](https://github.com/kubesphere).
 
 <p align="center">
 <br/><br/>
-<img src="https://landscape.cncf.io/images/left-logo.svg" width="150"/>&nbsp;&nbsp;<img src="https://landscape.cncf.io/images/right-logo.svg" width="200"/>&nbsp;&nbsp;
+<img src="https://landscape.cncf.io/images/en/left-logo.svg" width="150"/>&nbsp;&nbsp;<img src="https://landscape.cncf.io/images/en/right-logo.svg" width="200"/>&nbsp;&nbsp;
 <br/><br/>
 PorterLB is a promising newcomer in Service proxy, which enriches the <a href="https://landscape.cncf.io/landscape=observability-and-analysis&license=apache-license-2-0">CNCF CLOUD NATIVE Landscape.
 </a>
