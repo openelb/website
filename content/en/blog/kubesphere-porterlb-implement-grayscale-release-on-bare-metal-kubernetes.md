@@ -111,7 +111,7 @@ Step 4: Test grayscale release.
 
    <img src="/images/en/blog/kubesphere-porterlb-implement-grayscale-release-on-bare-metal-kubernetes/v1.png" width="600px">
 
-7. After v2 is fully tested, you can set v2 to take over all traffic and take the canary release job offline to form1ally release v2.
+7. After v2 is fully tested, you can set v2 to take over all traffic and take the canary release job offline to formally release v2.
 
    <img src="/images/en/blog/kubesphere-porterlb-implement-grayscale-release-on-bare-metal-kubernetes/job-offline.png">
 
