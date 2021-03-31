@@ -2,7 +2,7 @@
 
 Welcome to the PorterLB website repository!
 
-This repository contains web pages of the [official PorterLB website](https://porterlb.io), including documentation, blog articles, community information, and other contents of the [PorterLB open-source project](https://github.com/kubesphere/porter-website).
+This repository contains web pages of the [official PorterLB website](https://porterlb.io), including documentation, blog articles, community information, and other contents of the [PorterLB open-source project](https://github.com/kubesphere/porterlb).
 
 No matter you are a tech enthusiast, a language professional, or simply someone interested in the PorterLB project, you are always welcome to send your works to the PorterLB website and help localize the website!
 
