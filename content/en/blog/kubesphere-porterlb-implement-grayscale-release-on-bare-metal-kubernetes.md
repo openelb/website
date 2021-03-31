@@ -16,7 +16,7 @@ In this article, I am going to introduce how to use KubeSphere and PorterLB to i
 
 ## Architecture
 
-![architecture](/images/blog/kubesphere-porterlb-implement-grayscale-release-on-bare-metal-kubernetes/architecture.png)
+![architecture](/images/en/blog/kubesphere-porterlb-implement-grayscale-release-on-bare-metal-kubernetes/architecture.png)
 
 * Grayscale release
 
@@ -52,7 +52,7 @@ Step 1: Set the KubeSphere gateway to use PorterLB and create an Eip object.
    eip.porter.kubesphere.io/v1alpha2: porter-layer2-eip # Name of the Eip object.
    ```
 
-4. Move the cursor to <img src="/images/blog/kubesphere-porterlb-implement-grayscale-release-on-bare-metal-kubernetes/kubectl.png" width="25px"> in the lower-right corner and click **Kubectl** to open the CLI.
+4. Move the cursor to <img src="/images/en/blog/kubesphere-porterlb-implement-grayscale-release-on-bare-metal-kubernetes/kubectl.png" width="25px"> in the lower-right corner and click **Kubectl** to open the CLI.
 
 5. Run the `vi porter-layer2-eip.yaml` command to create a YAML file for an Eip object and add the following information to the YAML file:
    ```yaml
@@ -101,7 +101,7 @@ Step 4: Test grayscale release.
 
    If grayscale release functions properly, only v2 can be accessed.
 
-   <img src="/images/blog/kubesphere-porterlb-implement-grayscale-release-on-bare-metal-kubernetes/v2.png" width="600px">
+   <img src="/images/en/blog/kubesphere-porterlb-implement-grayscale-release-on-bare-metal-kubernetes/v2.png" width="600px">
 
 5. On KubeSphere, repeat step 2 so that 100% traffic is sent to v1.
 
@@ -109,9 +109,9 @@ Step 4: Test grayscale release.
 
    If grayscale release functions properly, only v1 can be accessed.
 
-   <img src="/images/blog/kubesphere-porterlb-implement-grayscale-release-on-bare-metal-kubernetes/v1.png" width="600px">
+   <img src="/images/en/blog/kubesphere-porterlb-implement-grayscale-release-on-bare-metal-kubernetes/v1.png" width="600px">
 
-7. After v2 is fully tested, you can set v2 to take over all traffic and take the canary release job offline to form1ally release v2.
+7. After v2 is fully tested, you can set v2 to take over all traffic and take the canary release job offline to formally release v2.
 
-   <img src="/images/blog/kubesphere-porterlb-implement-grayscale-release-on-bare-metal-kubernetes/job-offline.png">
+   <img src="/images/en/blog/kubesphere-porterlb-implement-grayscale-release-on-bare-metal-kubernetes/job-offline.png">
 

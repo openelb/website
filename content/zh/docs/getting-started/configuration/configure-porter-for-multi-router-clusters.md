@@ -16,7 +16,7 @@ This document applies only to the BGP mode. The Layer 2 mode requires that all K
 
 This section explains why you need to perform the configuration. The following figure shows the network topology of a Kubernetes cluster before the configuration.
 
-![multi-router-topology-1](/images/docs/getting-started/configuration/configure-porter-for-multi-router-clusters/multi-router-topology-1.jpg)
+![multi-router-topology-1](/images/en/docs/getting-started/configuration/configure-porter-for-multi-router-clusters/multi-router-topology-1.jpg)
 
 IP addresses in the preceding figure are examples only. The topology is described as follows:
 
@@ -33,7 +33,7 @@ To resolve the problem, you need to label the Kubernetes cluster nodes and chang
 
 This section describes the configuration result you need to achieve. The following figure shows the network topology of a Kubernetes cluster after the configuration.
 
-![multi-router-topology-2](/images/docs/getting-started/configuration/configure-porter-for-multi-router-clusters/multi-router-topology-2.jpg)
+![multi-router-topology-2](/images/en/docs/getting-started/configuration/configure-porter-for-multi-router-clusters/multi-router-topology-2.jpg)
 
 IP addresses in the preceding figure are examples only. The topology is described as follows:
 
@@ -100,7 +100,7 @@ The node names, leaf router names, and namespace in the following steps are exam
    kubectl get po -n porter-system -o wide
    ```
    
-   ![verify-configuration-result](/images/docs/getting-started/configuration/configure-porter-for-multi-router-clusters/verify-configuration-result.jpg)
+   ![verify-configuration-result](/images/en/docs/getting-started/configuration/configure-porter-for-multi-router-clusters/verify-configuration-result.jpg)
 
 7. Run the following commands to label the Kubernetes cluster nodes so that the PorterLB replicas establish BGP connections with the correct BGP routers.
 

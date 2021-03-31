@@ -16,7 +16,7 @@ Generally, you are advised to use the BGP mode because it allows you to create a
 
 The following figure shows the topology of the network between a Kubernetes cluster with PorterLB and a router.
 
-![porter-layer-2-topology](/images/docs/concepts/layer-2-mode/porter-layer-2-topology.jpg)
+![porter-layer-2-topology](/images/en/en/endocs/concepts/layer-2-mode/porter-layer-2-topology.jpg)
 
 IP addresses and MAC addresses in the preceding figure are examples only. The topology is described as follows:
 

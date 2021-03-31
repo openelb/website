@@ -190,7 +190,7 @@ The following verifies whether PorterLB functions properly.
    kubectl get svc porter-layer2-svc
    ```
 
-   ![service-ip](/images/docs/getting-started/usage/use-porter-in-layer-2-mode/service-ip.jpg)
+   ![service-ip](/images/en/docs/getting-started/usage/use-porter-in-layer-2-mode/service-ip.jpg)
 
 2. In the Kubernetes cluster, run the following command to obtain the IP addresses of the cluster nodes:
 
@@ -198,7 +198,7 @@ The following verifies whether PorterLB functions properly.
    kubectl get nodes -o wide
    ```
 
-   ![node-ips](/images/docs/getting-started/usage/use-porter-in-layer-2-mode/node-ips.jpg)
+   ![node-ips](/images/en/docs/getting-started/usage/use-porter-in-layer-2-mode/node-ips.jpg)
 
 3. In the Kubernetes cluster, run the following command to check the nodes of the Pods:
 
@@ -206,7 +206,7 @@ The following verifies whether PorterLB functions properly.
    kubectl get po
    ```
 
-   ![pod-nodes](/images/docs/getting-started/usage/use-porter-in-layer-2-mode/pod-nodes.jpg)
+   ![pod-nodes](/images/en/docs/getting-started/usage/use-porter-in-layer-2-mode/pod-nodes.jpg)
 
    {{< notice note >}}
 
@@ -224,7 +224,7 @@ The following verifies whether PorterLB functions properly.
    ip neigh
    ```
 
-   ![ip-neigh](/images/docs/getting-started/usage/use-porter-in-layer-2-mode/ip-neigh.jpg)
+   ![ip-neigh](/images/en/docs/getting-started/usage/use-porter-in-layer-2-mode/ip-neigh.jpg)
 
    In the output of the `ip neigh` command, the MAC address of the Service IP address 192.168.0.91 is the same as that of worker-p001 192.168.0.3. Therefore, PorterLB has mapped the Service IP address to the MAC address of worker-p001.
 
@@ -236,8 +236,8 @@ The following verifies whether PorterLB functions properly.
 
    If `spec:externalTrafficPolicy` in the [Service YAML configuration](#step-5-create-a-service) is set to `Cluster`, both Pods can be reached.
 
-   ![service-cluster](/images/docs/getting-started/usage/use-porter-in-layer-2-mode/service-cluster.jpg)
+   ![service-cluster](/images/en/docs/getting-started/usage/use-porter-in-layer-2-mode/service-cluster.jpg)
 
    If `spec:externalTrafficPolicy` in the [Service YAML configuration](#step-5-create-a-service) is set to `Local`, only the Pod on the node selected by PorterLB can be reached.
 
-   ![service-local](/images/docs/getting-started/usage/use-porter-in-layer-2-mode/service-local.jpg)
+   ![service-local](/images/en/docs/getting-started/usage/use-porter-in-layer-2-mode/service-local.jpg)

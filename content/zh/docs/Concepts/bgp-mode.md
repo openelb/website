@@ -16,7 +16,7 @@ The BGP mode is recommended because it allows you to create a high availability 
 
 The following figure shows the topology of the network between a Kubernetes cluster where PorterLB is installed and a peer BGP router.
 
-![porter-bgp-topology](/images/docs/concepts/bgp-mode/porter-bgp-topology.jpg)
+![porter-bgp-topology](/images/en/en/endocs/concepts/bgp-mode/porter-bgp-topology.jpg)
 
 IP addresses and Autonomous System Numbers (ASNs) in the preceding figure are examples only. The topology is described as follows:
 

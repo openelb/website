@@ -38,7 +38,7 @@ This document describes how to use kubectl and [Helm](https://helm.sh/) to insta
    kubectl get po -n porter-system
    ```
 
-   ![verify-porter-kubectl](/images/docs/getting-started/installation/install-porter-on-kubernetes/verify-porter-kubectl.jpg)
+   ![verify-porter-kubectl](/images/en/docs/getting-started/installation/install-porter-on-kubernetes/verify-porter-kubectl.jpg)
 
 ## Delete PorterLB Using kubectl
 
@@ -60,7 +60,7 @@ This document describes how to use kubectl and [Helm](https://helm.sh/) to insta
    kubectl get ns
    ```
    
-   ![verify-porter-deletion-kubectl](/images/docs/getting-started/installation/install-porter-on-kubernetes/verify-porter-deletion-kubectl.jpg)
+   ![verify-porter-deletion-kubectl](/images/en/docs/getting-started/installation/install-porter-on-kubernetes/verify-porter-deletion-kubectl.jpg)
 
 ## Install PorterLB Using Helm
 
@@ -78,7 +78,7 @@ This document describes how to use kubectl and [Helm](https://helm.sh/) to insta
    kubectl get po -A
    ```
 
-   ![verify-porter-helm](/images/docs/getting-started/installation/install-porter-on-kubernetes/verify-porter-helm.jpg)
+   ![verify-porter-helm](/images/en/docs/getting-started/installation/install-porter-on-kubernetes/verify-porter-helm.jpg)
 
 ## Delete PorterLB Using Helm
 
@@ -100,4 +100,4 @@ This document describes how to use kubectl and [Helm](https://helm.sh/) to insta
    helm ls
    ```
 
-   ![verify-porter-deletion-helm](/images/docs/getting-started/installation/install-porter-on-kubernetes/verify-porter-deletion-helm.jpg)
+   ![verify-porter-deletion-helm](/images/en/docs/getting-started/installation/install-porter-on-kubernetes/verify-porter-deletion-helm.jpg)
