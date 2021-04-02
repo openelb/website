@@ -17,10 +17,10 @@ Though the Layer 2 mode does not provide the same high availability as the BGP m
 In this article, I am going to discuss the high availability mechanisms of PorterLB in Layer 2 mode. The following scenarios will be examined:
 
 * Scenario 1: Only one PorterLB replica is deployed and the node selected by PorterLB is down.
-* Scenario 2: Only one PorterLB replica is deployed and the node where PorterLB is deployed is down.
+* Scenario 2: Only one PorterLB replica is deployed and the node that hosts PorterLB is down.
 * Scenario 3: Multiple PorterLB replicas are deployed and one of the nodes that contain PorterLB replicas is down.
 
-## Scenario 1
+## Scenario 1: The Next Hop Is Down
 
 <img src="/images/blog/porterlb-high-availability-mechanisms-in-layer-2-mode/scenario-1-1.png" width="800px">
 
@@ -34,24 +34,24 @@ Therefore, the network topology after node 2 is down probably looks like the fol
 
 One thing you should be aware of is that although PorterLB automatically rebuilds the connection to the Service, there is a short period of failover interruption, which is one of the reasons why the BGP mode better suits scenarios where availability is vital.
 
-## Scenario 2
+## Scenario 2: The Only PorterLB Node Is Down
 
 <img src="/images/blog/porterlb-high-availability-mechanisms-in-layer-2-mode/scenario-2-1.png" width="800px">
 
-So what if the node where the porter-manager Pod is deployed is down?
+So what if the node that hosts the porter-manager Pod is down?
 
-Well, the porter-manager Pod is deployed under a ReplicaSet in a Deployment. Therefore, if the node where the porter-manager Pod is deployed is down, the Kubernetes system automatically re-creates the porter-manager Pod on another node. The network topology changes to the following:
+Well, the porter-manager Pod is deployed under a ReplicaSet in a Deployment. Therefore, if the node that hosts the porter-manager Pod is down, the Kubernetes system automatically re-creates the porter-manager Pod on another node. The network topology changes to the following:
 
 <img src="/images/blog/porterlb-high-availability-mechanisms-in-layer-2-mode/scenario-2-2.png" width="800px">
 
-Though existing Services that use PorterLB are not affected, the functionality of PorterLB is unavailable during the re-creation, which is why you are advised to deploy multiple PorterLB replicas (porter-manager Pods).
+Though existing Services that use PorterLB are not affected, the functionality of PorterLB is unavailable during the re-creation, which is why you are advised to deploy multiple PorterLB replicas (porter-manager Pods) in the cluster.
 
-## Scenario 3
+## Scenario 3: One of Multiple PorterLB Nodes Is Down
 
 <img src="/images/blog/porterlb-high-availability-mechanisms-in-layer-2-mode/scenario-3-1.png" width="800px">
 
-When multiple PorterLB replicas (porter-manager Pods) are deployed, PorterLB uses the leader election mechanism to ensure that only one replica (the leader) communicates with the router. If the node where the leader is located is down, another PorterLB replica automatically takes over the service after a leader re-election. The network topology changes to the following:
+When multiple PorterLB replicas (porter-manager Pods) are deployed, PorterLB uses the leader election mechanism to ensure that only one replica (the leader) communicates with the router. If the node that hosts the leader is down, another PorterLB replica automatically takes over the service after a leader re-election. The network topology changes to the following:
 
 <img src="/images/blog/porterlb-high-availability-mechanisms-in-layer-2-mode/scenario-3-2.png" width="800px">
 
-Although the functionality of PorterLB is still unavailable during the leader re-election, the interruption period is much shorter than that in scenario 2. Therefore, if you need to use the Layer 2 mode in a production environment, it is highly recommended that you deploy multiple PorterLB replicas to improve the availability.
+Although the functionality of PorterLB is still unavailable during the leader re-election, the downtime is much shorter than that in scenario 2. Therefore, if you need to use the Layer 2 mode in a production environment, it is highly recommended that you deploy multiple PorterLB replicas to improve the availability.
