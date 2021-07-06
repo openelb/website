@@ -8,7 +8,7 @@ Whether you are a tech enthusiast, a language professional, or simply someone in
 
 ## Localize the OpenELB Website
 
-We are currently looking for people to localize the website. If you have passion for localization, please [send pull requests](#send-pull-requests) to this repository.
+We are currently looking for people to localize the website. If you have passion for localization, please [send Pull Requests](#send-pull-requests) to this repository.
 
 * Before you start working, please read the [OpenELB Chinese Documentation Style Guide](./OpenELB-chinese-documentation-style-guide.md).
 
