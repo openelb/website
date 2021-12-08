@@ -22,7 +22,7 @@ This document describes how to use kubectl and [Helm](https://helm.sh/) to insta
 
   PorterLB is designed to be used in bare-metal Kubernetes environments. However, you can also use a cloud-based Kubernetes cluster for learning and testing.
 
-* If you use Helm to install porter, ensure that the Helm version is Helm 3.
+* If you use Helm to install PorterLB, ensure that the Helm version is Helm 3.
 
 ## Install PorterLB Using kubectl
 
