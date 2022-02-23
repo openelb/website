@@ -5,19 +5,19 @@ weight: 1
 no_list: true
 ---
 
-This section describes how to install and delete PorterLB on Kubernetes, KubeSphere, and K3s.
+This section describes how to install and delete OpenELB on Kubernetes, KubeSphere, and K3s.
 
 ---
 
-##### **[Install PorterLB on Kubernetes](/docs/getting-started/installation/install-porter-on-kubernetes/)**
+##### **[Install OpenELB on Kubernetes](/docs/getting-started/installation/install-openelb-on-kubernetes/)**
 
-Describes how to install and delete PorterLB on Kubernetes using kubectl and Helm.
+Describes how to install and delete OpenELB on Kubernetes using kubectl and Helm.
 
-##### **[Install PorterLB on KubeSphere](/docs/getting-started/installation/install-porter-on-kubesphere/)**
+##### **[Install OpenELB on KubeSphere](/docs/getting-started/installation/install-openelb-on-kubesphere/)**
 
-Describes how to install and delete PorterLB on the KubeSphere web console.
+Describes how to install and delete OpenELB on the KubeSphere web console.
 
-##### **[Install PorterLB on K3s](/docs/getting-started/installation/install-porter-on-k3s/)**
+##### **[Install OpenELB on K3s](/docs/getting-started/installation/install-openelb-on-k3s/)**
 
-Describes how to install and delete PorterLB on K3s using kubectl and Helm.
+Describes how to install and delete OpenELB on K3s using kubectl and Helm.
 

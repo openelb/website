@@ -9,4 +9,4 @@ This section provides solutions to frequently asked questions.
 
 ---
 
-##### **[What do I do if the porter-manager Pod is stuck in pending state?](/docs/faqs/what-do-i-do-if-the-porter-manager-pod-is-stuck-in-pending-state/)**
+##### **[What do I do if the openelb-manager Pod is stuck in pending state?](/docs/faqs/what-do-i-do-if-the-openelb-manager-pod-is-stuck-in-pending-state/)**
