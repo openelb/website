@@ -5,18 +5,18 @@ weight: 3
 no_list: true
 ---
 
-This section describes how to install, configure, and use PorterLB.
+This section describes how to install, configure, and use OpenELB.
 
 ---
 
 ##### **[Installation](/docs/getting-started/installation/)**
 
-Describes how to install PorterLB on Kubernetes, KubeSphere, and K3s.
+Describes how to install OpenELB on Kubernetes, KubeSphere, and K3s.
 
 ##### **[Configuration](/docs/getting-started/configuration/)**
 
-Describes how to perform configuration before using PorterLB.
+Describes how to perform configuration before using OpenELB.
 
 ##### **[Usage](/docs/getting-started/usage/)**
 
-Describes how to use PorterLB.
+Describes how to use OpenELB.

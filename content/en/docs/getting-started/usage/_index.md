@@ -5,14 +5,14 @@ weight: 3
 no_list: true
 ---
 
-This section describes how to use PorterLB in BGP mode and Layer 2 mode.
+This section describes how to use OpenELB in BGP mode and Layer 2 mode.
 
 ---
 
-##### **[Use PorterLB in BGP Mode](/docs/getting-started/usage/use-porter-in-bgp-mode/)**
+##### **[Use OpenELB in BGP Mode](/docs/getting-started/usage/use-openelb-in-bgp-mode/)**
 
-Describes how to use PorterLB in BGP mode.
+Describes how to use OpenELB in BGP mode.
 
-##### **[Use PorterLB in Layer 2 Mode](/docs/getting-started/usage/use-porter-in-layer-2-mode/)**
+##### **[Use OpenELB in Layer 2 Mode](/docs/getting-started/usage/use-openelb-in-layer-2-mode/)**
 
-Describes how to use PorterLB in Layer 2 mode.
+Describes how to use OpenELB in Layer 2 mode.

@@ -1,10 +1,10 @@
 ---
-title: "Build the PorterLB Project"
-linkTitle: "Build the PorterLB Project"
+title: "Build the OpenELB Project"
+linkTitle: "Build the OpenELB Project"
 weight: 1
 ---
 
-This document describes how to build the PorterLB project for testing.
+This document describes how to build the OpenELB project for testing.
 
 ## Prerequisites
 
@@ -15,16 +15,16 @@ This document describes how to build the PorterLB project for testing.
 
 ## Procedure
 
-1. Visit https://github.com/kubesphere/porterlb and click **Fork** to fork the PorterLB repository to your own GitHub account.
+1. Visit https://github.com/kubesphere/OpenELB and click **Fork** to fork the OpenELB repository to your own GitHub account.
 
-2. Log in to your environment, and run the following commands to clone the PorterLB repository and go to the `porter` directory:
+2. Log in to your environment, and run the following commands to clone the OpenELB repository and go to the `openelb` directory:
 
    ```bash
-   git clone <Address of your own PorterLB repository>
+   git clone <Address of your own OpenELB repository>
    ```
 
    ```bash
-   cd porter
+   cd openelb
    ```
 
 3. Run the following command to install Kustomize and Kubebuilder:
@@ -65,14 +65,14 @@ This document describes how to build the PorterLB project for testing.
 
    {{< notice note >}}
 
-   * `IMG_MANAGER` specifies the repository and tag of the porter-manager image.
+   * `IMG_MANAGER` specifies the repository and tag of the openelb-manager image.
 
-   * `IMG_AGENT` specifies the repository and tag of the porter-agent image.
-   * Currently, PorterLB uses only the porter-manager image. The porter-agent image will be used in future versions.
+   * `IMG_AGENT` specifies the repository and tag of the openelb-agent image.
+   * Currently, OpenELB uses only the openelb-manager image. The openelb-agent image will be used in future versions.
 
    {{</ notice >}}
 
-8. Run the following command to deploy PorterLB as a plugin:
+8. Run the following command to deploy OpenELB as a plugin:
 
    ```bash
    kubectl apply -f deploy/release.yaml

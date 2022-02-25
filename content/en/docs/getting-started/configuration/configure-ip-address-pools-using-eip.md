@@ -4,19 +4,19 @@ linkTitle: "Configure IP Address Pools Using Eip"
 weight: 1
 ---
 
-This document describes how to configure an Eip object, which functions as an IP address pool for PorterLB both in BGP mode and in Layer 2 mode.
+This document describes how to configure an Eip object, which functions as an IP address pool for OpenELB both in BGP mode and in Layer 2 mode.
 
-PorterLB assigns IP addresses in Eip objects to LoadBalancer Services in the Kubernetes cluster. After that, PorterLB publishes routes destined for the Service IP addresses over BGP (in BGP mode), ARP (in Layer 2 mode for IPv4), or NDP (in Layer 2 mode for IPv6). 
+OpenELB assigns IP addresses in Eip objects to LoadBalancer Services in the Kubernetes cluster. After that, OpenELB publishes routes destined for the Service IP addresses over BGP (in BGP mode), ARP (in Layer 2 mode for IPv4), or NDP (in Layer 2 mode for IPv6). 
 
 {{< notice note >}}
 
-Currently, PorterLB supports only IPv4 and will soon support IPv6.
+Currently, OpenELB supports only IPv4 and will soon support IPv6.
 
 {{</ notice >}}
 
-## Configure an Eip Object for PorterLB
+## Configure an Eip Object for OpenELB
 
-You can create an Eip object to provide an IP address pool for PorterLB. The following is an example of the Eip YAML configuration:
+You can create an Eip object to provide an IP address pool for OpenELB. The following is an example of the Eip YAML configuration:
 
 ```yaml
 apiVersion: network.kubesphere.io/v1alpha2
@@ -48,7 +48,7 @@ The fields are described as follows:
 
 `spec`:
 
-* `address`: One or more IP addresses, which will be used by PorterLB. The value format can be:
+* `address`: One or more IP addresses, which will be used by OpenELB. The value format can be:
   
   * `IP address`, for example, `192.168.0.100`.
   * `IP address/Subnet mask`, for example, `192.168.0.0/24`.
@@ -62,20 +62,20 @@ The fields are described as follows:
   {{</ notice >}}
 
 
-* `protocol`: Specifies which mode of PorterLB the Eip object is used for. The value can be either `layer2` or `bgp`. If this field is not specified, the default value `bgp` is used.
+* `protocol`: Specifies which mode of OpenELB the Eip object is used for. The value can be either `layer2` or `bgp`. If this field is not specified, the default value `bgp` is used.
 
-* `interface`: NIC on which PorterLB listens for ARP or NDP requests. This field is valid only when `protocol` is set to `layer2`.
+* `interface`: NIC on which OpenELB listens for ARP or NDP requests. This field is valid only when `protocol` is set to `layer2`.
 
   {{< notice tip >}}
 
-  If the NIC names of the Kubernetes cluster nodes are different, you can set the value to `can_reach:IP address` (for example, `can_reach:192.168.0.5`) so that PorterLB automatically obtains the name of the NIC that can reach the IP address. In this case, you must ensure that the IP address is not used by Kubernetes cluster nodes but can be reached by the cluster nodes.
+  If the NIC names of the Kubernetes cluster nodes are different, you can set the value to `can_reach:IP address` (for example, `can_reach:192.168.0.5`) so that OpenELB automatically obtains the name of the NIC that can reach the IP address. In this case, you must ensure that the IP address is not used by Kubernetes cluster nodes but can be reached by the cluster nodes.
 
   {{</ notice >}}
 
 * `disable`: Specifies whether the Eip object is disabled. The value can be:
   
-  * `false`: PorterLB can assign IP addresses in the Eip object to new LoadBalancer Services.
-  * `true`: PorterLB stops assigning IP addresses in the Eip object to new LoadBalancer Services. Existing Services are not affected.
+  * `false`: OpenELB can assign IP addresses in the Eip object to new LoadBalancer Services.
+  * `true`: OpenELB stops assigning IP addresses in the Eip object to new LoadBalancer Services. Existing Services are not affected.
 
 `status`: Fields under `status` specify the status of the Eip object and are automatically configured. When creating an Eip object, you do not need to configure these fields.
 
@@ -90,6 +90,6 @@ The fields are described as follows:
 
 * `lastIP`: Last IP address in the Eip object.
 
-* `v4`: Specifies whether the address family is IPv4. Currently, PorterLB supports only IPv4 and the value can only be `true`.
+* `v4`: Specifies whether the address family is IPv4. Currently, OpenELB supports only IPv4 and the value can only be `true`.
 
-* `ready`: Specifies whether the Eip-associated program used for BGP/ARP/NDP routes publishing has been initialized. The program is integrated in PorterLB.
+* `ready`: Specifies whether the Eip-associated program used for BGP/ARP/NDP routes publishing has been initialized. The program is integrated in OpenELB.
