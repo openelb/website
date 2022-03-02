@@ -26,43 +26,45 @@ OpenELB is designed to be used in bare-metal Kubernetes environments. However, y
 
 1. Log in to the KubeSphere console and go to your workspace.
 
-   ![enter-workspace](/images/en/docs/getting-started/installation/install-openelb-on-kubesphere/enter-workspace.jpg)
+   ![enter-workspace](/images/en/docs/getting-started/installation/install-openelb-on-kubesphere/enter-workspace.png)
 
 2. On the left navigation bar, choose **Apps Management** > **App Repos**, and click **Add Repo** on the right.
 
-   ![add-repo](/images/en/docs/getting-started/installation/install-openelb-on-kubesphere/add-repo.jpg)
+   ![add-repo](/images/en/docs/getting-started/installation/install-openelb-on-kubesphere/add-repo.png)
 
-3. In the displayed dialog box, set **App Repository Name** (for example, `KubeSphere-test`), set **URL** to `https://charts.kubesphere.io/test`, click **Validate** to check the URL, and click **OK**.
+3. In the displayed dialog box, set **App Repository Name** (for example, `kubesphere-test`), set **URL** to `https://charts.kubesphere.io/test`, click **Validate** to check the URL, and click **OK**.
 
-   ![repo-spec](/images/en/docs/getting-started/installation/install-openelb-on-kubesphere/repo-spec.jpg)
+   ![repo-spec](/images/en/docs/getting-started/installation/install-openelb-on-kubesphere/repo-spec.png)
 
-4. Go to your project, choose **Application Workloads** > **Applications** on the left navigation bar, and click **Deploy New Application** on the right.
+4. Go to your project, choose **Application Workloads** > **Apps** on the left navigation bar, and click **Deploy New Application** on the right.
 
-   ![deploy-new-app](/images/en/docs/getting-started/installation/install-openelb-on-kubesphere/deploy-new-app.jpg)
+   ![deploy-new-app](/images/en/docs/getting-started/installation/install-openelb-on-kubesphere/deploy-new-app.png)
 
 5. In the displayed dialog box, click **From App Templates**.
 
-   ![from-app-templates](/images/en/docs/getting-started/installation/install-openelb-on-kubesphere/from-app-templates.jpg)
+   ![from-app-templates](/images/en/docs/getting-started/installation/install-openelb-on-kubesphere/from-app-templates.png)
 
-6. Select **KubeSphere-test** from the drop-down list and click **porter**.
+6. Select **kubesphere-test** from the drop-down list and click **openelb**.
 
-   ![openelb-template](/images/en/docs/getting-started/installation/install-openelb-on-kubesphere/porter-template.jpg)
+   ![openelb-template](/images/en/docs/getting-started/installation/install-openelb-on-kubesphere/openelb-template.png)
 
-7. Click **Deploy** and follow the wizard instructions to complete the installation. You can customize the chart configuration in the YAML file based on your requirements.
+7. Click **Install** and follow the wizard instructions to complete the installation. You can customize the chart configuration in the YAML file based on your requirements.
 
-   ![deploy-openelb](/images/en/docs/getting-started/installation/install-openelb-on-kubesphere/deploy-porter.jpg)
+   ![deploy-openelb](/images/en/docs/getting-started/installation/install-openelb-on-kubesphere/deploy-openelb.png)
 
-   ![porter-yaml](/images/en/docs/getting-started/installation/install-openelb-on-kubesphere/porter-yaml.jpg)
+   ![openelb-setting](/images/en/docs/getting-started/installation/install-openelb-on-kubesphere/openelb-setting.png)
+
+   ![openelb-yaml](/images/en/docs/getting-started/installation/install-openelb-on-kubesphere/openelb-yaml.png)
 
 8. Choose **Application Workloads** > **Pods** on the left navigation bar to check whether the status of openelb-manager is **running**. If yes, OpenELB has been installed successfully.
 
-   ![verify-openelb](/images/en/docs/getting-started/installation/install-openelb-on-kubesphere/verify-porter.jpg)
+   ![verify-openelb](/images/en/docs/getting-started/installation/install-openelb-on-kubesphere/verify-openelb.png)
 
 ## Delete OpenELB on the KubeSphere Web Console
 
-To delete OpenELB on the KubeSphere web console, go to your project, choose **Application Workloads** > **Applications** on the left navigation bar, click ![porter-operation](/images/en/docs/getting-started/installation/install-openelb-on-kubesphere/porter-operation.jpg) on the right of the OpenELB application, and choose **Delete** from the drop-down list.
+To delete OpenELB on the KubeSphere web console, go to your project, choose **Application Workloads** > **Apps** on the left navigation bar, click ![openelb-operation](/images/en/docs/getting-started/installation/install-openelb-on-kubesphere/openelb-operation.jpg) on the right of the OpenELB application, and choose **Delete** from the drop-down list.
 
-![delete-openelb](/images/en/docs/getting-started/installation/install-openelb-on-kubesphere/delete-porter.jpg)
+![delete-openelb](/images/en/docs/getting-started/installation/install-openelb-on-kubesphere/delete-openelb.png)
 
 {{< notice note >}}
 
