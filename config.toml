@@ -85,6 +85,9 @@ weight = 2
 copyright = "KubeSphere"
 privacy_policy = "https://policies.google.com/privacy"
 
+banner_link = "https://vercel.com?utm_source=openelb&utm_campaign=oss"
+banner_img = "https://www.datocms-assets.com/31049/1618983297-powered-by-vercel.svg"
+
 # First one is picked as the Twitter card image if not set on page.
 # images = ["images/project-illustration.png"]
 
