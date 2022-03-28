@@ -17,7 +17,7 @@ This document describes the network topology of OpenELB in Layer 2 mode and how 
 
 The following figure shows the topology of the network between a Kubernetes cluster with OpenELB and a router.
 
-![openelb-layer-2-topology](/images/en/docs/concepts/layer-2-mode/openelb-layer-2-topology.jpg)
+![openelb-layer-2-topology](/images/en/docs/concepts/layer-2-mode/openelb-layer-2-topology.png)
 
 IP addresses and MAC addresses in the preceding figure are examples only. The topology is described as follows:
 
