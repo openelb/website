@@ -16,7 +16,7 @@ This document applies only to the BGP mode. The Layer 2 mode requires that all K
 
 This section explains why you need to perform the configuration. The following figure shows the network topology of a Kubernetes cluster before the configuration.
 
-![multi-router-topology-1](/images/en/docs/getting-started/configuration/configure-openelb-for-multi-router-clusters/multi-router-topology-1.jpg)
+![multi-router-topology-1](/images/en/docs/getting-started/configuration/configure-openelb-for-multi-router-clusters/multi-router-topology-1.png)
 
 IP addresses in the preceding figure are examples only. The topology is described as follows:
 
@@ -33,7 +33,7 @@ To resolve the problem, you need to label the Kubernetes cluster nodes and chang
 
 This section describes the configuration result you need to achieve. The following figure shows the network topology of a Kubernetes cluster after the configuration.
 
-![multi-router-topology-2](/images/en/docs/getting-started/configuration/configure-openelb-for-multi-router-clusters/multi-router-topology-2.jpg)
+![multi-router-topology-2](/images/en/docs/getting-started/configuration/configure-openelb-for-multi-router-clusters/multi-router-topology-2.png)
 
 IP addresses in the preceding figure are examples only. The topology is described as follows:
 

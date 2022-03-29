@@ -16,7 +16,7 @@ The BGP mode is recommended because it allows you to create a high availability 
 
 The following figure shows the topology of the network between a Kubernetes cluster where OpenELB is installed and a peer BGP router.
 
-![openelb-bgp-topology](/images/en/docs/concepts/bgp-mode/openelb-bgp-topology.jpg)
+![openelb-bgp-topology](/images/en/docs/concepts/bgp-mode/openelb-bgp-topology.png)
 
 IP addresses and Autonomous System Numbers (ASNs) in the preceding figure are examples only. The topology is described as follows:
 
