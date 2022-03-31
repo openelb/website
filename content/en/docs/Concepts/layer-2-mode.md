@@ -1,7 +1,7 @@
 ---
 title: "Layer 2 Mode"
 linkTitle: "Layer 2 Mode"
-weight: 1
+weight: 2
 ---
 
 This document describes the network topology of OpenELB in Layer 2 mode and how OpenELB functions in Layer 2 mode.

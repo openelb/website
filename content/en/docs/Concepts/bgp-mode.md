@@ -8,7 +8,7 @@ This document describes the network topology of OpenELB in BGP mode and how Open
 
 {{< notice note >}}
 
-The BGP mode is recommended because it allows you to create a high availability system free of failover interruptions and bandwidth bottlenecks. To use the BGP mode, your router must support BGP and Equal-Cost Multi-Path (ECMP) routing. If your router does not support BGP or ECMP, you can use the Layer 2 mode to achieve similar functionality.
+The BGP mode is recommended because it allows you to create a high availability system free of failover interruptions and bandwidth bottlenecks. To use the BGP mode, your router must support BGP and Equal-Cost Multi-Path (ECMP) routing. If your router does not support BGP or ECMP, you can use the Layer 2 mode or VIP mode to achieve similar functionality.
 
 {{</ notice >}}
 
