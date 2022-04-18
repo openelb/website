@@ -4,9 +4,9 @@ linkTitle: "Configure IP Address Pools Using Eip"
 weight: 1
 ---
 
-This document describes how to configure an Eip object, which functions as an IP address pool for OpenELB both in BGP mode and in Layer 2 mode.
+This document describes how to configure an Eip object, which functions as an IP address pool for OpenELB in BGP mode, Layer 2 mode, and VIP mode.
 
-OpenELB assigns IP addresses in Eip objects to LoadBalancer Services in the Kubernetes cluster. After that, OpenELB publishes routes destined for the Service IP addresses over BGP (in BGP mode), ARP (in Layer 2 mode for IPv4), or NDP (in Layer 2 mode for IPv6). 
+OpenELB assigns IP addresses in Eip objects to LoadBalancer Services in the Kubernetes cluster.
 
 {{< notice note >}}
 
@@ -23,6 +23,8 @@ apiVersion: network.kubesphere.io/v1alpha2
 kind: Eip
 metadata:
     name: eip-sample-pool
+    annotations:
+      eip.openelb.kubesphere.io/is-default-eip: "true"
 spec:
     address: 192.168.0.91-192.168.0.100
     protocol: layer2
@@ -46,6 +48,10 @@ The fields are described as follows:
 
 * `name`: Name of the Eip object.
 
+* `annotations`:
+
+  * `eip.openelb.kubesphere.io/is-default-eip`: Whether the current Eip object is the default Eip object. The value can be `"true"` or `"false"`. If a default Eip object exists, you do not need to specify an Eip object when creating a Service and the system automatically assigns an IP address from the default Eip object to the Service. If you do not specify an Eip object when creating a Service while no default IP address exists, the system automatically assigns an IP address from any available Eip object, if any, to the Service. For each Kubernetes cluster, you can set only one Eip object as the default Eip object.
+
 `spec`:
 
 * `address`: One or more IP addresses, which will be used by OpenELB. The value format can be:
@@ -62,7 +68,7 @@ The fields are described as follows:
   {{</ notice >}}
 
 
-* `protocol`: Specifies which mode of OpenELB the Eip object is used for. The value can be either `layer2` or `bgp`. If this field is not specified, the default value `bgp` is used.
+* `protocol`: Specifies which mode of OpenELB the Eip object is used for. The value can be `bgp`, `layer2`, or `vip`. If this field is not specified, the default value `bgp` is used.
 
 * `interface`: NIC on which OpenELB listens for ARP or NDP requests. This field is valid only when `protocol` is set to `layer2`.
 
