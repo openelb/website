@@ -52,7 +52,7 @@ The fields are described as follows:
 
   * `eip.openelb.kubesphere.io/is-default-eip`: Whether the current Eip object is the default Eip object. The value can be `"true"` or `"false"`. For each Kubernetes cluster, you can set only one Eip object as the default Eip object.
   
-    When creating a Service, generally you need to add the `lb.kubesphere.io/v1alpha1: openelb`, `protocol.openelb.kubesphere.io/v1alpha1: <mode>`, and `eip.openelb.kubesphere.io/v1alpha2: <Eip name>` annotations to the Service to specify that OpenELB is used as the load balancer pluggin, either the BGP, Layer 2, or VIP mode is used, and an Eip object is used as the IP address pool. However, if a default Eip object exists, you do not need to add the preceding annotations to the Service and the system automatically assigns an IP address from the default Eip object to the Service. Detailed rules about IP address assignment are as follows:
+    When creating a Service, generally you need to add the `lb.kubesphere.io/v1alpha1: openelb`, `protocol.openelb.kubesphere.io/v1alpha1: <mode>`, and `eip.openelb.kubesphere.io/v1alpha2: <Eip name>` annotations to the Service to specify that OpenELB is used as the load balancer plugin, either the BGP, Layer 2, or VIP mode is used, and an Eip object is used as the IP address pool. However, if a default Eip object exists, you do not need to add the preceding annotations to the Service and the system automatically assigns an IP address from the default Eip object to the Service. Detailed rules about IP address assignment are as follows:
 
     |The Service Uses OpenELB|An Eip Object Is Specified|A Default Eip Obejct Exists|A Common Eip Object Exists|IP Address Assigment|
     |-|-|-|-|-|
