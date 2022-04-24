@@ -61,7 +61,7 @@ The fields are described as follows:
     |Yes|No|No|No|Pending|
     |Yes|No|No|Yes|An IP adderss from a common Eip object|
     |Yes|No|Yes|Irrelevant|An IP address from the default Eip object|
-     |Yes|Yes|Irrelevant|No|Pending|
+    |Yes|Yes|Irrelevant|No|Pending|
     |Yes|Yes|Irrelevant|Yes|An IP address from the specified Eip object|
 
 `spec`:
