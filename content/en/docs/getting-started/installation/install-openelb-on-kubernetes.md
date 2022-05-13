@@ -22,7 +22,7 @@ This document describes how to use kubectl and [Helm](https://helm.sh/) to insta
 
   OpenELB is designed to be used in bare-metal Kubernetes environments. However, you can also use a cloud-based Kubernetes cluster for learning and testing.
 
-* If you use Helm to install OpenELB, ensure that the Helm version is Helm 3.
+  * If you use Helm to install OpenELB, ensure that the Helm version is Helm 3.
 
 ## Install OpenELB Using kubectl
 
@@ -38,7 +38,7 @@ This document describes how to use kubectl and [Helm](https://helm.sh/) to insta
    kubectl get po -n openelb-system
    ```
 
-   It should return something like the following.
+   The following is an example of the expected command output:
    
    ```bash
    NAME                               READY   STATUS      RESTARTS   AGE
@@ -84,7 +84,7 @@ This document describes how to use kubectl and [Helm](https://helm.sh/) to insta
    kubectl get po -A
    ```
 
-   It should return something like the following.
+   The following is an example of the expected command output:
    
    ```bash
    NAMESPACE        NAME                              READY   STATUS      RESTARTS   AGE

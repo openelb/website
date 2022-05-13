@@ -4,9 +4,9 @@ linkTitle: "Configure IP Address Pools Using Eip"
 weight: 1
 ---
 
-This document describes how to configure an Eip object, which functions as an IP address pool for OpenELB both in BGP mode and in Layer 2 mode.
+This document describes how to configure an Eip object, which functions as an IP address pool for OpenELB in BGP mode, Layer 2 mode, and VIP mode.
 
-OpenELB assigns IP addresses in Eip objects to LoadBalancer Services in the Kubernetes cluster. After that, OpenELB publishes routes destined for the Service IP addresses over BGP (in BGP mode), ARP (in Layer 2 mode for IPv4), or NDP (in Layer 2 mode for IPv6). 
+OpenELB assigns IP addresses in Eip objects to LoadBalancer Services in the Kubernetes cluster.
 
 {{< notice note >}}
 
@@ -23,6 +23,8 @@ apiVersion: network.kubesphere.io/v1alpha2
 kind: Eip
 metadata:
     name: eip-sample-pool
+    annotations:
+      eip.openelb.kubesphere.io/is-default-eip: "true"
 spec:
     address: 192.168.0.91-192.168.0.100
     protocol: layer2
@@ -46,6 +48,22 @@ The fields are described as follows:
 
 * `name`: Name of the Eip object.
 
+* `annotations`:
+
+  * `eip.openelb.kubesphere.io/is-default-eip`: Whether the current Eip object is the default Eip object. The value can be `"true"` or `"false"`. For each Kubernetes cluster, you can set only one Eip object as the default Eip object.
+  
+    When creating a Service, generally you need to add the `lb.kubesphere.io/v1alpha1: openelb`, `protocol.openelb.kubesphere.io/v1alpha1: <mode>`, and `eip.openelb.kubesphere.io/v1alpha2: <Eip name>` annotations to the Service to specify that OpenELB is used as the load balancer plugin, either the BGP, Layer 2, or VIP mode is used, and an Eip object is used as the IP address pool. However, if a default Eip object exists, you do not need to add the preceding annotations to the Service and the system automatically assigns an IP address from the default Eip object to the Service. Detailed rules about IP address assignment are as follows:
+
+    | The Service Uses OpenELB | An Eip Object Is Specified | A Default Eip Obejct Exists | A Common Eip Object Exists | IP Address Assigment                        |
+    | ------------------------ | -------------------------- | --------------------------- | -------------------------- | ------------------------------------------- |
+    | No                       | No                         | No                          | Irrelevant                 | Pending                                     |
+    | No                       | No                         | Yes                         | Irrelevant                 | An IP address from the default Eip object   |
+    | Yes                      | No                         | No                          | No                         | Pending                                     |
+    | Yes                      | No                         | No                          | Yes                        | An IP adderss from a common Eip object      |
+    | Yes                      | No                         | Yes                         | Irrelevant                 | An IP address from the default Eip object   |
+    | Yes                      | Yes                        | Irrelevant                  | No                         | Pending                                     |
+    | Yes                      | Yes                        | Irrelevant                  | Yes                        | An IP address from the specified Eip object |
+
 `spec`:
 
 * `address`: One or more IP addresses, which will be used by OpenELB. The value format can be:
@@ -62,7 +80,7 @@ The fields are described as follows:
   {{</ notice >}}
 
 
-* `protocol`: Specifies which mode of OpenELB the Eip object is used for. The value can be either `layer2` or `bgp`. If this field is not specified, the default value `bgp` is used.
+* `protocol`: Specifies which mode of OpenELB the Eip object is used for. The value can be `bgp`, `layer2`, or `vip`. If this field is not specified, the default value `bgp` is used.
 
 * `interface`: NIC on which OpenELB listens for ARP or NDP requests. This field is valid only when `protocol` is set to `layer2`.
 
