@@ -208,6 +208,7 @@ The Eip object functions as an IP address pool for OpenELB.
 
    {{< notice note >}}
 
+   The address can be any random but valid IP address representation (one or more), execpt the IP addresses already in use.
    For details about the fields in the Eip YAML configuration, see [Configure IP Address Pools Using Eip](/docs/getting-started/configuration/configure-ip-address-pools-using-eip/).
 
    {{</ notice >}}
