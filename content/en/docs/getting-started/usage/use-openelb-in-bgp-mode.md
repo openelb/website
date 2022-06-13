@@ -61,6 +61,10 @@ If you use a real router, you can skip this step and perform configuration on th
        export all;
        merge paths on;
    }
+
+   protocol device {
+       scan time 60;
+   }
    
    protocol bgp neighbor1 {
        local as 50001;
