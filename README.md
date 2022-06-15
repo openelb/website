@@ -39,13 +39,13 @@ Step 1: Create a GitHub account and set up a local OpenELB website repository.
    ```
 
    ```bash
-   cd porter-website
+   cd website
    ```
 
 4. Run the following command to set the upstream address:
 
    ```bash
-   git remote add upstream https://github.com/kubesphere/porter-website
+   git remote add upstream https://github.com/openelb/website.git
    ```
 
 Step 2: Add your work and push it to GitHub.
