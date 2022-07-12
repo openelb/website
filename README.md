@@ -94,7 +94,7 @@ Step 4: Commit your changes and create a pull request.
 
 2. Visit the [OpenELB website repository](https://github.com/kubesphere/porter-website), click **Pull requests**, and click **Compare & pull request**.
 
-3. Add `/assign @Pengfei @duanjiong @Patrick-LuoYu` in the text box to assign the three guys to review your work.
+3. Add `/assign @Patrick-LuoYu @FeynmanZhou @renyunkang` in the text box to assign the three guys to review your work.
 
    ![assign](./assign.png)
 
