@@ -5,7 +5,7 @@ weight: 3
 no_list: true
 ---
 
-This section describes how to use OpenELB in BGP mode and Layer 2 mode.
+This section describes how to use OpenELB in BGP/ Layer 2 / VIP mode.
 
 ---
 
@@ -17,6 +17,6 @@ Describes how to use OpenELB in BGP mode.
 
 Describes how to use OpenELB in Layer 2 mode.
 
-##### **[Use OpenELB in Layer 2 Mode (Beta)](/docs/getting-started/usage/use-openelb-in-vip-mode-beta/)**
+##### **[Use OpenELB in VIP Mode ](/docs/getting-started/usage/use-openelb-in-vip-mode/)**
 
-Describes how to use OpenELB in VIP mode (beta).
+Describes how to use OpenELB in VIP mode.

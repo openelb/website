@@ -1,5 +1,5 @@
 ---
-title: "Use OpenELB in VIP Mode (Beta)"
+title: "Use OpenELB in VIP Mode"
 linkTitle: "Use OpenELB in VIP Mode"
 weight: 3
 ---
@@ -8,7 +8,7 @@ This document demonstrates how to use OpenELB in VIP mode to expose a Service ba
 
 {{< notice note >}}
 
-The VIP mode has not been fully tested yet and may have unknown issues.
+Ensure that the OpenELB version  is 0.5.0 or later.
 
 {{</ notice >}}
 
