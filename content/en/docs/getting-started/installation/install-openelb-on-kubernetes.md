@@ -73,15 +73,16 @@ This document describes how to use kubectl and [Helm](https://helm.sh/) to insta
 1. Log in to the Kubernetes cluster over SSH and run the following commands:
 
    ```bash 
-   helm repo add test https://charts.kubesphere.io/test
+   helm repo add kubesphere-test https://charts.kubesphere.io/test
    helm repo update
-   helm install openelb test/openelb
+   kubectl create ns openelb-system
+   helm install openelb kubesphere-test/openelb -n openelb-system
    ```
 
 2. Run the following command to check whether the status of `openelb-manager` is **READY**: **1/1** and **STATUS**: **Running**. If yes, OpenELB has been installed successfully.
 
    ```bash
-   kubectl get po -A
+   kubectl get po -n openelb-system
    ```
 
    The following is an example of the expected command output:
@@ -99,7 +100,7 @@ This document describes how to use kubectl and [Helm](https://helm.sh/) to insta
 1. To delete OpenELB, run the following command:
 
    ```bash
-   helm delete openelb
+   helm delete openelb -n openelb-system
    ```
 
    {{< notice note >}}
@@ -111,5 +112,5 @@ This document describes how to use kubectl and [Helm](https://helm.sh/) to insta
 2. Run the following command to check the result. If the OpenELB application does not exist, OpenELB has been deleted successfully.
 
    ```bash
-   helm ls
+   helm ls -n openelb-system
    ```
