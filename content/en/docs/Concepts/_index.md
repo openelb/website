@@ -17,6 +17,6 @@ Describes how OpenELB functions in BGP mode.
 
 Describes how OpenELB functions in Layer 2 mode.
 
-##### **[VIP Mode (Beta)](/docs/concepts/vip-mode-beta/)**
+##### **[VIP Mode](/docs/concepts/vip-mode/)**
 
-Describes how OpenELB functions in VIP mode (beta).
+Describes how OpenELB functions in VIP mode.
