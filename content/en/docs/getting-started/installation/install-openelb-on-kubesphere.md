@@ -24,29 +24,11 @@ OpenELB is designed to be used in bare-metal Kubernetes environments. However, y
 
 ## Install OpenELB on the KubeSphere Web Console
 
-1. Log in to the KubeSphere console and go to your workspace.
+1. Log in to the KubeSphere console.
 
-   ![enter-workspace](/images/en/docs/getting-started/installation/install-openelb-on-kubesphere/enter-workspace.png)
+2. On the top navigation bar, choose **App Store**, and search **openelb**.
 
-2. On the left navigation bar, choose **Apps Management** > **App Repos**, and click **Add Repo** on the right.
-
-   ![add-repo](/images/en/docs/getting-started/installation/install-openelb-on-kubesphere/add-repo.png)
-
-3. In the displayed dialog box, set **App Repository Name** (for example, `kubesphere-test`), set **URL** to `https://charts.kubesphere.io/test`, click **Validate** to check the URL, and click **OK**.
-
-   ![repo-spec](/images/en/docs/getting-started/installation/install-openelb-on-kubesphere/repo-spec.png)
-
-4. Go to your project, choose **Application Workloads** > **Apps** on the left navigation bar, and click **Deploy New Application** on the right.
-
-   ![deploy-new-app](/images/en/docs/getting-started/installation/install-openelb-on-kubesphere/deploy-new-app.png)
-
-5. In the displayed dialog box, click **From App Templates**.
-
-   ![from-app-templates](/images/en/docs/getting-started/installation/install-openelb-on-kubesphere/from-app-templates.png)
-
-6. Select **kubesphere-test** from the drop-down list and click **openelb**.
-
-   ![openelb-template](/images/en/docs/getting-started/installation/install-openelb-on-kubesphere/openelb-template.png)
+   ![search-openelb](/images/en/docs/getting-started/installation/install-openelb-on-kubesphere/search-openelb.jpg)
 
 7. Click **Install** and follow the wizard instructions to complete the installation. You can customize the chart configuration in the YAML file based on your requirements.
 

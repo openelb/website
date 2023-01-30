@@ -1,6 +1,6 @@
 ---
-title: "VIP Mode (Beta)"
-linkTitle: "VIP Mode (Beta)"
+title: "VIP Mode"
+linkTitle: "VIP Mode"
 weight: 3
 ---
 

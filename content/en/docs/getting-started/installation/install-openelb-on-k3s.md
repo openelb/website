@@ -106,9 +106,9 @@ This document describes how to use kubectl and [Helm](https://helm.sh/) to insta
 2. Run the following commands to install OpenELB:
 
    ```bash 
-   helm repo add test https://charts.kubesphere.io/test
+   helm repo add stable https://charts.kubesphere.io/stable
    helm repo update
-   helm install openelb test/openelb
+   helm install openelb stable/openelb
    ```
 
 3. Run the following command to edit the `openelb-manager` Deployment:

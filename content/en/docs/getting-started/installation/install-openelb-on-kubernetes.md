@@ -73,10 +73,10 @@ This document describes how to use kubectl and [Helm](https://helm.sh/) to insta
 1. Log in to the Kubernetes cluster over SSH and run the following commands:
 
    ```bash 
-   helm repo add kubesphere-test https://charts.kubesphere.io/test
+   helm repo add kubesphere-stable https://charts.kubesphere.io/stable
    helm repo update
    kubectl create ns openelb-system
-   helm install openelb kubesphere-test/openelb -n openelb-system
+   helm install openelb kubesphere-stable/openelb -n openelb-system
    ```
 
 2. Run the following command to check whether the status of `openelb-manager` is **READY**: **1/1** and **STATUS**: **Running**. If yes, OpenELB has been installed successfully.
