@@ -86,7 +86,7 @@ The fields are described as follows:
 
   {{< notice tip >}}
 
-  If the NIC names of the Kubernetes cluster nodes are different, you can set the value to `can_reach:IP address` (for example, `can_reach:192.168.0.5`) so that OpenELB automatically obtains the name of the NIC that can reach the IP address. In this case, you must ensure that the IP address is not used by Kubernetes cluster nodes but can be reached by the cluster nodes.
+  If the NIC names of the Kubernetes cluster nodes are different, you can set the value to `can_reach:IP address` (for example, `can_reach:192.168.0.5`) so that OpenELB automatically obtains the name of the NIC that can reach the IP address. In this case, you must ensure that the IP address is not used by Kubernetes cluster nodes but can be reached by the cluster nodes.Also, do not use addresses configured in EIPs here.
 
   {{</ notice >}}
 
