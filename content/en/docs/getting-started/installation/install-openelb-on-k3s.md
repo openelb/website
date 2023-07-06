@@ -51,7 +51,8 @@ This document describes how to use kubectl and [Helm](https://helm.sh/) to insta
 
    By default, both OpenELB and K3s use port 443. Therefore, you need to change port 443 of OpenELB to avoid the port conflict. For details, see the [official K3s document](https://rancher.com/docs/k3s/latest/en/networking/#traefik-ingress-controller).
 
-   {{</ notice >}}
+   {{</ notice >}}  
+   
 
 4. Run the following command to check whether the status of `openelb-manager` is **READY**: **1/1** and **STATUS**: **Running**. If yes, OpenELB has been installed successfully.
 
