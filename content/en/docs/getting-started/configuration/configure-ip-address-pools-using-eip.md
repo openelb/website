@@ -30,6 +30,12 @@ spec:
     protocol: layer2
     interface: eth0
     disable: false
+    priority: 1
+    namespaces: 
+      - namespace-1
+      - default
+    namespaceSelector: 
+      kubesphere.io/workspace: workspace
 status:
     occupied: false
     usage: 1
@@ -94,6 +100,12 @@ The fields are described as follows:
   
   * `false`: OpenELB can assign IP addresses in the Eip object to new LoadBalancer Services.
   * `true`: OpenELB stops assigning IP addresses in the Eip object to new LoadBalancer Services. Existing Services are not affected.
+
+* `priority`: The priority order for automatic allocation. When multiple EIPs are allocated to a single namespace, they are sorted by priority when being automatically assigned. Lower priority values indicate higher priority.
+
+* `namespaces`: The namespaces field is used to specify which particular namespace an EIP should be allocated to for use.
+
+* `namespaceSelector`: The NamespaceSelector field specifies a label selector to select target namespaces that the EIP should be allocated to for use. 
 
 `status`: Fields under `status` specify the status of the Eip object and are automatically configured. When creating an Eip object, you do not need to configure these fields.
 
