@@ -169,3 +169,8 @@ no = 'Sorry to hear that. Please <a href="https://github.com/USERNAME/REPOSITORY
 	url = "https://groups.google.com/forum/#!forum/kubesphere"
 	icon = "fa fa-envelope"
         desc = "Discuss development issues around the project."
+[[params.links.developer]]
+	name = "Trademarks"
+	url = "https://www.linuxfoundation.org/legal/trademark-usage"
+	icon = "fa fa-trademark"
+        desc = "The Linux Foundation has registered trademarks and uses trademarks. For a list of trademarks of The Linux Foundation, please see our Trademark Usage page"
