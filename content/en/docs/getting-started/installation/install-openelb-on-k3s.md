@@ -23,8 +23,18 @@ This document describes how to use kubectl and [Helm](https://helm.sh/) to insta
 
 1. Log in to the master node of the K3s Kubernetes cluster over SSH and run the following command:
 
+   We recommend using the stable release version in a production environment. Please use the following command to download the installation script for the stable version:
+   
    ```bash
-   kubectl apply -f https://raw.githubusercontent.com/openelb/openelb/master/deploy/openelb.yaml
+   wget https://raw.githubusercontent.com/openelb/openelb/release-0.5/deploy/openelb.yaml
+   kubectl apply -f openelb.yaml
+   ```
+   
+   If you are interested in the latest features of the master branch and want to use the development version, use the following command to download the deployment script:
+   
+   ```bash
+   wget https://raw.githubusercontent.com/openelb/openelb/master/deploy/openelb.yaml
+   kubectl apply -f openelb.yaml
    ```
    
 2. Run the following command to edit the `openelb-manager` Deployment:
@@ -60,7 +70,7 @@ This document describes how to use kubectl and [Helm](https://helm.sh/) to insta
    ```
 
    It should return something like the following.
-   
+
    ```bash
    NAME                               READY   STATUS      RESTARTS   AGE
    openelb-admission-create-tjsqm     0/1     Completed   0          41s
@@ -73,7 +83,7 @@ This document describes how to use kubectl and [Helm](https://helm.sh/) to insta
 1. To delete OpenELB, log in to the master node of the K3s Kubernetes cluster and run the following command:
 
    ```bash
-   kubectl delete -f https://raw.githubusercontent.com/openelb/openelb/master/deploy/openelb.yaml
+   kubectl delete -f openelb.yaml
    ```
 
    {{< notice note >}}

@@ -28,8 +28,18 @@ This document describes how to use kubectl and [Helm](https://helm.sh/) to insta
 
 1. Log in to the Kubernetes cluster over SSH and run the following command:
 
+   We recommend using the stable release version in a production environment. Please use the following command to download the installation script for the stable version:
+   
    ```bash
-   kubectl apply -f https://raw.githubusercontent.com/openelb/openelb/master/deploy/openelb.yaml
+   wget https://raw.githubusercontent.com/openelb/openelb/release-0.5/deploy/openelb.yaml
+   kubectl apply -f openelb.yaml
+   ```
+   
+   If you are interested in the latest features of the master branch and want to use the development version, use the following command to download the deployment script:
+   
+   ```bash
+   wget https://raw.githubusercontent.com/openelb/openelb/master/deploy/openelb.yaml
+   kubectl apply -f openelb.yaml
    ```
    
 2. Run the following command to check whether the status of `openelb-manager` is **READY**: **1/1** and **STATUS**: **Running**. If yes, OpenELB has been installed successfully.
@@ -39,7 +49,7 @@ This document describes how to use kubectl and [Helm](https://helm.sh/) to insta
    ```
 
    The following is an example of the expected command output:
-   
+
    ```bash
    NAME                               READY   STATUS      RESTARTS   AGE
    openelb-admission-create-tjsqm     0/1     Completed   0          41s
@@ -52,7 +62,7 @@ This document describes how to use kubectl and [Helm](https://helm.sh/) to insta
 1. To delete OpenELB, log in to the Kubernetes cluster and run the following command:
 
    ```bash
-   kubectl delete -f https://raw.githubusercontent.com/openelb/openelb/master/deploy/openelb.yaml
+   kubectl delete -f openelb.yaml
    ```
 
    {{< notice note >}}
