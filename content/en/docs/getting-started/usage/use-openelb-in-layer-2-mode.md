@@ -21,7 +21,32 @@ This document uses the following devices as an example:
 | worker-p002 | 192.168.0.4 | 52:54:22:37:6c:7b | Kubernetes cluster worker 2 |
 | i-f3fozos0  | 192.168.0.5 | 52:54:22:fa:b9:3b | Client machine              |
 
-## Step 1: Enable strictARP for kube-proxy
+
+## Step 1: Make Sure Layer2 Mode is Enabled
+
+Layer2 mode can be enabled or disabled via command-line parameters. When using Layer2 mode, ensure that the Layer2 speaker is properly enabled.
+
+Run the following command to edit the openelb-speaker DaemonSet:
+
+```bash
+kubectl edit ds -n openelb-system openelb-speaker
+```
+
+Set `enable-layer2` to `true` and save the changes. The openelb-speaker will automatically restart.
+
+
+   ```yaml
+      containers:
+        - command:
+            - openelb-speaker
+          args:
+            - --api-hosts=:50051
+            - --enable-layer2=true
+            ... ...
+   ```
+
+
+## Step 2: Enable strictARP for kube-proxy
 
 In Layer 2 mode, you need to enable strictARP for kube-proxy so that all NICs in the Kubernetes cluster stop answering ARP requests from other NICs and OpenELB handles ARP requests instead.
 
@@ -43,18 +68,6 @@ In Layer 2 mode, you need to enable strictARP for kube-proxy so that all NICs in
    ```bash
    kubectl rollout restart daemonset kube-proxy -n kube-system
    ```
-
-## Step 2: Specify the NIC Used for OpenELB
-
-If the node where OpenELB is installed has multiple NICs, you need to specify the NIC used for OpenELB in Layer 2 mode. You can skip this step if the node has only one NIC.
-
-In this example, the master1 node where OpenELB is installed has two NICs (eth0 192.168.0.2 and eth1 192.168.1.2), and eth0 192.168.0.2 will be used for OpenELB.
-
-Run the following command to annotate master1 to specify the NIC:
-
-```bash
-kubectl annotate nodes master1 layer2.openelb.kubesphere.io/v1alpha1="192.168.0.2"
-```
 
 ## Step 3: Create an Eip Object
 
@@ -150,7 +163,8 @@ The following creates a Deployment of two Pods using the luksa/kubia image. Each
      name: layer2-svc
      annotations:
        lb.kubesphere.io/v1alpha1: openelb
-       protocol.openelb.kubesphere.io/v1alpha1: layer2
+       # For versions below 0.6.0, you also need to specify the protocol
+       # protocol.openelb.kubesphere.io/v1alpha1: layer2
        eip.openelb.kubesphere.io/v1alpha2: layer2-eip
    spec:
      selector:
@@ -167,8 +181,8 @@ The following creates a Deployment of two Pods using the luksa/kubia image. Each
 
    * You must set `spec:type` to `LoadBalancer`.
    * The `lb.kubesphere.io/v1alpha1: openelb` annotation specifies that the Service uses OpenELB.
-   * The `protocol.openelb.kubesphere.io/v1alpha1: layer2` annotation specifies that OpenELB is used in Layer 2 mode.
-   * The `eip.openelb.kubesphere.io/v1alpha2: layer2-eip` annotation specifies the Eip object used by OpenELB. If this annotation is not configured, OpenELB automatically uses the first available Eip object that matches the protocol. You can also delete this annotation and add the `spec:loadBalancerIP` field (for example, `spec:loadBalancerIP: 192.168.0.91`) to assign a specific IP address to the Service.
+   * The `protocol.openelb.kubesphere.io/v1alpha1: layer2` annotation specifies that OpenELB is used in Layer 2 mode. Deprecated after 0.6.0.
+   * The `eip.openelb.kubesphere.io/v1alpha2: layer2-eip` annotation specifies the Eip object used by OpenELB. If this annotation is not configured, OpenELB automatically selects an available Eip object. Alternatively, you can remove this annotation and use the  `spec:loadBalancerIP` field (e.g., `spec:loadBalancerIP: 192.168.0.91`) or add the annotation `eip.openelb.kubesphere.io/v1alpha1: 192.168.0.91` to assign a specific IP address to the Service. When you set `spec:loadBalancerIP` of multiple Services to the same value for IP address sharing (the Services are distinguished by different Service ports). In this case, you must set `spec:ports:port` to different values and `spec:externalTrafficPolicy` to `Cluster` for the Services. For more details about IPAM, see [openelb ip address assignment](/docs/getting-started/usage/openelb-ip-address-assignment/).
    * If `spec:externalTrafficPolicy` is set to `Cluster` (default value), OpenELB randomly selects a node from all Kubernetes cluster nodes to handle Service requests. Pods on other nodes can also be reached over kube-proxy.
    * If `spec:externalTrafficPolicy` is set to `Local`, OpenELB randomly selects a node that contains a Pod in the Kubernetes cluster to handle Service requests. Only Pods on the selected node can be reached.
 

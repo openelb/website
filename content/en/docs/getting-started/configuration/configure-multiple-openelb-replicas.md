@@ -4,81 +4,109 @@ linkTitle: "Configure Multiple OpenELB Replicas"
 weight: 4
 ---
 
-This document describes how to configure multiple OpenELB replicas to ensure high availability in a production environment. You can skip this document if OpenELB is used in a test environment. By default, only one OpenELB replica is installed in a Kubernetes cluster.
+This document describes how to configure multiple openelb-speaker instances to ensure high availability in a production environment.
 
-* If all Kubernetes cluster nodes are deployed under the same router (BGP mode or Layer 2 mode), you are advised to configure at least two OpenELB replicas, which are installed on two Kubernetes cluster nodes respectively.
-* If the Kubernetes cluster nodes are deployed under different leaf routers (BGP mode only), you are advised to configure at least two OpenELB replicas (one replica for one node) under each leaf router. For details, see [Configure OpenELB for Multi-router Clusters](/docs/getting-started/configuration/configure-openelb-for-multi-router-clusters/).
+The `openelb-speaker` is deployed as a `DaemonSet`, which means an instance of `openelb-speaker` will be started on each node in the Kubernetes cluster.  If the number of nodes is large, the number of openelb-speaker instances will also be large.
 
-## Prerequisites
+In BGP mode, all openelb-speaker instances will respond to the BgpPeer configuration and attempt to establish a BGP connection with the peer BGP router by default. If the router is configured with BGP peer information for all nodes and establishes BGP connections with all of them, it can lead to significant load on the router.To mitigate this, you can use methods such as `nodeSelector`, `Node Affinity`, or `Taints and Tolerations` to schedule `openelb-speaker` only on specific nodes. This reduces the number of BGP connections and alleviates the load on the router. It is important to ensure that at least two instances of `openelb-speaker` are running under each router to maintain high availability.
 
-You need to [prepare a Kubernetes cluster where OpenELB has been installed](/docs/getting-started/installation/).
+In Layer2 or VIP mode, if you want only certain nodes to handle traffic, you can also use `nodeSelector`, `Node Affinity`, or `Taints and Tolerations` to schedule `openelb-speaker` on specific nodes. 
 
-## Procedure
+* If all Kubernetes cluster nodes are deployed under the same router, it is recommended to configure at least two openelb-speaker instances. These instances should be installed on two different Kubernetes cluster nodes to ensure redundancy and high availability.
 
-{{< notice note >}}
+* If the Kubernetes cluster nodes are deployed under different leaf routers, it is recommended to configure at least two openelb-speaker instances under each leaf router. This means one instance per node under each leaf router to ensure that each router has redundancy.
 
-The node names and namespace in the following steps are examples only. You need to use the actual values in your environment.
 
-{{</ notice >}}
+  {{< notice note >}}
 
-1. Log in to the Kubernetes cluster and run the following command to label the Kubernetes cluster nodes where OpenELB is to be installed:
+  * If the Kubernetes cluster nodes are deployed under different routers, you need to perform further configuration so that the openelb-speaker instances establish BGP connections with the correct BGP routers. For details, see Configure OpenELB for Multi-router Clusters. In such a network topology, only BGP mode can be used. Layer2 mode is not suitable for clusters with nodes spread across different leaf routers.
 
-   ```bash
-   kubectl label --overwrite nodes master1 worker-p002 lb.kubesphere.io/v1alpha1=openelb
-   ```
+  {{</ notice >}}
 
-   {{< notice note >}}
 
-   In this example, OpenELB will be installed on master1 and worker-p002.
+## Example Configuration
 
-   {{</ notice >}}
+### Using Node Selector
+First, label the target nodes:
 
-2. Run the following command to scale the number of openelb-manager Pods to 0:
+```bash
+kubectl label nodes <node-name> <label-key>=<label-value>
+```
 
-   ```bash
-   kubectl scale deployment openelb-manager --replicas=0 -n openelb-system
-   ```
+Example:
 
-3. Run the following command to edit the openelb-manager Deployment:
+```bash
+kubectl label nodes node1 openelb-speaker=true
+```
 
-   ```bash
-   kubectl edit deployment openelb-manager -n openelb-system
-   ```
+Then, update the DaemonSet configuration:
 
-4. In the openelb-manager Deployment YAML configuration, add the following fields under `spec:template:spec`:
 
-   ```yaml
-   nodeSelector:
-     kubernetes.io/os: linux
-     lb.kubesphere.io/v1alpha1: openelb
-   ```
+```yaml
+spec:
+  template:
+    spec:
+      nodeSelector:
+        openelb-speaker: "true"
+      ... ...
+```
 
-5. Run the following command to scale the number of openelb-manager Pods to the required number (change the number `2` to the actual value):
+### Using Node Affinity
+First, label the target nodes:
 
-   ```bash
-   kubectl scale deployment openelb-manager --replicas=2 -n openelb-system
-   ```
 
-6. Run the following command to check whether OpenELB has been installed on the required nodes.
+```bash
+kubectl label nodes <node-name> <label-key>=<label-value>
+```
 
-   ```bash
-   kubectl get po -n openelb-system -o wide
-   ```
-   
-   
-   It should return something like the following.
+Example:
 
-   ```bash
-   NAME                               READY   STATUS      RESTARTS   AGE   IP              NODE    		NOMINATED NODE   READINESS GATES
-   openelb-admission-create-m2p52     0/1     Completed   0          49m   10.233.92.34    worker-p001		<none>           <none>
-   openelb-admission-patch-qmvnq      0/1     Completed   0          49m   10.233.96.15    worker-p002		<none>           <none>
-   openelb-manager-74c5467674-pgtmh   1/1     Running     0          19m   192.168.0.2   	master1   		<none>           <none>
-   openelb-manager-74c5467674-wmh5t   1/1     Running     0          19m   192.168.0.4   	worker-p002 	<none>           <none>
-   ```
+```bash
+kubectl label nodes node1 openelb-speaker=true
+```
+Then, update the DaemonSet configuration:
 
-{{< notice note >}}
 
-* In Layer 2 mode, OpenELB uses the leader election feature of Kubernetes to ensure that only one replica responds to ARP/NDP requests. 
-* In BGP mode, all OpenELB replicas will respond to the BgpPeer configuration and attempt to establish a BGP connection with the peer BGP router by default. If the Kubernetes cluster nodes are deployed under different routers, you need to perform further configuration so that the OpenELB replicas establish BGP connections with the correct BGP routers. For details, see [Configure OpenELB for Multi-router Clusters](/docs/getting-started/configuration/configure-openelb-for-multi-router-clusters/).
+```yaml
+spec:
+  template:
+    spec:
+      affinity:
+        nodeAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+            nodeSelectorTerms:
+            - matchExpressions:
+              - key: openelb-speaker
+                operator: In
+                values:
+                - "true"
+      ... ...
+```
 
-{{</ notice >}}
+### Using Taints and Tolerations
+First, taint the target nodes:
+
+```bash
+kubectl taint nodes <node-name> key=value:NoSchedule
+```
+
+Example:
+
+```bash
+kubectl taint nodes node1 openelb-speaker=true:NoSchedule
+```
+
+Then, update the DaemonSet configuration:
+
+```yaml
+spec:
+  template:
+    spec:
+      tolerations:
+      - key: "openelb-speaker"
+        operator: "Equal"
+        value: "true"
+        effect: "NoSchedule"
+      ... ...
+```
+

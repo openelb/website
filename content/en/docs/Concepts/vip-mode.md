@@ -9,7 +9,7 @@ This document describes the network topology of OpenELB in VIP mode and how Open
 {{< notice note >}}
 
 * Generally, you are advised to use the BGP mode because it allows you to create a high availability system free of failover interruptions and bandwidth bottlenecks. However, the BGP mode requires your router to support BGP and Equal-Cost Multi-Path (ECMP) routing, which may be unavailable in certain systems. In this case, you can use the Layer 2 mode or, as described in this document, the VIP mode to achieve similar functionality.
-* Unlike the Layer 2 mode, the VIP mode does not require your infrastructure environment to allow anonymous ARP/NDP packets and therefore is better than the Layer 2 mode in terms of applicability. However, the VIP mode has not been fully tested yet and may have unknown issues.
+* Unlike Layer 2 mode, VIP mode uses the Virtual Router Redundancy Protocol (VRRP) to provide high availability. This approach does not require your infrastructure environment to allow anonymous ARP/NDP packets, making it more widely applicable than Layer 2 mode. However, VIP mode is limited to 255 VRRP instances per network due to the constraints of the VRRP protocol.
 
 {{</ notice >}}
 
@@ -35,3 +35,18 @@ The VIP mode has two limitations:
 * All Service traffic is always sent to one node first and then forwarded to other nodes over kube-proxy in a second hop. Therefore, the Service bandwidth is limited to the bandwidth of a single node, which causes a bandwidth bottleneck.
 
 {{</ notice >}}
+
+
+## Generation Rules of VRRP Instance Names
+
+The VIP VRRP instance name is generated using the rule: `hash(node list)-interfaceName`. Therefore, a new instance will be created if the selected node list or the chosen network interface differs from any existing instance.
+
+The selected node list is determined by the service `spec.externalTrafficPolicy`, and the chosen network interface is specified by the `eip spec.interface`. Here is an example to illustrate:
+
+| Service ExternalTrafficPolicy | Selected Node List | Interface Name | VRRP Instance Name |
+| ----------------------------- | ------------------ | -------------- | ------------------ |
+| Cluster                       | node1,node2,node3  | eth0           | hash1-eth0         |
+| Cluster                       | node1,node2,node3  | eth1           | hash1-eth1         |
+| Local                         | node1,node2        | eth0           | hash2-eth0         |
+| Local                         | node2,node3        | eth1           | hash3-eth1         |
+
