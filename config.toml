@@ -94,6 +94,12 @@ banner_img = "https://www.datocms-assets.com/31049/1618983297-powered-by-vercel.
 # Menu title if your navbar has a versions selector to access old versions of your site.
 # This menu appears only if you have at least one [params.versions] set.
 version_menu = "Releases"
+[[params.versions]]
+	version = "v0.6.0(latest)"
+	url = "https://openelb.io"
+[[params.versions]]
+	version = "v0.5.1"
+	url = "/docs"
 
 # Repository configuration (URLs for in-page links to opening issues and suggesting changes)
 github_repo = "https://github.com/kubesphere/kubesphere.github.io"
