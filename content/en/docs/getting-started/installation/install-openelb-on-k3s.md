@@ -93,9 +93,9 @@ This document describes how to use kubectl and [Helm](https://helm.sh/) to insta
 2. Run the following commands to install OpenELB:
 
    ```bash 
-   helm repo add stable https://charts.kubesphere.io/stable
+   helm repo add openelb https://openelb.github.io/openelb
    helm repo update
-   helm install openelb stable/openelb -n openelb-system --create-namespace
+   helm install openelb openelb/openelb -n openelb-system --create-namespace
    ```
 
 3. Run the following command to check whether the status of `openelb-controller` and `openelb-speaker` is **READY**: **1/1** and **STATUS**: **Running**. If yes, OpenELB has been installed successfully.
@@ -124,7 +124,7 @@ This document describes how to use kubectl and [Helm](https://helm.sh/) to insta
 1. To delete OpenELB, run the following command:
 
    ```bash
-   helm delete openelb
+   helm delete openelb -n openelb-system
    ```
 
    {{< notice note >}}
@@ -136,5 +136,5 @@ This document describes how to use kubectl and [Helm](https://helm.sh/) to insta
 2. Run the following command to check the result. If the OpenELB application does not exist, OpenELB has been deleted successfully.
 
    ```bash
-   helm ls
+   helm ls -n openelb-system
    ```
