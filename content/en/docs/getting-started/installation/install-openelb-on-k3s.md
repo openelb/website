@@ -8,8 +8,9 @@ This document describes how to use kubectl and [Helm](https://helm.sh/) to insta
 
 {{< notice note >}}
 
-- In a Kubernetes cluster, you only need to install OpenELB once. After the installation is complete, a openelb-manager Deployment that contains a openelb-manager Pod is installed in the cluster. The openelb-manager Pod implements the functionality of OpenELB for the entire Kubernetes cluster.
-- After the installation is complete, you can scale the openelb-manager Deployment and assign multiple OpenELB replicas (openelb-manager Pods) to multiple cluster nodes to ensure high availability. For details, see [Configure Multiple OpenELB Replicas](/docs/getting-started/configuration/configure-multiple-openelb-replicas).
+- In a Kubernetes cluster, you only need to install OpenELB once. After the installation is complete, an openelb-controller Deployment containing an openelb-controller Pod and an openelb-speaker DaemonSet containing openelb-speaker Pods will be installed in the cluster. The openelb-controller Pod is used to implement the IPAM for service load balancer IPs, while the openelb-speaker Pods are used to announce the service load balancer IPs.
+
+- After the installation is complete, you can set node selectors to ensure that the load traffic runs on specific nodes. For details, see [Configure Multiple OpenELB Replicas](/docs/getting-started/configuration/configure-multiple-openelb-replicas).
 
 {{</ notice >}}
 
@@ -26,7 +27,7 @@ This document describes how to use kubectl and [Helm](https://helm.sh/) to insta
    We recommend using the stable release version in a production environment. Please use the following command to download the installation script for the stable version:
    
    ```bash
-   wget https://raw.githubusercontent.com/openelb/openelb/release-0.5/deploy/openelb.yaml
+   wget https://raw.githubusercontent.com/openelb/openelb/release-0.6/deploy/openelb.yaml
    kubectl apply -f openelb.yaml
    ```
    
@@ -37,34 +38,7 @@ This document describes how to use kubectl and [Helm](https://helm.sh/) to insta
    kubectl apply -f openelb.yaml
    ```
    
-2. Run the following command to edit the `openelb-manager` Deployment:
-
-   ```bash
-   kubectl edit deployment openelb-manager -n openelb-system
-   ```
-
-3. Change port 443 to a different value (for example, 30443) to avoid a port conflict with K3s:
-
-   ```yaml
-   spec:
-     template:
-       spec:
-         containers:
-         - args:
-           - --webhook-port=443 # Change the port number.
-           ports:
-           - containerPort: 443 # Change the port number.
-             hostPort: 443 # Change the port number.
-   ```
-
-   {{< notice note >}}
-
-   By default, both OpenELB and K3s use port 443. Therefore, you need to change port 443 of OpenELB to avoid the port conflict. For details, see the [official K3s document](https://rancher.com/docs/k3s/latest/en/networking/#traefik-ingress-controller).
-
-   {{</ notice >}}
-
-4. Run the following command to check whether the status of `openelb-manager` is **READY**: **1/1** and **STATUS**: **Running**. If yes, OpenELB has been installed successfully.
-
+2. Run the following command to check whether the status of `openelb-controller` and `openelb-speaker` is **READY**: **1/1** and **STATUS**: **Running**. If yes, OpenELB has been installed successfully.
    ```bash
    kubectl get po -n openelb-system
    ```
@@ -72,10 +46,13 @@ This document describes how to use kubectl and [Helm](https://helm.sh/) to insta
    It should return something like the following.
 
    ```bash
-   NAME                               READY   STATUS      RESTARTS   AGE
-   openelb-admission-create-tjsqm     0/1     Completed   0          41s
-   openelb-admission-patch-n247f      0/1     Completed   0          41s
-   openelb-manager-74c5467674-bx2wg   1/1     Running     0          41s
+   NAME                                  READY   STATUS      RESTARTS   AGE
+   openelb-admission-create-fv8jb        0/1     Completed   0          41s
+   openelb-admission-patch-887qh         0/1     Completed   0          41s
+   openelb-controller-6d59c894c9-jgfks   1/1     Running     0          41s
+   openelb-speaker-dnkcr                 1/1     Running     0          41s
+   openelb-speaker-fmkxb                 1/1     Running     0          41s
+   openelb-speaker-trh6p                 1/1     Running     0          41s
    ```
 
 ## Delete OpenELB Using kubectl
@@ -88,7 +65,7 @@ This document describes how to use kubectl and [Helm](https://helm.sh/) to insta
 
    {{< notice note >}}
 
-   Before deleting OpenELB, you must first delete all Services that use OpenELB.
+   Before deleting OpenELB, you should first delete all Services that use OpenELB.
 
    {{</ notice >}}
 
@@ -118,36 +95,10 @@ This document describes how to use kubectl and [Helm](https://helm.sh/) to insta
    ```bash 
    helm repo add stable https://charts.kubesphere.io/stable
    helm repo update
-   helm install openelb stable/openelb
+   helm install openelb stable/openelb -n openelb-system --create-namespace
    ```
 
-3. Run the following command to edit the `openelb-manager` Deployment:
-
-   ```bash
-   kubectl edit deployment openelb-manager
-   ```
-
-4. Change port 443 to a different value (for example, 30443) to avoid a port conflict with K3s:
-
-   ```bash
-   spec:
-     template:
-       spec:
-         containers:
-         - args:
-           - --webhook-port=443 # Change the port number.
-           ports:
-           - containerPort: 443 # Change the port number.
-             hostPort: 443 # Change the port number.
-   ```
-
-   {{< notice note >}}
-
-   By default, both OpenELB and K3s use port 443. Therefore, you need to change port 443 of OpenELB to avoid the port conflict. For details, see the [official K3s document](https://rancher.com/docs/k3s/latest/en/networking/#traefik-ingress-controller).
-
-   {{</ notice >}}
-
-5. Run the following command to check whether the status of `openelb-manager` is **READY**: **1/1** and **STATUS**: **Running**. If yes, OpenELB has been installed successfully.
+3. Run the following command to check whether the status of `openelb-controller` and `openelb-speaker` is **READY**: **1/1** and **STATUS**: **Running**. If yes, OpenELB has been installed successfully.
 
    ```bash
    kubectl get po -A
@@ -156,10 +107,13 @@ This document describes how to use kubectl and [Helm](https://helm.sh/) to insta
    It should return something like the following.
    
    ```bash
-   NAMESPACE        NAME                              READY   STATUS      RESTARTS   AGE
-   openelb-system   openelb-admission-create-m2p52    0/1     Completed   0          32s
-   openelb-system   openelb-admission-patch-qmvnq     0/1     Completed   0          31s
-   openelb-system   openelb-manager-74c5467674-pgtmh  1/1     Running     0          32s
+   NAMESPACE            NAME                                  READY   STATUS      RESTARTS   AGE
+   openelb-system       openelb-admission-create-fv8jb        0/1     Completed   0          41s
+   openelb-system       openelb-admission-patch-887qh         0/1     Completed   0          41s
+   openelb-system       openelb-controller-6d59c894c9-jgfks   1/1     Running     0          41s
+   openelb-system       openelb-speaker-dnkcr                 1/1     Running     0          41s
+   openelb-system       openelb-speaker-fmkxb                 1/1     Running     0          41s
+   openelb-system       openelb-speaker-trh6p                 1/1     Running     0          41s
    ... ...
    ```
    
@@ -175,7 +129,7 @@ This document describes how to use kubectl and [Helm](https://helm.sh/) to insta
 
    {{< notice note >}}
 
-   Before deleting OpenELB, you must first delete all Services that use OpenELB.
+   Before deleting OpenELB, you should first delete all Services that use OpenELB.
 
    {{</ notice >}}
 

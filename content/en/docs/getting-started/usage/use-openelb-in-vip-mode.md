@@ -8,7 +8,7 @@ This document demonstrates how to use OpenELB in VIP mode to expose a Service ba
 
 {{< notice note >}}
 
-Ensure that the OpenELB version  is 0.5.0 or later.
+Ensure that the OpenELB version is 0.5.0 or later.
 
 {{</ notice >}}
 
@@ -29,7 +29,29 @@ This document uses the following devices as an example:
 | worker-p002 | 192.168.0.4 | 52:54:22:37:6c:7b | Kubernetes cluster worker 2 |
 | i-f3fozos0  | 192.168.0.5 | 52:54:22:fa:b9:3b | Client machine              |
 
-## Step 1: Create an Eip Object
+## Step 1: Make Sure VIP Mode is Enabled
+VIP mode can be enabled or disabled via command-line parameters. When using VIP mode, ensure that the VIP speaker is properly enabled.
+
+Run the following command to edit the openelb-speaker DaemonSet:
+
+```bash
+kubectl edit ds -n openelb-system openelb-speaker
+```
+
+Set `enable-keepalived-vip` to `true` and save the changes. The openelb-speaker will automatically restart.
+
+
+   ```yaml
+      containers:
+        - command:
+            - openelb-speaker
+          args:
+            - --api-hosts=:50051
+            - --enable-keepalived-vip=true
+            ... ...
+   ```
+
+## Step 2: Create an Eip Object
 
 The Eip object functions as an IP address pool for OpenELB.
 
@@ -48,6 +70,7 @@ The Eip object functions as an IP address pool for OpenELB.
      name: vip-eip
    spec:
      address: 192.168.0.91-192.168.0.100
+     interface: eth0
      protocol: vip
    ```
 
@@ -65,7 +88,7 @@ The Eip object functions as an IP address pool for OpenELB.
    kubectl apply -f vip-eip.yaml
    ```
 
-## Step 2: Create a Deployment
+## Step 3: Create a Deployment
 
 The following creates a Deployment of two Pods using the luksa/kubia image. Each Pod returns its own Pod name to external requests. 
 
@@ -105,7 +128,7 @@ The following creates a Deployment of two Pods using the luksa/kubia image. Each
    kubectl apply -f vip-openelb.yaml
    ```
 
-## Step 3: Create a Service
+## Step 4: Create a Service
 
 1. Run the following command to create a YAML file for the Service:
 
@@ -122,7 +145,8 @@ The following creates a Deployment of two Pods using the luksa/kubia image. Each
      name: vip-svc
      annotations:
        lb.kubesphere.io/v1alpha1: openelb
-       protocol.openelb.kubesphere.io/v1alpha1: vip
+       # For versions below 0.6.0, you also need to specify the protocol
+       # protocol.openelb.kubesphere.io/v1alpha1: vip
        eip.openelb.kubesphere.io/v1alpha2: vip-eip
    spec:
      selector:
@@ -139,8 +163,8 @@ The following creates a Deployment of two Pods using the luksa/kubia image. Each
 
    * You must set `spec:type` to `LoadBalancer`.
    * The `lb.kubesphere.io/v1alpha1: openelb` annotation specifies that the Service uses OpenELB.
-   * The `protocol.openelb.kubesphere.io/v1alpha1: vip` annotation specifies that OpenELB is used in VIP mode.
-   * The `eip.openelb.kubesphere.io/v1alpha2: vip-eip` annotation specifies the Eip object used by OpenELB. If this annotation is not configured, OpenELB automatically uses the first available Eip object that matches the protocol. You can also delete this annotation and add the `spec:loadBalancerIP` field (for example, `spec:loadBalancerIP: 192.168.0.91`) to assign a specific IP address to the Service.
+   * The `protocol.openelb.kubesphere.io/v1alpha1: vip` annotation specifies that OpenELB is used in VIP mode. Deprecated after 0.6.0.
+   - The `eip.openelb.kubesphere.io/v1alpha2: bgp-eip` annotation specifies the Eip object used by OpenELB. If this annotation is not configured, OpenELB automatically selects an available Eip object. Alternatively, you can remove this annotation and use the  `spec:loadBalancerIP` field (e.g., `spec:loadBalancerIP: 192.168.0.91`) or add the annotation `eip.openelb.kubesphere.io/v1alpha1: 192.168.0.91` to assign a specific IP address to the Service. When you set `spec:loadBalancerIP` of multiple Services to the same value for IP address sharing (the Services are distinguished by different Service ports). In this case, you must set `spec:ports:port` to different values and `spec:externalTrafficPolicy` to `Cluster` for the Services. For more details about IPAM, see [openelb ip address assignment](/docs/getting-started/usage/openelb-ip-address-assignment/).
    * If `spec:externalTrafficPolicy` is set to `Cluster` (default value), OpenELB randomly selects a node from all Kubernetes cluster nodes to handle Service requests. Pods on other nodes can also be reached over kube-proxy.
    * If `spec:externalTrafficPolicy` is set to `Local`, OpenELB randomly selects a node that contains a Pod in the Kubernetes cluster to handle Service requests. Only Pods on the selected node can be reached.
 
@@ -152,7 +176,7 @@ The following creates a Deployment of two Pods using the luksa/kubia image. Each
       kubectl apply -f vip-svc.yaml
       ```
 
-## Step 4: Verify OpenELB in VIP Mode
+## Step 5: Verify OpenELB in VIP Mode
 
 The following verifies whether OpenELB functions properly.
 

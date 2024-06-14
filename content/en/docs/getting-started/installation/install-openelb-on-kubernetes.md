@@ -8,8 +8,10 @@ This document describes how to use kubectl and [Helm](https://helm.sh/) to insta
 
 {{< notice note >}}
 
-- In a Kubernetes cluster, you only need to install OpenELB once. After the installation is complete, a openelb-manager Deployment that contains a openelb-manager Pod is installed in the cluster. The openelb-manager Pod implements the functionality of OpenELB for the entire Kubernetes cluster.
-- After the installation is complete, you can scale the openelb-manager Deployment and assign multiple OpenELB replicas (openelb-manager Pods) to multiple cluster nodes to ensure high availability. For details, see [Configure Multiple OpenELB Replicas](/docs/getting-started/configuration/configure-multiple-openelb-replicas).
+- In a Kubernetes cluster, you only need to install OpenELB once. After the installation is complete, an openelb-controller Deployment containing an openelb-controller Pod and an openelb-speaker DaemonSet containing openelb-speaker Pods will be installed in the cluster. The openelb-controller Pod is used to implement the IPAM for service load balancer IPs, while the openelb-speaker Pods are used to announce the service load balancer IPs.
+
+- After the installation is complete, you can set node selectors to ensure that the load traffic runs on specific nodes. For details, see [Configure Multiple OpenELB Replicas](/docs/getting-started/configuration/configure-multiple-openelb-replicas).
+
 
 {{</ notice >}}
 
@@ -31,7 +33,7 @@ This document describes how to use kubectl and [Helm](https://helm.sh/) to insta
    We recommend using the stable release version in a production environment. Please use the following command to download the installation script for the stable version:
    
    ```bash
-   wget https://raw.githubusercontent.com/openelb/openelb/release-0.5/deploy/openelb.yaml
+   wget https://raw.githubusercontent.com/openelb/openelb/release-0.6/deploy/openelb.yaml
    kubectl apply -f openelb.yaml
    ```
    
@@ -42,19 +44,23 @@ This document describes how to use kubectl and [Helm](https://helm.sh/) to insta
    kubectl apply -f openelb.yaml
    ```
    
-2. Run the following command to check whether the status of `openelb-manager` is **READY**: **1/1** and **STATUS**: **Running**. If yes, OpenELB has been installed successfully.
+2. Run the following command to check whether the status of `openelb-controller` and `openelb-speaker` is **READY**: **1/1** and **STATUS**: **Running**. If yes, OpenELB has been installed successfully.
 
    ```bash
    kubectl get po -n openelb-system
    ```
 
    The following is an example of the expected command output:
-
+   
    ```bash
-   NAME                               READY   STATUS      RESTARTS   AGE
-   openelb-admission-create-tjsqm     0/1     Completed   0          41s
-   openelb-admission-patch-n247f      0/1     Completed   0          41s
-   openelb-manager-74c5467674-bx2wg   1/1     Running     0          41s
+   NAME                                  READY   STATUS      RESTARTS   AGE
+   openelb-admission-create-fv8jb        0/1     Completed   0          41s
+   openelb-admission-patch-887qh         0/1     Completed   0          41s
+   openelb-controller-6d59c894c9-jgfks   1/1     Running     0          41s
+   openelb-speaker-dnkcr                 1/1     Running     0          41s
+   openelb-speaker-fmkxb                 1/1     Running     0          41s
+   openelb-speaker-trh6p                 1/1     Running     0          41s
+   ... ...
    ```
 
 ## Delete OpenELB Using kubectl
@@ -67,7 +73,7 @@ This document describes how to use kubectl and [Helm](https://helm.sh/) to insta
 
    {{< notice note >}}
 
-   Before deleting OpenELB, you must first delete all Services that use OpenELB.
+   Before deleting OpenELB, you should first delete all Services that use OpenELB.
 
    {{</ notice >}}
 
@@ -89,19 +95,22 @@ This document describes how to use kubectl and [Helm](https://helm.sh/) to insta
    helm install openelb kubesphere-stable/openelb -n openelb-system
    ```
 
-2. Run the following command to check whether the status of `openelb-manager` is **READY**: **1/1** and **STATUS**: **Running**. If yes, OpenELB has been installed successfully.
+2. Run the following command to check whether the status of `openelb-controller` and `openelb-speaker` is **READY**: **1/1** and **STATUS**: **Running**. If yes, OpenELB has been installed successfully.
 
    ```bash
    kubectl get po -n openelb-system
    ```
 
    The following is an example of the expected command output:
-   
+
    ```bash
-   NAMESPACE        NAME                              READY   STATUS      RESTARTS   AGE
-   openelb-system   openelb-admission-create-m2p52    0/1     Completed   0          32s
-   openelb-system   openelb-admission-patch-qmvnq     0/1     Completed   0          31s
-   openelb-system   openelb-manager-74c5467674-pgtmh  1/1     Running     0          32s
+   NAME                                  READY   STATUS      RESTARTS   AGE
+   openelb-admission-create-fv8jb        0/1     Completed   0          41s
+   openelb-admission-patch-887qh         0/1     Completed   0          41s
+   openelb-controller-6d59c894c9-jgfks   1/1     Running     0          41s
+   openelb-speaker-dnkcr                 1/1     Running     0          41s
+   openelb-speaker-fmkxb                 1/1     Running     0          41s
+   openelb-speaker-trh6p                 1/1     Running     0          41s
    ... ...
    ```
 
@@ -115,7 +124,7 @@ This document describes how to use kubectl and [Helm](https://helm.sh/) to insta
 
    {{< notice note >}}
 
-   Before deleting OpenELB, you must first delete all Services that use OpenELB.
+   Before deleting OpenELB, you should first delete all Services that use OpenELB.
 
    {{</ notice >}}
 

@@ -8,8 +8,9 @@ This document describes how to install and delete OpenELB on the [KubeSphere](ht
 
 {{< notice note >}}
 
-- In a Kubernetes cluster, you only need to install OpenELB once. After the installation is complete, a openelb-manager Deployment that contains a openelb-manager Pod is installed in the cluster. The openelb-manager Pod implements the functionality of OpenELB for the entire Kubernetes cluster.
-- After the installation is complete, you can scale the openelb-manager Deployment and assign multiple OpenELB replicas (openelb-manager Pods) to multiple cluster nodes to ensure high availability. For details, see [Configure Multiple OpenELB Replicas](/docs/getting-started/configuration/configure-multiple-openelb-replicas/).
+- In a Kubernetes cluster, you only need to install OpenELB once. After the installation is complete, an openelb-controller Deployment containing an openelb-controller Pod and an openelb-speaker DaemonSet containing openelb-speaker Pods will be installed in the cluster. The openelb-controller Pod is used to implement the IPAM for service load balancer IPs, while the openelb-speaker Pods are used to announce the service load balancer IPs.
+
+- After the installation is complete, you can set node selectors to ensure that the load traffic runs on specific nodes. For details, see [Configure Multiple OpenELB Replicas](/docs/getting-started/configuration/configure-multiple-openelb-replicas).
 
 {{</ notice >}}
 
@@ -38,7 +39,7 @@ OpenELB is designed to be used in bare-metal Kubernetes environments. However, y
 
    ![openelb-yaml](/images/en/docs/getting-started/installation/install-openelb-on-kubesphere/openelb-yaml.png)
 
-8. Choose **Application Workloads** > **Pods** on the left navigation bar to check whether the status of openelb-manager is **running**. If yes, OpenELB has been installed successfully.
+8. Choose **Application Workloads** > **Pods** on the left navigation bar to check whether the status of openelb-controller and openelb-speaker is **running**. If yes, OpenELB has been installed successfully.
 
    ![verify-openelb](/images/en/docs/getting-started/installation/install-openelb-on-kubesphere/verify-openelb.png)
 
@@ -50,6 +51,6 @@ To delete OpenELB on the KubeSphere web console, go to your project, choose **Ap
 
 {{< notice note >}}
 
-Before deleting OpenELB, you must first delete all Services that use OpenELB.
+Before deleting OpenELB, you should first delete all Services that use OpenELB.
 
 {{</ notice >}}

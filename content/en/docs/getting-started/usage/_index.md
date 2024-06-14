@@ -8,6 +8,9 @@ no_list: true
 This section describes how to use OpenELB in BGP/ Layer 2 / VIP mode.
 
 ---
+##### **[OpenELB IP Address Assignment](/docs/getting-started/usage/openelb-ip-address-assignment/)**
+
+Describes how OpenELB assigns IP addresses.
 
 ##### **[Use OpenELB in BGP Mode](/docs/getting-started/usage/use-openelb-in-bgp-mode/)**
 

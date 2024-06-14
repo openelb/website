@@ -280,7 +280,8 @@ The following creates a Deployment of two Pods using the luksa/kubia image. Each
      name: bgp-svc
      annotations:
        lb.kubesphere.io/v1alpha1: openelb
-       protocol.openelb.kubesphere.io/v1alpha1: bgp
+       # For versions below 0.6.0, you also need to specify the protocol
+       # protocol.openelb.kubesphere.io/v1alpha1: bgp
        eip.openelb.kubesphere.io/v1alpha2: bgp-eip
    spec:
      selector:
@@ -297,9 +298,8 @@ The following creates a Deployment of two Pods using the luksa/kubia image. Each
 
    - You must set `spec:type` to `LoadBalancer`.
    - The `lb.kubesphere.io/v1alpha1: openelb` annotation specifies that the Service uses OpenELB.
-   - The `protocol.openelb.kubesphere.io/v1alpha1: bgp` annotation specifies that OpenELB is used in BGP mode.
-   - The `eip.openelb.kubesphere.io/v1alpha2: bgp-eip` annotation specifies the Eip object used by OpenELB. If this annotation is not configured, OpenELB automatically uses the first available Eip object that matches the protocol. You can also delete this annotation and add the `spec:loadBalancerIP` field (for example, `spec:loadBalancerIP: 172.22.0.2`) to assign a specific IP address to the Service.
-   - In the BGP mode, you can set `spec:loadBalancerIP` of multiple Services to the same value for IP address sharing (the Services are distinguished by different Service ports). In this case, you must set `spec:ports:port` to different values and `spec:externalTrafficPolicy` to `Cluster` for the Services. 
+   - The `protocol.openelb.kubesphere.io/v1alpha1: bgp` annotation specifies that OpenELB is used in BGP mode. Deprecated after 0.6.0.
+   - The `eip.openelb.kubesphere.io/v1alpha2: bgp-eip` annotation specifies the Eip object used by OpenELB. If this annotation is not configured, OpenELB automatically selects an available Eip object. Alternatively, you can remove this annotation and use the  `spec:loadBalancerIP` field (e.g., `spec:loadBalancerIP: 172.22.0.2`) or add the annotation `eip.openelb.kubesphere.io/v1alpha1: 172.22.0.2` to assign a specific IP address to the Service. When you set `spec:loadBalancerIP` of multiple Services to the same value for IP address sharing (the Services are distinguished by different Service ports). In this case, you must set `spec:ports:port` to different values and `spec:externalTrafficPolicy` to `Cluster` for the Services. For more details about IPAM, see [openelb ip address assignment](/docs/getting-started/usage/openelb-ip-address-assignment/).
    - If `spec:externalTrafficPolicy` is set to `Cluster` (default value), OpenELB uses all Kubernetes cluster nodes as the next hops destined for the Service.
    - If `spec:externalTrafficPolicy` is set to `Local`, OpenELB uses only Kubernetes cluster nodes that contain Pods as the next hops destined for the Service.
 
