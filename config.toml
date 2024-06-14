@@ -99,7 +99,7 @@ version_menu = "Releases"
 	url = "/docs"
 [[params.versions]]
 	version = "v0.5.1"
-	url = "https://website-05x-openelb.vercel.app"
+	url = "https://openelb-05x-openelb.vercel.app"
 
 # Repository configuration (URLs for in-page links to opening issues and suggesting changes)
 github_repo = "https://github.com/kubesphere/kubesphere.github.io"
