@@ -45,7 +45,7 @@ Though the Layer 2 mode does not provide the same high availability as the BGP m
 2. Configure an IP address pool by using Eip.
 3. Create a Service and set the Service to use PorterLB.
 
-You can obtain detailed guidance on how to install, configure, and use PorterLB from the [PorterLB documentation](https://porterlb.io/docs/).
+You can obtain detailed guidance on how to install, configure, and use PorterLB from the [PorterLB documentation](https://openelb.io/docs/).
 
 ## Advantages of PorterLB
 

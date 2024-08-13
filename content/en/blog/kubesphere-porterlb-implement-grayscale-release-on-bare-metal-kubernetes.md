@@ -8,11 +8,11 @@ date: 2021-03-12
 weight: 99999
 ---
 
-[PorterLB](https://porterlb.io) is a load balancer implementation designed for bare-metal Kubernetes clusters. As a sub-project of [KubeSphere](https://kubesphere.io), PorterLB fits well into the KubeSphere ecosystem. You can seamlessly integrate PorterLB as a plugin with KubeSphere to utilize the abundant features of the KubeSphere ecosystem.
+[PorterLB](https://openelb.io) is a load balancer implementation designed for bare-metal Kubernetes clusters. As a sub-project of [KubeSphere](https://kubesphere.io), PorterLB fits well into the KubeSphere ecosystem. You can seamlessly integrate PorterLB as a plugin with KubeSphere to utilize the abundant features of the KubeSphere ecosystem.
 
 During new feature release, the KubeSphere grayscale release feature allows users to freely distribute traffic among a stable version and a beta version of an application to both ensure service continuity and test the beta version before formally rolling it out.
 
-In this article, I am going to introduce how to use KubeSphere and PorterLB to implement grayscale release for an application in a bare-metal Kubernetes cluster. To make you quickly understand how it works, I am going to directly use demonstration settings without digging too much into the details. You can obtain detailed guidance from the [KubeSphere documentation](https://kubesphere.io/docs/) and [PorterLB documentation](https://porterlb.io/docs/).
+In this article, I am going to introduce how to use KubeSphere and PorterLB to implement grayscale release for an application in a bare-metal Kubernetes cluster. To make you quickly understand how it works, I am going to directly use demonstration settings without digging too much into the details. You can obtain detailed guidance from the [KubeSphere documentation](https://kubesphere.io/docs/) and [PorterLB documentation](https://openelb.io/docs/).
 
 ## Architecture
 
@@ -34,7 +34,7 @@ In this article, I am going to introduce how to use KubeSphere and PorterLB to i
 
 ### Prerequisites
 
-* You need to prepare a Kubernetes cluster, and install [KubeSphere](https://kubesphere.io/docs/installing-on-kubernetes/) and [PorterLB](https://porterlb.io/docs/getting-started/installation/) in the Kubernetes cluster.
+* You need to prepare a Kubernetes cluster, and install [KubeSphere](https://kubesphere.io/docs/installing-on-kubernetes/) and [PorterLB](https://openelb.io/docs/getting-started/installation/) in the Kubernetes cluster.
 * On KubeSphere, you need to [create a project and an account](https://kubesphere.io/docs/quick-start/create-workspace-and-project/). The role of the account in the project must be `project-admin`.
 
 ### Operations

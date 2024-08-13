@@ -1,8 +1,8 @@
-# PorterLB 中文文档风格指南
+# OpenELB 中文文档风格指南
 
-欢迎参与 PorterLB 开源项目中文文档贡献。
+欢迎参与 OpenELB 开源项目中文文档贡献。
 
-本指南介绍 PorterLB 中文文档在用语、格式、标点等方面的规定。在开始文档写作或翻译前，请仔细阅读本指南，以便确保 PorterLB 中文文档风格统一并且可读易用。
+本指南介绍 OpenELB 中文文档在用语、格式、标点等方面的规定。在开始文档写作或翻译前，请仔细阅读本指南，以便确保 OpenELB 中文文档风格统一并且可读易用。
 
 ## 总体规定
 
@@ -22,7 +22,7 @@
 
   | 建议使用                     | 避免使用                   |
   | ----------------------------| ------------------------------------ |
-  | 欢迎参与 PorterLB 开源项目中文文档贡献。 | 欢迎参与PorterLB开源项目中文文档贡献。 |
+  | 欢迎参与 OpenELB 开源项目中文文档贡献。 | 欢迎参与OpenELB开源项目中文文档贡献。 |
   | 您需要部署 1 个集群。                    | 您需要部署1个集群。 |
   | 请确保您的 Helm 版本为 Helm 3。          | 请确保您的 Helm 版本为 Helm 3 。|
 
@@ -39,7 +39,7 @@
 
   | 建议使用                      | 避免使用                      |
   | ----------------------------- | ----------------------------- |
-  | 在 KubeSphere 上安装 PorterLB | PorterLB 在 KubeSphere 上安装 |
+  | 在 KubeSphere 上安装 OpenELB | OpenELB 在 KubeSphere 上安装 |
 
 * 除非通用的术语（例如 O&M 和 N/A），请避免在标题中使用 & 和 / 符号。
 * 尽可能使中文标题在 24 英寸显示器上不超过 1 行。
@@ -67,7 +67,7 @@
 
   | 建议使用                                    | 避免使用                                |
   | ------------------------------------------- | --------------------------------------- |
-  | 本文介绍如何在 KubeSphere 上安装 PorterLB。 | 介绍如何在 KubeSphere 上安装 PorterLB。 |
+  | 本文介绍如何在 KubeSphere 上安装 OpenELB。 | 介绍如何在 KubeSphere 上安装 OpenELB。 |
 
 ## 标点
 
@@ -75,9 +75,9 @@
 
   | 建议使用                                                     | 避免使用                                                     |
   | ------------------------------------------------------------ | ------------------------------------------------------------ |
-  | 本文介绍如何在 KubeSphere 上安装 PorterLB。                  | 本文介绍如何在 KubeSphere 上安装 PorterLB.                   |
-  | 本节介绍如何在 Kubernetes、KubeSphere 和 K3s 上安装 PorterLB。 | 本节介绍如何在 Kubernetes, KubeSphere 和 K3s 上安装 PorterLB。 |
-  | 如果您使用 Helm 安装 PorterLB，请确保 Helm 版本为 Helm 3。   | 如果您使用 Helm 安装 PorterLB, 请确保 Helm 版本为 Helm 3。   |
+  | 本文介绍如何在 KubeSphere 上安装 OpenELB。                  | 本文介绍如何在 KubeSphere 上安装 OpenELB.                   |
+  | 本节介绍如何在 Kubernetes、KubeSphere 和 K3s 上安装 OpenELB。 | 本节介绍如何在 Kubernetes, KubeSphere 和 K3s 上安装 OpenELB。 |
+  | 如果您使用 Helm 安装 OpenELB，请确保 Helm 版本为 Helm 3。   | 如果您使用 Helm 安装 OpenELB, 请确保 Helm 版本为 Helm 3。   |
 
 * 链接外部文档不需要添加书名号。
 
