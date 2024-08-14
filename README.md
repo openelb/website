@@ -2,7 +2,7 @@
 
 Welcome to the OpenELB website repository!
 
-This repository contains web pages of the [official OpenELB website](https://porterlb.io), including documentation, blog articles, community information, and other contents of the [OpenELB open-source project](https://github.com/kubesphere/OpenELB).
+This repository contains web pages of the [official OpenELB website](https://openelb.io), including documentation, blog articles, community information, and other contents of the [OpenELB open-source project](https://github.com/kubesphere/OpenELB).
 
 Whether you are a tech enthusiast, a language professional, or simply someone interested in the OpenELB project, you are always welcome to send your works to the OpenELB website and help localize the website!
 
